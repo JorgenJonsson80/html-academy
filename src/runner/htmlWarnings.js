@@ -3,7 +3,7 @@
 // koden själva och säger vad som hände, med radnummer.
 
 // Taggar som aldrig stängs.
-const VOID = new Set([
+export const VOID_TAGS = new Set([
   'area',
   'base',
   'br',
@@ -23,7 +23,7 @@ const VOID = new Set([
 const RAW_TEXT = new Set(['style', 'script', 'textarea', 'title']);
 
 const KNOWN = new Set([
-  ...VOID,
+  ...VOID_TAGS,
   ...RAW_TEXT,
   ...`a abbr address article aside audio b bdi bdo blockquote body button
   canvas caption cite code colgroup data datalist dd del details dfn dialog
@@ -76,7 +76,8 @@ function distance(a, b) {
   return previous[b.length];
 }
 
-function guess(name) {
+// Den tagg man troligen menade, eller null.
+export function guessTag(name) {
   if (MEANT[name]) return MEANT[name];
   if (/^h\d+$/.test(name)) return 'h6';
   const [best] = [...KNOWN]
@@ -127,7 +128,7 @@ export function htmlWarnings(code) {
     const { name, line } = tag;
     if (!KNOWN.has(name) && !name.includes('-')) {
       if (tag.closing) continue;
-      const meant = guess(name);
+      const meant = guessTag(name);
       warnings.push(
         `<${name}> på rad ${line} finns inte i HTML` +
           (meant ? ` – menade du <${meant}>?` : '.'),
@@ -135,7 +136,7 @@ export function htmlWarnings(code) {
       continue;
     }
     if (tag.closing) {
-      if (VOID.has(name)) {
+      if (VOID_TAGS.has(name)) {
         warnings.push(
           `</${name}> på rad ${line} behövs inte – <${name}> stängs aldrig.`,
         );
@@ -162,7 +163,7 @@ export function htmlWarnings(code) {
         `<img> på rad ${line} saknar alt – den som inte ser bilden får ingen beskrivning. Är bilden bara pynt skriver du alt="".`,
       );
     }
-    if (!VOID.has(name) && !tag.selfClosing) open.push(tag);
+    if (!VOID_TAGS.has(name) && !tag.selfClosing) open.push(tag);
   }
   // html, head och body får stå öppna – webbläsaren stänger dem i slutet.
   for (const tag of open.filter(

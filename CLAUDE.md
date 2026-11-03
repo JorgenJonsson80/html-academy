@@ -40,6 +40,11 @@ Push till `main` kör testerna och publicerar via
 - `src/runner/htmlWarnings.js` – varningar för vanliga HTML-misstag
   (tagg som aldrig stängs, fel ordning, `<h7>`, `<img>` utan `alt`), med
   radnummer. Visas i gula rutan i `FeedbackPanel`. Facit får inte varna.
+- `src/editor/codeInfo.js` – förklaringen när man håller musen över
+  koden, byggd på syntaxträdet (`@codemirror/lang-html`, med CSS i
+  `<style>`). Säger också var en tagg stängs och vilken tagg den ligger i.
+  Lägg till taggar, attribut och CSS-egenskaper i tabellerna överst när
+  nya banor använder dem.
 - `src/runner/evaluate.js` – gör om svaret till feedback i klartext.
   `showValue` visar värden som JSON.
 - `src/runner/friendlyErrors.js` – förklaringar på svenska av fel i

@@ -154,8 +154,6 @@ i `checkPage.js`:
   layout. Alternativ: kör de banornas tester i Playwright (vitest browser
   mode), eller testa beräknade stilar (`display`, `justify-content`) i
   stället för placering. Bestäm innan bana 8.
-- **Hover** i editorn: förklara taggar och CSS-egenskaper på svenska, som
-  `codeInfo.js` i Python Academy.
 
 ## Etapper
 
@@ -171,6 +169,7 @@ Användaren testar efter varje etapp.
 3b. ✅ **Bana 4–5** med projekt, idéer, quiz och resurser. Formulär i
    förhandsvisningen skickas inte – en ruta visar vad som skulle ha
    skickats. Begreppsregel: inga `header`/`nav`/`main` före bana 4.
-4. **Hover** i editorn för taggar och egenskaper.
+4. ✅ **Hover** i editorn för taggar, attribut, värden och CSS
+   (`editor/codeInfo.js`).
 5. **Bana 6–10** med CSS, och layouttesterna inför bana 8.
 6. **Slutprojektet** och **Tailwind**.

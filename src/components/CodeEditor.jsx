@@ -17,17 +17,20 @@ import {
   indentOnInput,
   indentUnit,
   syntaxHighlighting,
+  syntaxTree,
 } from '@codemirror/language';
 import { EditorState } from '@codemirror/state';
 import {
   drawSelection,
   EditorView,
   highlightActiveLine,
+  hoverTooltip,
   keymap,
   lineNumbers,
 } from '@codemirror/view';
 import { tags } from '@lezer/highlight';
 import { useEffect, useRef } from 'react';
+import { describeAt } from '../editor/codeInfo';
 
 const isMac = /Mac|iPhone|iPad/.test(navigator.platform);
 const RUN_KEYS = isMac ? 'Cmd+Enter' : 'Ctrl+Enter';
@@ -52,6 +55,41 @@ const highlightStyle = HighlightStyle.define([
   { tag: tags.attributeName, color: '#fde68a' },
   { tag: tags.attributeValue, color: '#86efac' },
 ]);
+
+// Förklaringen som visas när man håller musen över koden. `kod` i texten
+// blir <code>.
+function renderInfo({ title, body }) {
+  const dom = document.createElement('div');
+  dom.className = 'cm-code-info';
+  const heading = document.createElement('strong');
+  heading.textContent = title;
+  const paragraph = document.createElement('p');
+  body.split(/`([^`]+)`/).forEach((part, index) => {
+    if (index % 2 === 0) paragraph.append(part);
+    else
+      paragraph.append(
+        Object.assign(document.createElement('code'), { textContent: part }),
+      );
+  });
+  dom.append(heading, paragraph);
+  return dom;
+}
+
+const codeHover = hoverTooltip((view, pos, side) => {
+  const info = describeAt(
+    syntaxTree(view.state),
+    view.state.doc.toString(),
+    pos,
+    side,
+  );
+  if (!info) return null;
+  return {
+    pos: info.from,
+    end: info.to,
+    above: true,
+    create: () => ({ dom: renderInfo(info) }),
+  };
+});
 
 const editorTheme = EditorView.theme(
   {
@@ -93,6 +131,25 @@ const editorTheme = EditorView.theme(
       background: 'var(--surface)',
       color: 'var(--text)',
     },
+    '.cm-code-info': {
+      maxWidth: '360px',
+      padding: '8px 12px',
+      fontSize: '14px',
+      fontFamily: "'Nunito', system-ui, sans-serif",
+    },
+    '.cm-code-info strong': {
+      fontFamily: "'JetBrains Mono', monospace",
+      color: 'var(--accent)',
+    },
+    '.cm-code-info p': { margin: '4px 0 0' },
+    '.cm-code-info code': {
+      padding: '1px 4px',
+      borderRadius: '4px',
+      background: 'var(--task-code-bg)',
+      color: 'var(--task-code-text)',
+      fontFamily: "'JetBrains Mono', monospace",
+      fontSize: '13px',
+    },
     '.cm-completionDetail': { color: 'var(--muted)', fontStyle: 'normal' },
     '.cm-tooltip-autocomplete ul li[aria-selected]': {
       background: 'var(--accent-soft)',
@@ -131,6 +188,7 @@ export default function CodeEditor({ code, onCodeChange, onRun }) {
           EditorState.tabSize.of(2),
           html(),
           autocompletion(),
+          codeHover,
           syntaxHighlighting(highlightStyle),
           editorTheme,
           EditorView.contentAttributes.of({ 'aria-labelledby': 'code-label' }),
@@ -182,7 +240,8 @@ export default function CodeEditor({ code, onCodeChange, onRun }) {
       <p className="editor-tips muted">
         <kbd>{RUN_KEYS}</kbd> kollar lösningen · <kbd>Tab</kbd> drar in två
         mellanslag · <kbd>{COMMENT_KEYS}</kbd> kommenterar bort en rad · skriv{' '}
-        <code>&lt;</code> så föreslås taggar
+        <code>&lt;</code> så föreslås taggar · håll musen över en tagg så
+        förklaras den
       </p>
     </>
   );
