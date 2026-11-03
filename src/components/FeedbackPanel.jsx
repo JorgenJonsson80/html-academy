@@ -26,6 +26,16 @@ export default function FeedbackPanel({ feedback, stage }) {
         </figure>
       )}
       {feedback.error && <ErrorBox error={feedback.error} />}
+      {feedback.warnings?.length > 0 && (
+        <div className="html-warnings">
+          <p className="html-warnings-title">⚠️ Webbläsaren fick gissa här</p>
+          <ul>
+            {feedback.warnings.map((warning, index) => (
+              <li key={`warning-${index}`}>{warning}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       {feedback.results?.length > 0 && (
         <ul className="test-results">
           {feedback.results.map((result, index) => (

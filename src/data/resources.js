@@ -22,6 +22,18 @@ export const RESOURCES = {
       video: 'html strong em tags explained',
     },
   ],
+  lankar: [
+    {
+      topic: 'Länkar',
+      read: `${LEARN}Core/Structuring_content/Creating_links`,
+      video: 'html länkar a href nybörjare',
+    },
+    {
+      topic: 'Bilder och alt-text',
+      read: `${LEARN}Core/Structuring_content/HTML_images`,
+      video: 'html img alt text beginners',
+    },
+  ],
 };
 
 export function videoSearchUrl(query) {

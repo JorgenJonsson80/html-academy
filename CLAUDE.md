@@ -34,17 +34,23 @@ Push till `main` kör testerna och publicerar via
 - `src/test/nodePage.js` – samma rättning med jsdom i testerna. jsdom
   räknar inte ut layout.
 - `src/components/PagePreview.jsx` – förhandsvisningen under editorn,
-  300 ms efter senaste ändringen, `sandbox="allow-scripts"`.
+  300 ms efter senaste ändringen, `sandbox="allow-scripts"`. Ett tillagt
+  skript rullar till `#id`-länkar och öppnar andra länkar i ny flik.
+- `src/runner/htmlWarnings.js` – varningar för vanliga HTML-misstag
+  (tagg som aldrig stängs, fel ordning, `<h7>`, `<img>` utan `alt`), med
+  radnummer. Visas i gula rutan i `FeedbackPanel`. Facit får inte varna.
 - `src/runner/evaluate.js` – gör om svaret till feedback i klartext.
   `showValue` visar värden som JSON.
-- `src/runner/friendlyErrors.js` – förklaringar på svenska. Här ska
-  varningarna för vanliga HTML-misstag in (se SPEC.md).
+- `src/runner/friendlyErrors.js` – förklaringar på svenska av fel i
+  testerna.
 - `src/data/` – innehållet är data, inte kod:
   - `tracks.js` banorna i ordning med `teaches`, `reward`, `docs` (MDN)
     och `canBuild`
   - `lessons/` en fil per bana, samlade i `lessons/index.js`.
     `lessons.test.js` rättar varje facit och startkod
   - `lessons/bossar.js` en boss per bana (`isBoss`, inga ledtrådar)
+  - bilderna i övningarna ligger i `public/bilder/` (egna SVG:er, så att
+    övningarna fungerar utan internet). Lokalt körs appen på `/`
   - `projects.js` tre projekt per bana (tomt än, etapp 3)
   - `ideas.js` tre idéer per bana till Lekplatsen (tomt än, etapp 3)
   - `resources.js` länkar per bana till Fastnat?-panelen

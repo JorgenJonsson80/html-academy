@@ -20,6 +20,14 @@ describe('evaluate', () => {
     expect(feedback.results[1].text).toBe('fick 2 men skulle vara 3');
   });
 
+  it('varnar även när testerna går igenom', () => {
+    const feedback = evaluate(lesson, '<h1>Hej!<h1>', {
+      tests: [{ passed: true }, { passed: true }],
+    });
+    expect(feedback.isCorrect).toBe(true);
+    expect(feedback.warnings).toHaveLength(2);
+  });
+
   it('säger till när elementet saknas', () => {
     const feedback = evaluate(lesson, '', {
       tests: [

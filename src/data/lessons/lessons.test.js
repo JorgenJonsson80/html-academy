@@ -4,6 +4,7 @@ import { nodeRunPage } from '../../test/nodePage';
 import { LESSONS } from '.';
 import { TRACKS } from '../tracks';
 import { conceptsTooEarly } from '../../test/concepts';
+import { htmlWarnings } from '../../runner/htmlWarnings';
 
 const check = (lesson, code) =>
   evaluate(lesson, code, nodeRunPage({ code, tests: lesson.tests }));
@@ -20,6 +21,10 @@ describe.each(LESSONS.map(lesson => [lesson.id, lesson]))('%s', (_, lesson) => {
   it('har tre ledtrådar (bossen inga) och en bana som finns', () => {
     expect(lesson.hints).toHaveLength(lesson.isBoss ? 0 : 3);
     expect(TRACKS.map(track => track.id)).toContain(lesson.track);
+  });
+
+  it('facit ger inga varningar', () => {
+    expect(htmlWarnings(lesson.solution)).toEqual([]);
   });
 
   it('facit använder bara det banorna hittills lärt ut', () => {

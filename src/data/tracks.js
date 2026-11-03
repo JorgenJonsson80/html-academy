@@ -8,7 +8,7 @@ export const TRACKS = [
   {
     id: 'grunder',
     title: 'Din första webbsida',
-    teaches: ['h1–h6', 'p', 'strong', 'em'],
+    teaches: ['h1–h6', 'p', 'strong', 'em', 'br', 'hr', '<!-- -->'],
     reward: { emoji: '🧸', name: 'Nalle' },
     canBuild:
       'en enkel sida om dig själv, med rubriker, stycken och ord som sticker ut',
@@ -24,6 +24,28 @@ export const TRACKS = [
       {
         title: '<strong> och <em>',
         url: `${MDN}Learn_web_development/Core/Structuring_content/Emphasis_and_importance`,
+      },
+    ],
+  },
+  {
+    id: 'lankar',
+    title: 'Länkar och bilder',
+    teaches: ['a href', 'target', 'img src alt', 'width', 'id', 'mailto:'],
+    reward: { emoji: '🪀', name: 'Jojo' },
+    canBuild:
+      'en receptsida med bilder, länkar till mer att läsa och en meny som hoppar ner på sidan',
+    docs: [
+      {
+        title: 'Länkar',
+        url: `${MDN}Learn_web_development/Core/Structuring_content/Creating_links`,
+      },
+      {
+        title: 'Bilder',
+        url: `${MDN}Learn_web_development/Core/Structuring_content/HTML_images`,
+      },
+      {
+        title: 'Alt-text',
+        url: `${MDN}Web/HTML/Reference/Elements/img#authoring_meaningful_alternate_descriptions`,
       },
     ],
   },

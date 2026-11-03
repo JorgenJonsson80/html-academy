@@ -39,6 +39,25 @@ Tänkt ordning för eleven: **HTML/CSS → JS Academy → Python Academy**.
   **inte ut layout** (storlek, placering, flex och grid). Tester på det
   kan bara köras i webbläsaren – se "Öppna frågor".
 
+### Varningar för vanliga misstag
+
+HTML ger inga fel – webbläsaren lagar koden tyst. `runner/htmlWarnings.js`
+läser koden själv och varnar, med radnummer, för en tagg som aldrig
+stängs, en stängande tagg utan öppnande, taggar som stängs i fel ordning,
+taggar som inte finns (`<h7>` – menade du `<h6>`?) och `<img>` utan `alt`.
+Varningarna visas i en gul ruta ovanför testraderna, även när testerna går
+igenom. Inget facit får ge en varning (`lessons.test.js`).
+
+### Bilder och länkar i förhandsvisningen
+
+- Bilderna ligger i `public/bilder/` och skrivs `src="bilder/katt.svg"`.
+  En sida i `srcdoc` har appens adress, så sökvägen fungerar både lokalt
+  och på GitHub Pages.
+- Av samma skäl skulle `href="#recept"` ladda appen i rutan.
+  `PagePreview.jsx` lägger till ett litet skript som rullar till målet i
+  stället, och öppnar andra länkar i en ny flik (många sidor vägrar visas
+  i en ram).
+
 ### En övning
 
 Som i Python Academy. `test.code` är ett JavaScript-uttryck med hjälparna
@@ -130,10 +149,6 @@ i `checkPage.js`:
   layout. Alternativ: kör de banornas tester i Playwright (vitest browser
   mode), eller testa beräknade stilar (`display`, `justify-content`) i
   stället för placering. Bestäm innan bana 8.
-- **Felförklaringar:** HTML ger inga fel. Vanliga misstag går att hitta
-  själv: en tagg som aldrig stängs, en stängande tagg utan öppnande,
-  `<img>` utan `alt`, stavfel i taggnamn (`<h7>`, `<pp>`). Visa dem som
-  vänliga varningar ovanför testraderna (`friendlyErrors.js`).
 - **Hover** i editorn: förklara taggar och CSS-egenskaper på svenska, som
   `codeInfo.js` i Python Academy.
 
@@ -143,7 +158,7 @@ Användaren testar efter varje etapp.
 
 1. ✅ **Skal:** kopia av Python Academy utan Pyodide, förhandsvisning,
    rättning mot iframen och jsdom, bana 1 med tre övningar och en boss.
-2. **Bana 1–2 färdiga** (9 övningar var) och varningar för vanliga
+2. ✅ **Bana 1–2 färdiga** (9 övningar var) och varningar för vanliga
    HTML-misstag.
 3. **Projekt, Lekplatsens idéer, Fastnat?-resurser** och bana 3–5.
 4. **Hover** i editorn för taggar och egenskaper.

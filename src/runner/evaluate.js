@@ -1,4 +1,5 @@
 import { explainError } from './friendlyErrors';
+import { htmlWarnings } from './htmlWarnings';
 
 // Visar ett värde från ett test: "text", 3, ["a", "b"].
 export function showValue(value) {
@@ -15,7 +16,7 @@ function describeFailure(test, entry) {
     return `koden stoppade med ett fel: ${explainError(entry.error)}`;
   }
   if (entry.actual === null) {
-    return 'hittade det inte på sidan. Kolla stavningen och att taggen finns';
+    return 'hittade det inte på sidan. Kolla stavningen och att taggen eller attributet finns';
   }
   return `fick ${showValue(entry.actual)} men skulle vara ${showValue(test.expected)}`;
 }
@@ -50,7 +51,9 @@ const PRAISE = [
 
 // lesson: övningen, raw: svaret från checkPage.
 export function evaluate(lesson, code, raw) {
-  const base = { output: raw.console ?? [] };
+  // Varningarna visas även när testerna går igenom: sidan kan se rätt ut
+  // fast webbläsaren fick gissa.
+  const base = { output: raw.console ?? [], warnings: htmlWarnings(code) };
 
   if (raw.syntaxError) {
     return {

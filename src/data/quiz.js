@@ -31,6 +31,43 @@ export const QUIZ = {
       explain: 'Den stängande taggen har ett snedstreck före namnet: </p>.',
     },
   ],
+  lankar: [
+    {
+      question: 'Vart går länken?',
+      code: '<a href="https://mdn.dev">Läs mer</a>',
+      options: ['https://mdn.dev', 'Läs mer', 'Ingenstans', 'href'],
+      explain:
+        'Adressen står i href. Texten mellan taggarna är det man klickar på.',
+      check: "attr('a', 'href')",
+    },
+    {
+      question: 'Vad är alt-texten till för?',
+      options: [
+        'Den beskriver bilden för den som inte ser den',
+        'Den gör bilden större',
+        'Den visas som rubrik över bilden',
+        'Den bestämmer bildens filnamn',
+      ],
+      explain:
+        'Skärmläsare läser upp alt-texten, och den visas om bilden inte laddar.',
+    },
+    {
+      question: 'Vilken tagg stängs aldrig?',
+      options: ['<img>', '<a>', '<p>', '<strong>'],
+      explain: '<img> har inget innehåll, så det finns ingen </img>.',
+    },
+    {
+      question: 'Vilken länktext är bäst?',
+      options: [
+        'Läs hela receptet',
+        'Klicka här',
+        'Länk',
+        'https://example.com/recept',
+      ],
+      explain:
+        'Länktexten ska säga vart länken går, även när den läses upp ensam.',
+    },
+  ],
 };
 
 // Id:t som sparas bland de klara när man klarat en banas test. Det följer
