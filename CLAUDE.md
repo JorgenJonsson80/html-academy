@@ -34,8 +34,9 @@ Push till `main` kör testerna och publicerar via
 - `src/test/nodePage.js` – samma rättning med jsdom i testerna. jsdom
   räknar inte ut layout.
 - `src/components/PagePreview.jsx` – förhandsvisningen under editorn,
-  300 ms efter senaste ändringen, `sandbox="allow-scripts"`. Ett tillagt
-  skript rullar till `#id`-länkar och öppnar andra länkar i ny flik.
+  300 ms efter senaste ändringen, `sandbox="allow-scripts allow-forms"`.
+  Ett tillagt skript rullar till `#id`-länkar, öppnar andra länkar i ny
+  flik och visar vad ett formulär skulle ha skickat.
 - `src/runner/htmlWarnings.js` – varningar för vanliga HTML-misstag
   (tagg som aldrig stängs, fel ordning, `<h7>`, `<img>` utan `alt`), med
   radnummer. Visas i gula rutan i `FeedbackPanel`. Facit får inte varna.
@@ -51,8 +52,11 @@ Push till `main` kör testerna och publicerar via
   - `lessons/bossar.js` en boss per bana (`isBoss`, inga ledtrådar)
   - bilderna i övningarna ligger i `public/bilder/` (egna SVG:er, så att
     övningarna fungerar utan internet). Lokalt körs appen på `/`
-  - `projects.js` tre projekt per bana (tomt än, etapp 3)
-  - `ideas.js` tre idéer per bana till Lekplatsen (tomt än, etapp 3)
+  - `projects.js` tre projekt per bana med steg (`why` på varje steg).
+    Fri text testas på formen, inte exakta ord. Facit får inte varna
+  - `ideas.js` tre idéer per bana till Lekplatsen
+  - `sourceChecks` på en övning kollar koden med regex – för det
+    webbläsaren lagar själv, som `html`, `head` och `body` som saknas
   - `resources.js` länkar per bana till Fastnat?-panelen
   - `quiz.js` fyra frågor per bana. En fråga med `check` rättas mot
     `code` i `quiz.test.js`
@@ -67,7 +71,8 @@ Push till `main` kör testerna och publicerar via
 ## En övning
 
 Som i SPEC.md. Inga länkar eller bilder före bana 2, inga listor före
-bana 3, inga formulär före bana 5, ingen CSS före bana 6, ingen
+bana 3, inga `header`/`nav`/`main`/`section`/`article`/`footer` före
+bana 4, inga formulär före bana 5, ingen CSS före bana 6, ingen
 flex/grid/`@media` före sina banor och ingen Tailwind före bana 12 i
 facit.
 

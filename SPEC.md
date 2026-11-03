@@ -57,6 +57,11 @@ igenom. Inget facit får ge en varning (`lessons.test.js`).
   `PagePreview.jsx` lägger till ett litet skript som rullar till målet i
   stället, och öppnar andra länkar i en ny flik (många sidor vägrar visas
   i en ram).
+- Formulär skickas inte. Skriptet visar en ruta med det som skulle ha
+  skickats (`name = värde`), så att eleven ser vad `name` gör. `required`
+  stoppar som vanligt, eftersom rutan har `allow-forms`.
+- Webbläsaren skapar `html`, `head` och `body` själv om de saknas, så
+  att de står i koden kollas med `sourceChecks` (bana 4).
 
 ### En övning
 
@@ -163,7 +168,7 @@ Användaren testar efter varje etapp.
 3. ✅ **Projekt och Lekplatsens idéer** för bana 1–3, och bana 3.
    Projektsteg med fri text testar formen (`h1` som börjar med …), inte
    exakta ord. Inget facit i projekten får ge varningar.
-3b. **Bana 4–5** med projekt, idéer, quiz och resurser. Formulär i
+3b. ✅ **Bana 4–5** med projekt, idéer, quiz och resurser. Formulär i
    förhandsvisningen skickas inte – en ruta visar vad som skulle ha
    skickats. Begreppsregel: inga `header`/`nav`/`main` före bana 4.
 4. **Hover** i editorn för taggar och egenskaper.
