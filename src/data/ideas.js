@@ -122,6 +122,86 @@ export const IDEAS = [
     extra:
       'Lägg till en rad sist med `colspan` som säger när tabellen uppdaterades.',
   },
+  {
+    id: 'idea-portfolio',
+    track: 'struktur',
+    emoji: '🎨',
+    title: 'Portfolion',
+    summary: 'En sida som visar upp det du har gjort – teckningar, kod, foton.',
+    goals: [
+      'Ett helt dokument med titel, språk och teckenkodning.',
+      'header med ditt namn och en meny, main och footer.',
+      'Varje sak du visar upp är en `article` med bild och rubrik.',
+    ],
+    extra: 'Lägg till ett avsnitt `Om mig` som menyn hoppar till.',
+  },
+  {
+    id: 'idea-recension',
+    track: 'struktur',
+    emoji: '🎮',
+    title: 'Spelrecensionen',
+    summary: 'Recensera ett spel, en film eller en bok du gillar.',
+    goals: [
+      'Recensionen är en `article` i `main`.',
+      'Avsnitt med `section` för `Handling`, `Bra` och `Mindre bra`.',
+      'Ett betyg i en tabell eller lista.',
+    ],
+    extra:
+      'Skriv två recensioner till och lägg alla i ett avsnitt `Recensioner`.',
+  },
+  {
+    id: 'idea-skoltidning',
+    track: 'struktur',
+    emoji: '🗞️',
+    title: 'Skoltidningen',
+    summary: 'Förstasidan på en skoltidning med flera nyheter.',
+    goals: [
+      'Tidningens namn i `header` och en meny med avdelningar.',
+      'Minst tre nyheter, var och en en `article` med `h2`.',
+      'Utgivare och © i `footer`.',
+    ],
+    extra: 'Märk ut datumet i varje nyhet med en `span`.',
+  },
+  {
+    id: 'idea-gastbok',
+    track: 'formular',
+    emoji: '📖',
+    title: 'Gästboken',
+    summary: 'Ett formulär där besökare kan lämna en hälsning.',
+    goals: [
+      'Fält för namn och hälsning, med etiketter.',
+      'Hälsningen är ett `textarea` som måste fyllas i.',
+      'Under formuläret några påhittade hälsningar som `article`.',
+    ],
+    extra: 'Låt besökaren välja ett humör med radioknappar: 😀 😐 😢.',
+  },
+  {
+    id: 'idea-quiz',
+    track: 'formular',
+    emoji: '❓',
+    title: 'Quizet',
+    summary: 'Ett quiz med frågor om något du kan mycket om.',
+    goals: [
+      'Minst tre frågor, var och en i en `fieldset` med `legend`.',
+      'Radioknappar för svaren, med samma `name` i varje fråga.',
+      'En knapp som skickar svaren. Prova och se vad som skickas.',
+    ],
+    extra: 'Lägg till en fråga där man får välja flera svar.',
+  },
+  {
+    id: 'idea-biljett',
+    track: 'formular',
+    emoji: '🎟️',
+    title: 'Biljettbokningen',
+    summary: 'Boka biljetter till en konsert, match eller bio.',
+    goals: [
+      'En meny för föreställning och ett sifferfält för antal biljetter.',
+      'Namn och e-post, som måste fyllas i.',
+      'En kryssruta för att godkänna villkoren.',
+    ],
+    extra:
+      'Testa `min` och `max` på sifferfältet, så att man inte kan boka 1000 biljetter.',
+  },
 ];
 
 const FREE_START = `<!-- Skriv vad du vill. Sidan syns under editorn. -->

@@ -67,4 +67,61 @@ export const TRACKS = [
       },
     ],
   },
+  {
+    id: 'struktur',
+    title: 'Sidans delar',
+    teaches: [
+      '<!doctype>',
+      'head',
+      'title',
+      'header',
+      'nav',
+      'main',
+      'section',
+      'article',
+      'footer',
+      'div',
+      'span',
+    ],
+    reward: { emoji: '🎲', name: 'Tärning' },
+    canBuild:
+      'en hel hemsida för en klubb eller ett företag, med meny, avsnitt och sidfot',
+    docs: [
+      {
+        title: 'Sidans delar',
+        url: `${MDN}Learn_web_development/Core/Structuring_content/Structuring_documents`,
+      },
+      {
+        title: 'Det som står i head',
+        url: `${MDN}Learn_web_development/Core/Structuring_content/Webpage_metadata`,
+      },
+    ],
+  },
+  {
+    id: 'formular',
+    title: 'Formulär',
+    teaches: [
+      'form',
+      'label',
+      'input',
+      'textarea',
+      'select',
+      'button',
+      'name',
+      'required',
+    ],
+    reward: { emoji: '🎈', name: 'Ballong' },
+    canBuild:
+      'en anmälan, en beställning eller en enkät där alla vet vad de ska fylla i',
+    docs: [
+      {
+        title: 'Ditt första formulär',
+        url: `${MDN}Learn_web_development/Extensions/Forms/Your_first_form`,
+      },
+      {
+        title: 'Fälten i ett formulär',
+        url: `${MDN}Learn_web_development/Extensions/Forms/Basic_native_form_controls`,
+      },
+    ],
+  },
 ];

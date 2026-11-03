@@ -2,6 +2,8 @@ import { BOSSES } from './bossar';
 import { GRUNDER } from './grunder';
 import { LANKAR } from './lankar';
 import { LISTOR } from './listor';
+import { STRUKTUR } from './struktur';
+import { FORMULAR } from './formular';
 
 // Alla övningar i banornas ordning, med bossen sist i varje bana. Se
 // SPEC.md för alla fält.
@@ -12,4 +14,8 @@ export const LESSONS = [
   BOSSES.lankar,
   ...LISTOR,
   BOSSES.listor,
+  ...STRUKTUR,
+  BOSSES.struktur,
+  ...FORMULAR,
+  BOSSES.formular,
 ];

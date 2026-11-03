@@ -189,4 +189,182 @@ export const BOSSES = {
       },
     ],
   },
+  struktur: {
+    id: 'struktur-boss',
+    track: 'struktur',
+    title: 'Boss: Klubbsidan',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'En hel sida från första till sista raden, med alla delar på rätt plats.',
+    task: `Uppgift: Bygg sidan för schackklubben, som ett helt dokument.
+  1. \`<!doctype html>\`, \`html\` med svenska som språk, och i \`head\` \`<meta charset="utf-8">\` och titeln \`Schackklubben\`.
+  2. En \`header\` med rubriken \`Schackklubben\` (\`h1\`) och en \`nav\` med tre länkar som hoppar till avsnitten i punkt 3.
+  3. En \`main\` med tre \`section\`: \`Om klubben\`, \`Träningar\` och \`Bli medlem\`, var och en med \`h2\` och ett \`id\`.
+  4. En \`footer\` med en länk som mejlar till \`schack@example.com\`.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Schackklubben</title>
+  </head>
+  <body>
+    <header>
+      <h1>Schackklubben</h1>
+      <nav>
+        <ul>
+          <li><a href="#om">Om klubben</a></li>
+          <li><a href="#traningar">Träningar</a></li>
+          <li><a href="#medlem">Bli medlem</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="om">
+        <h2>Om klubben</h2>
+        <p>Vi spelar schack för alla åldrar, nybörjare som proffs.</p>
+      </section>
+      <section id="traningar">
+        <h2>Träningar</h2>
+        <p>Tisdagar och torsdagar klockan 18 i biblioteket.</p>
+      </section>
+      <section id="medlem">
+        <h2>Bli medlem</h2>
+        <p>Kom på en träning, så fixar vi resten.</p>
+      </section>
+    </main>
+    <footer>
+      <p><a href="mailto:schack@example.com">Mejla oss</a></p>
+    </footer>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Ett helt dokument på svenska',
+        code: "[doc.doctype?.name ?? null, doc.documentElement.getAttribute('lang')]",
+        expected: ['html', 'sv'],
+      },
+      {
+        description: 'utf-8 och titeln Schackklubben i head',
+        code: "[attr('head meta[charset]', 'charset')?.toLowerCase() ?? null, text('head title')]",
+        expected: ['utf-8', 'Schackklubben'],
+      },
+      {
+        description: 'Rubriken och menyn står i header',
+        code: "[text('header h1'), count('header nav a')]",
+        expected: ['Schackklubben', 3],
+      },
+      {
+        description: 'Tre avsnitt i main',
+        code: "texts('main > section > h2')",
+        expected: ['Om klubben', 'Träningar', 'Bli medlem'],
+      },
+      {
+        description: 'Menyns länkar hoppar till avsnitten, i ordning',
+        code: "$$('nav a').map(a => doc.getElementById((a.getAttribute('href') ?? '').slice(1))?.querySelector('h2')?.textContent.trim() ?? null)",
+        expected: ['Om klubben', 'Träningar', 'Bli medlem'],
+      },
+      {
+        description: 'Sidfoten mejlar till schack@example.com',
+        code: "attr('footer a', 'href')",
+        expected: 'mailto:schack@example.com',
+      },
+    ],
+    sourceChecks: [
+      { description: 'Koden har <head>', pattern: /<head[\s>]/i },
+      { description: 'Koden har <body>', pattern: /<body[\s>]/i },
+    ],
+  },
+  formular: {
+    id: 'formular-boss',
+    track: 'formular',
+    title: 'Boss: Anmälan till lägret',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'Ett anmälningsformulär med alla sorters fält – och alla med etikett.',
+    task: `Uppgift: Bygg anmälan till sommarlägret i en \`form\`. Alla fält ska ha en etikett och ett \`name\`.
+  1. \`Namn\` (text) och \`E-post\` (email), som båda måste fyllas i.
+  2. \`Ålder\` som ett fält för siffror.
+  3. En meny för vecka med \`Vecka 26\`, \`Vecka 27\` och \`Vecka 28\`.
+  4. Tre radioknappar i samma grupp för boende: \`Tält\`, \`Stuga\` och \`Hemma\`.
+  5. Ett stort textfält för \`Allergier\`.
+  6. En knapp som säger \`Anmäl mig\`.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<form>
+  <label for="namn">Namn *</label>
+  <input type="text" id="namn" name="namn" required>
+  <label for="epost">E-post *</label>
+  <input type="email" id="epost" name="epost" required>
+  <label for="alder">Ålder</label>
+  <input type="number" id="alder" name="alder">
+  <label for="vecka">Vecka</label>
+  <select id="vecka" name="vecka">
+    <option value="26">Vecka 26</option>
+    <option value="27">Vecka 27</option>
+    <option value="28">Vecka 28</option>
+  </select>
+  <p>Boende</p>
+  <label><input type="radio" name="boende" value="talt"> Tält</label>
+  <label><input type="radio" name="boende" value="stuga"> Stuga</label>
+  <label><input type="radio" name="boende" value="hemma"> Hemma</label>
+  <label for="allergier">Allergier</label>
+  <textarea id="allergier" name="allergier" rows="3"></textarea>
+  <button>Anmäl mig</button>
+</form>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Alla fält ligger i formuläret',
+        code: "count('form input, form select, form textarea')",
+        expected: 8,
+      },
+      {
+        description: 'Alla fält har en etikett',
+        code: "$$('input, select, textarea').every(field => field.labels?.length > 0)",
+        expected: true,
+      },
+      {
+        description: 'Alla fält har ett name',
+        code: "$$('input, select, textarea').every(field => field.name !== '')",
+        expected: true,
+      },
+      {
+        description: 'Text, e-post och siffror först',
+        code: "$$('input').slice(0, 3).map(input => input.type)",
+        expected: ['text', 'email', 'number'],
+      },
+      {
+        description: 'Namn och e-post måste fyllas i',
+        code: "$$('input').slice(0, 2).map(input => input.required)",
+        expected: [true, true],
+      },
+      {
+        description: 'Menyn har vecka 26–28',
+        code: "texts('select option')",
+        expected: ['Vecka 26', 'Vecka 27', 'Vecka 28'],
+      },
+      {
+        description: 'Tre radioknappar i samma grupp',
+        code: "(() => { const radios = $$('input[type=radio]'); return radios.length === 3 ? new Set(radios.map(r => r.name)).size : radios.length; })()",
+        expected: 1,
+      },
+      {
+        description: 'Radioknapparna heter Tält, Stuga och Hemma',
+        code: "$$('input[type=radio]').map(input => input.labels?.[0]?.textContent.trim() ?? null)",
+        expected: ['Tält', 'Stuga', 'Hemma'],
+      },
+      {
+        description: 'Ett textarea för Allergier och knappen Anmäl mig',
+        code: "[$('textarea')?.labels?.[0]?.textContent.trim() ?? null, text('form button')]",
+        expected: ['Allergier', 'Anmäl mig'],
+      },
+    ],
+  },
 };

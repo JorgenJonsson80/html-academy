@@ -94,6 +94,67 @@ export const QUIZ = {
       check: "$('tr').children[1].textContent",
     },
   ],
+  struktur: [
+    {
+      question: 'Vad står i webbläsarens flik?',
+      code: '<!doctype html>\n<html lang="sv">\n  <head>\n    <title>Bageriet</title>\n  </head>\n  <body>\n    <h1>Välkommen</h1>\n  </body>\n</html>',
+      options: ['Bageriet', 'Välkommen', 'sv', 'html'],
+      explain: 'Fliken visar title från head. h1 syns på själva sidan.',
+      check: 'doc.title',
+    },
+    {
+      question: 'Vilken tagg passar för sidans huvudmeny?',
+      options: ['<nav>', '<main>', '<footer>', '<section>'],
+      explain: 'nav är för sidans viktigaste länkar, som menyn.',
+    },
+    {
+      question: 'Hur många <main> får en sida ha?',
+      options: ['En', 'Hur många som helst', 'Ingen', 'En per section'],
+      explain: 'main är sidans huvudinnehåll, och det finns bara ett.',
+    },
+    {
+      question: 'Var står rubriker och stycken?',
+      options: ['I <body>', 'I <head>', 'Före <html>', 'I <title>'],
+      explain: 'Allt som syns står i body. head är information om sidan.',
+    },
+  ],
+  formular: [
+    {
+      question: 'Vilken typ blir fältet?',
+      code: '<input type="nummer">',
+      options: ['text', 'number', 'nummer', 'Inget fält alls'],
+      explain:
+        'nummer är ingen typ som finns, så det blir ett vanligt textfält. Typen heter number.',
+      check: "$('input').type",
+    },
+    {
+      question: 'Vad gör for på en label?',
+      options: [
+        'Kopplar etiketten till fältet med samma id',
+        'Säger vad som ska skickas',
+        'Gör fältet obligatoriskt',
+        'Bestämmer fältets typ',
+      ],
+      explain:
+        '<label for="namn"> hör till <input id="namn">. Då läses etiketten upp när man hamnar i fältet.',
+    },
+    {
+      question: 'Varför har radioknapparna samma name?',
+      options: [
+        'Så att man bara kan välja en av dem',
+        'Så att de får samma etikett',
+        'Så att alla blir ikryssade',
+        'Det spelar ingen roll',
+      ],
+      explain: 'Samma name gör dem till en grupp där bara en kan vara vald.',
+    },
+    {
+      question: 'Vad skickas från ett fält som saknar name?',
+      options: ['Ingenting', 'Fältets id', 'Etikettens text', 'Fältets typ'],
+      explain:
+        'Det som skickas är name och värdet. Utan name skickas fältet inte alls.',
+    },
+  ],
 };
 
 // Id:t som sparas bland de klara när man klarat en banas test. Det följer

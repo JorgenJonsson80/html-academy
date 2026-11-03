@@ -11,6 +11,11 @@ const RULES = [
     pattern: /<(ul|ol|table)\b/i,
   },
   {
+    track: 'struktur',
+    name: 'sidans delar',
+    pattern: /<(header|nav|main|section|article|footer)\b/i,
+  },
+  {
     track: 'formular',
     name: 'formulär',
     pattern: /<(form|input|label|button)\b/i,

@@ -46,6 +46,30 @@ export const RESOURCES = {
       video: 'html tables beginners tr td th',
     },
   ],
+  struktur: [
+    {
+      topic: 'header, nav, main och footer',
+      read: `${LEARN}Core/Structuring_content/Structuring_documents`,
+      video: 'semantic html header nav main footer',
+    },
+    {
+      topic: 'Hela dokumentet och head',
+      read: `${LEARN}Core/Structuring_content/Webpage_metadata`,
+      video: 'html head title meta charset beginners',
+    },
+  ],
+  formular: [
+    {
+      topic: 'Formulär och etiketter',
+      read: `${LEARN}Extensions/Forms/Your_first_form`,
+      video: 'html formulär label input',
+    },
+    {
+      topic: 'Olika sorters fält',
+      read: `${LEARN}Extensions/Forms/Basic_native_form_controls`,
+      video: 'html form radio checkbox select beginners',
+    },
+  ],
 };
 
 export function videoSearchUrl(query) {
