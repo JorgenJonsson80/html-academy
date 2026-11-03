@@ -10,8 +10,7 @@ describe('idéer och resurser', () => {
     }
   });
 
-  // TODO etapp 3: ta bort skip när idéerna finns.
-  it.skip('varje bana har tre idéer', () => {
+  it('varje bana har tre idéer', () => {
     for (const track of TRACKS) {
       expect(
         IDEAS.filter(idea => idea.track === track.id),

@@ -68,6 +68,32 @@ export const QUIZ = {
         'Länktexten ska säga vart länken går, även när den läses upp ensam.',
     },
   ],
+  listor: [
+    {
+      question: 'Hur många saker med punkt eller siffra blir det?',
+      code: '<ul>\n  <li>A</li>\n  <li>B</li>\n</ul>\n<ol>\n  <li>C</li>\n</ol>',
+      options: ['3', '2', '1', '0'],
+      explain: 'Varje li blir en sak, både i ul och ol.',
+      check: "count('li')",
+    },
+    {
+      question: 'Vilken lista passar för stegen i ett recept?',
+      options: ['<ol>', '<ul>', '<table>', '<p>'],
+      explain: 'Stegen måste göras i ordning, och ol numrerar dem åt dig.',
+    },
+    {
+      question: 'Vilken tagg är en rubrikcell i en tabell?',
+      options: ['<th>', '<td>', '<tr>', '<caption>'],
+      explain: 'th är en rubrikcell, td en vanlig cell och tr en rad.',
+    },
+    {
+      question: 'Vad står i den andra cellen på första raden?',
+      code: '<table>\n  <tr><td>Ost</td><td>30 kr</td></tr>\n  <tr><td>Bröd</td><td>25 kr</td></tr>\n</table>',
+      options: ['30 kr', 'Bröd', 'Ost', '25 kr'],
+      explain: 'Raden läses från vänster: Ost först, sedan 30 kr.',
+      check: "$('tr').children[1].textContent",
+    },
+  ],
 };
 
 // Id:t som sparas bland de klara när man klarat en banas test. Det följer

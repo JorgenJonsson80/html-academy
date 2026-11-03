@@ -49,4 +49,22 @@ export const TRACKS = [
       },
     ],
   },
+  {
+    id: 'listor',
+    title: 'Listor och tabeller',
+    teaches: ['ul', 'ol', 'li', 'table', 'tr', 'th', 'td', 'caption'],
+    reward: { emoji: '🪁', name: 'Drake' },
+    canBuild:
+      'en matsedel, en topplista eller ett schema där allt står i rätt rad och kolumn',
+    docs: [
+      {
+        title: 'Listor',
+        url: `${MDN}Learn_web_development/Core/Structuring_content/Lists`,
+      },
+      {
+        title: 'Tabeller',
+        url: `${MDN}Learn_web_development/Core/Structuring_content/HTML_table_basics`,
+      },
+    ],
+  },
 ];

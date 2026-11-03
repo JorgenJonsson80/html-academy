@@ -34,6 +34,18 @@ export const RESOURCES = {
       video: 'html img alt text beginners',
     },
   ],
+  listor: [
+    {
+      topic: 'Listor',
+      read: `${LEARN}Core/Structuring_content/Lists`,
+      video: 'html listor ul ol li',
+    },
+    {
+      topic: 'Tabeller',
+      read: `${LEARN}Core/Structuring_content/HTML_table_basics`,
+      video: 'html tables beginners tr td th',
+    },
+  ],
 };
 
 export function videoSearchUrl(query) {

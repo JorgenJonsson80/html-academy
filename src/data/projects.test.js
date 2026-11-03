@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { evaluate } from '../runner/evaluate';
 import { nodeRunPage } from '../test/nodePage';
 import { conceptsTooEarly } from '../test/concepts';
+import { htmlWarnings } from '../runner/htmlWarnings';
 import {
   isProjectComplete,
   noHintsBonusXp,
@@ -24,6 +25,10 @@ describe.each(PROJECT_STEPS.map(item => [item.id, item]))('%s', (_, item) => {
     expect(check(item, item.starterCode).isCorrect).toBe(false);
   });
 
+  it('facit ger inga varningar', () => {
+    expect(htmlWarnings(item.solution)).toEqual([]);
+  });
+
   it('facit använder bara det banorna hittills lärt ut', () => {
     expect(conceptsTooEarly(item.solution, item.track)).toEqual([]);
   });
@@ -36,8 +41,7 @@ describe.each(PROJECT_STEPS.map(item => [item.id, item]))('%s', (_, item) => {
 });
 
 describe('projekten', () => {
-  // TODO etapp 3: ta bort skip när projekten finns.
-  it.skip('har tre projekt per bana med 3–4 steg', () => {
+  it('har tre projekt per bana med 3–4 steg', () => {
     for (const track of TRACKS) {
       const projects = PROJECTS.filter(item => item.track === track.id);
       expect(projects, track.id).toHaveLength(3);

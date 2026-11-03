@@ -111,4 +111,82 @@ export const BOSSES = {
       },
     ],
   },
+  listor: {
+    id: 'listor-boss',
+    track: 'listor',
+    title: 'Boss: Veckomenyn',
+    isBoss: true,
+    xp: 50,
+    description:
+      BOSS_INTRO +
+      'En matsedel med en tabell, en punktlista och en numrerad lista.',
+    task: `Uppgift: Bygg skolans veckomeny.
+  1. Överst rubriken \`Veckomenyn\` med \`h1\`.
+  2. En tabell med rubriken \`Lunch\` (\`caption\`). I \`thead\` rubrikraden \`Dag\`, \`Rätt\` och \`Pris\`. I \`tbody\` tre rader: \`Måndag\` \`Pannkakor\` \`45 kr\`, \`Tisdag\` \`Fiskpinnar\` \`55 kr\` och \`Onsdag\` \`Soppa\` \`40 kr\`.
+  3. Rubriken \`Handla\` med \`h2\` och direkt under den en punktlista med minst tre saker.
+  4. Rubriken \`Pannkakor så här\` med \`h2\` och direkt under den en numrerad lista med tre steg.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<h1>Veckomenyn</h1>
+<table>
+  <caption>Lunch</caption>
+  <thead>
+    <tr><th>Dag</th><th>Rätt</th><th>Pris</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Måndag</td><td>Pannkakor</td><td>45 kr</td></tr>
+    <tr><td>Tisdag</td><td>Fiskpinnar</td><td>55 kr</td></tr>
+    <tr><td>Onsdag</td><td>Soppa</td><td>40 kr</td></tr>
+  </tbody>
+</table>
+<h2>Handla</h2>
+<ul>
+  <li>Mjöl</li>
+  <li>Mjölk</li>
+  <li>Ägg</li>
+</ul>
+<h2>Pannkakor så här</h2>
+<ol>
+  <li>Vispa ihop mjöl, mjölk och ägg</li>
+  <li>Stek i smör</li>
+  <li>Ät med sylt</li>
+</ol>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'h1 säger Veckomenyn',
+        code: "text('h1')",
+        expected: 'Veckomenyn',
+      },
+      {
+        description: 'Tabellen heter Lunch',
+        code: "text('table caption')",
+        expected: 'Lunch',
+      },
+      {
+        description: 'Rubrikraden i thead: Dag, Rätt och Pris',
+        code: "texts('thead th')",
+        expected: ['Dag', 'Rätt', 'Pris'],
+      },
+      {
+        description: 'Tre rader i tbody med rätt celler',
+        code: "$$('tbody tr').map(tr => [...tr.children].map(cell => cell.textContent.trim()))",
+        expected: [
+          ['Måndag', 'Pannkakor', '45 kr'],
+          ['Tisdag', 'Fiskpinnar', '55 kr'],
+          ['Onsdag', 'Soppa', '40 kr'],
+        ],
+      },
+      {
+        description: 'Under Handla: en punktlista med minst tre saker',
+        code: "(() => { const list = $$('h2').find(h => h.textContent.trim() === 'Handla')?.nextElementSibling; return list ? [list.tagName, list.children.length >= 3] : null; })()",
+        expected: ['UL', true],
+      },
+      {
+        description: 'Under Pannkakor så här: en numrerad lista med tre steg',
+        code: "(() => { const list = $$('h2').find(h => h.textContent.trim() === 'Pannkakor så här')?.nextElementSibling; return list ? [list.tagName, list.children.length] : null; })()",
+        expected: ['OL', 3],
+      },
+    ],
+  },
 };

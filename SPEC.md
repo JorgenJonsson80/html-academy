@@ -160,7 +160,12 @@ Användaren testar efter varje etapp.
    rättning mot iframen och jsdom, bana 1 med tre övningar och en boss.
 2. ✅ **Bana 1–2 färdiga** (9 övningar var) och varningar för vanliga
    HTML-misstag.
-3. **Projekt, Lekplatsens idéer, Fastnat?-resurser** och bana 3–5.
+3. ✅ **Projekt och Lekplatsens idéer** för bana 1–3, och bana 3.
+   Projektsteg med fri text testar formen (`h1` som börjar med …), inte
+   exakta ord. Inget facit i projekten får ge varningar.
+3b. **Bana 4–5** med projekt, idéer, quiz och resurser. Formulär i
+   förhandsvisningen skickas inte – en ruta visar vad som skulle ha
+   skickats. Begreppsregel: inga `header`/`nav`/`main` före bana 4.
 4. **Hover** i editorn för taggar och egenskaper.
 5. **Bana 6–10** med CSS, och layouttesterna inför bana 8.
 6. **Slutprojektet** och **Tailwind**.
