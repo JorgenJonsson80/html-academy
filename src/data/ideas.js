@@ -286,6 +286,133 @@ export const IDEAS = [
     extra:
       'Ge sakerna på rea en klass med röd bakgrund, och gör lappen lite större vid `:hover`.',
   },
+  {
+    id: 'idea-spellista',
+    track: 'flexbox',
+    emoji: '🎧',
+    title: 'Spellistan',
+    summary: 'En spellista med dina favoritlåtar, som i en musikapp.',
+    goals: [
+      'Varje låt är en rad med flexbox: en ruta med en emoji som omslag, titeln och artisten, och längden längst till höger.',
+      'Titeln och artisten tar resten av platsen med `flex: 1`.',
+      'Allt på raden står mitt på höjden med `align-items: center`.',
+    ],
+    extra:
+      'Markera låten som spelas just nu med en egen bakgrund, och lägg en rad med knappar (⏮ ⏯ ⏭) i mitten längst ner.',
+  },
+  {
+    id: 'idea-trafikljus',
+    track: 'flexbox',
+    emoji: '🚦',
+    title: 'Trafikljuset',
+    summary: 'Ett trafikljus av tre runda lampor i en svart låda.',
+    goals: [
+      'Lådan är en flexbox nedåt med `gap` mellan lamporna.',
+      'Lamporna är runda med `border-radius: 50%` och står i mitten med `align-items: center`.',
+      'Bara en lampa lyser – de andra har en mörk färg.',
+    ],
+    extra:
+      'Gör ett övergångsställe bredvid med en gubbe som är röd eller grön, och ställ båda bredvid varandra med flexbox.',
+  },
+  {
+    id: 'idea-min-meny',
+    track: 'flexbox',
+    emoji: '🧭',
+    title: 'Min meny',
+    summary: 'Ett sidhuvud till din egen sajt, med logga, meny och knapp.',
+    goals: [
+      'En `header` som är en flexbox med `space-between`.',
+      'En `nav` med länkar på rad och `gap` emellan.',
+      'En knapp längst till höger som ändrar färg vid `:hover`.',
+    ],
+    extra:
+      'Gör en sidfot med samma teknik: tre kolumner med länkar som delar bredden lika med `flex: 1`.',
+  },
+  {
+    id: 'idea-kalender',
+    track: 'grid',
+    emoji: '📆',
+    title: 'Kalendern',
+    summary: 'En månadskalender med alla dagar i ett grid.',
+    goals: [
+      'Sju kolumner med `repeat(7, 1fr)` och en rad med veckodagarnas namn överst.',
+      'Varje dag är en ruta med datumet och lite `gap` emellan.',
+      'Månaden börjar inte på en måndag – flytta första dagen med `grid-column-start`.',
+    ],
+    extra:
+      'Markera dagens datum och dina födelsedagar, och låt en resa sträcka sig över flera dagar med `span`.',
+  },
+  {
+    id: 'idea-tre-i-rad',
+    track: 'grid',
+    emoji: '⭕',
+    title: 'Tre i rad',
+    summary: 'En spelplan för tre i rad, mitt i ett pågående parti.',
+    goals: [
+      'Ett grid med tre kolumner och tre rader, lika breda och lika höga.',
+      'Rutorna har en kant eller ett `gap` med en bakgrund som syns som linjer.',
+      'Några rutor har ❌ eller ⭕, stort och i mitten.',
+    ],
+    extra:
+      'Färglägg de tre rutorna som vann, och skriv vems tur det är i en rad som sträcker sig över hela spelplanen.',
+  },
+  {
+    id: 'idea-moodboard',
+    track: 'grid',
+    emoji: '🧷',
+    title: 'Moodboarden',
+    summary:
+      'En inspirationstavla med färger, ord och bilder i olika storlekar.',
+    goals: [
+      'Ett grid med fyra kolumner och fasta radhöjder med `grid-auto-rows`.',
+      'Några rutor är breda med `grid-column: span 2` och några höga med `grid-row: span 2`.',
+      'Varje ruta har sin egen färg eller emoji.',
+    ],
+    extra:
+      'Prova `grid-auto-flow: dense` och se hur griddet fyller hålen själv.',
+  },
+  {
+    id: 'idea-lager',
+    track: 'responsivt',
+    emoji: '🏕️',
+    title: 'Lägersidan',
+    summary: 'En sida för ett sommarläger som fungerar på mobilen.',
+    goals: [
+      'viewport-raden och en bild som krymper med `max-width: 100%`.',
+      'Aktiviteterna i tre kolumner på datorn och en på mobilen.',
+      'Ingenting sticker ut på mobilen – kolla med 📱.',
+    ],
+    extra:
+      'Bygg sidan med mobilen först, och lägg till kolumnerna med `@media (min-width: …)`.',
+  },
+  {
+    id: 'idea-djurhem',
+    track: 'responsivt',
+    emoji: '🐾',
+    title: 'Djurhemmet',
+    summary: 'Djur som söker ett nytt hem, med ett kort för varje djur.',
+    goals: [
+      'Ett kort per djur med bild, namn och ålder.',
+      'Korten i ett grid som har fler kolumner ju bredare skärmen är.',
+      'Ett sidhuvud där menyn hamnar under loggan på mobilen.',
+    ],
+    extra:
+      'Prova `grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))` – då behövs ingen `@media` alls för korten.',
+  },
+  {
+    id: 'idea-konsert',
+    track: 'responsivt',
+    emoji: '🎤',
+    title: 'Konsertaffischen',
+    summary: 'En affisch för en konsert, lika snygg på mobilen som på datorn.',
+    goals: [
+      'En stor rubrik som blir mindre på mobilen.',
+      'Bandets namn, datum och plats bredvid varandra på datorn och under varandra på mobilen.',
+      'En köpknapp som är lagom stor på datorn och går över hela bredden på mobilen.',
+    ],
+    extra:
+      'Låt bakgrunden vara en färg på mobilen och en annan på datorn, så ser du direkt när `@media` slår till.',
+  },
 ];
 
 const FREE_START = `<!-- Skriv vad du vill. Sidan syns under editorn. -->

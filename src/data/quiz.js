@@ -225,6 +225,119 @@ export const QUIZ = {
         'Med border-box är width hela lådan. Det är därför de flesta sajter sätter det på allt.',
     },
   ],
+  flexbox: [
+    {
+      question:
+        'Var skriver man display: flex för att länkarna i en meny ska stå på rad?',
+      code: '<nav>\n  <a href="#">Hem</a>\n  <a href="#">Om</a>\n</nav>',
+      options: ['På nav', 'På varje a', 'På body', 'På den första länken'],
+      explain:
+        'display: flex skrivs på föräldern. Det är barnen som ställer sig på rad.',
+    },
+    {
+      question: 'Vad gör justify-content: space-between?',
+      options: [
+        'Första och sista hamnar vid kanterna, luften fördelas emellan',
+        'Allt hamnar i mitten',
+        'Lika mycket luft runt varje sak',
+        'Allt hamnar till höger',
+      ],
+      explain:
+        'space-between lägger all luft mellan sakerna. Därför står loggan och menyn vid var sin kant.',
+    },
+    {
+      question: 'Vilket värde har flex-direction?',
+      code: '<style>\n  .lista {\n    display: flex;\n    flex-direction: column;\n  }\n</style>\n<div class="lista">A</div>',
+      options: ['column', 'row', 'flex', 'block'],
+      explain: 'column gör att flexboxen går nedåt i stället för åt sidan.',
+      check: "css('.lista', 'flex-direction')",
+    },
+    {
+      question: 'Vad gör flex: 1 på ett flexelement?',
+      options: [
+        'Det tar den plats som blir över',
+        'Det blir 1 pixel brett',
+        'Det hamnar först på raden',
+        'Det får en ny rad',
+      ],
+      explain: 'flex: 1 betyder "ta resten". Har flera flex: 1 delar de lika.',
+    },
+  ],
+  grid: [
+    {
+      question: 'Hur många kolumner får griddet?',
+      code: '<style>\n  .rutnat {\n    display: grid;\n    grid-template-columns: 1fr 2fr 1fr;\n  }\n</style>',
+      options: ['3', '4', '2', '1'],
+      explain:
+        'Ett mått per kolumn: 1fr, 2fr och 1fr är tre kolumner. 2fr gör bara den mittersta bredare.',
+    },
+    {
+      question: 'Vad är repeat(4, 1fr) samma sak som?',
+      options: ['1fr 1fr 1fr 1fr', '4fr', '1fr 4', '4px 4px 4px 4px'],
+      explain:
+        'repeat skriver samma kolumn så många gånger som det första talet säger.',
+    },
+    {
+      question: 'Hur får man en ruta att ta två kolumner?',
+      options: [
+        'grid-column: span 2',
+        'grid-row: span 2',
+        'width: 2fr',
+        'columns: 2',
+      ],
+      explain:
+        'grid-column gäller kolumner, grid-row rader. span 2 betyder "sträck dig över två".',
+    },
+    {
+      question: 'Vilken bredd får den första kolumnen?',
+      code: '<style>\n  .sida {\n    display: grid;\n    width: 600px;\n    grid-template-columns: 1fr 2fr;\n  }\n</style>',
+      options: ['200px', '300px', '100px', '400px'],
+      explain: '600 delat i 1 + 2 = 3 andelar: 200 och 400 pixlar.',
+    },
+  ],
+  responsivt: [
+    {
+      question: 'När gäller reglerna i @media (max-width: 600px)?',
+      options: [
+        'När fönstret är högst 600 pixlar brett',
+        'När fönstret är minst 600 pixlar brett',
+        'När sidan är längre än 600 pixlar',
+        'Alltid',
+      ],
+      explain:
+        'max-width betyder "högst så här brett" – alltså mobiler. min-width gäller större skärmar.',
+    },
+    {
+      question:
+        'Vilka två rader gör att en bild krymper på mobilen utan att bli hoptryckt?',
+      options: [
+        'max-width: 100% och height: auto',
+        'width: 100px och height: 100px',
+        'display: flex och gap: 0',
+        'max-width: 600px och height: 100%',
+      ],
+      explain:
+        'max-width: 100% låter bilden krympa, och height: auto håller formen.',
+    },
+    {
+      question: 'Varför behövs viewport-raden i head?',
+      options: [
+        'Annars låtsas mobilen vara en dator och krymper hela sidan',
+        'Annars syns inga bilder',
+        'Annars fungerar inte CSS',
+        'Den gör sidan snabbare',
+      ],
+      explain:
+        'Utan raden visar mobilen sidan som om skärmen vore 980 pixlar bred, och allt blir pyttelitet.',
+    },
+    {
+      question: 'Vilken max-width får .text?',
+      code: '<style>\n  .text { max-width: 40rem; }\n</style>\n<div class="text">Hej</div>',
+      options: ['640px', '40px', '400px', '600px'],
+      explain: 'rem är gånger sidans textstorlek: 40 × 16 = 640.',
+      check: "px('.text', 'max-width') + 'px'",
+    },
+  ],
 };
 
 // Id:t som sparas bland de klara när man klarat en banas test. Det följer

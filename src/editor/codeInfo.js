@@ -208,7 +208,18 @@ const CSS_PROPERTIES = {
   'grid-template-areas':
     'Ritar upp gridet med namn, rad för rad, t.ex. `"huvud huvud" "meny innehåll"`.',
   'grid-area': 'Vilket namngivet område i gridet elementet hamnar i.',
-  'grid-column': 'Vilka kolumner elementet sträcker sig över, t.ex. `1 / 3`.',
+  'grid-column':
+    'Vilka kolumner elementet sträcker sig över: `span 2` (två kolumner) eller `1 / -1` (hela bredden).',
+  'grid-row': 'Vilka rader elementet sträcker sig över, t.ex. `span 2`.',
+  'grid-auto-rows': 'Hur höga raderna i griddet blir, t.ex. `100px`.',
+  'align-self':
+    'Som `align-items`, men bara för det här elementet. `flex-end` skjuter det till slutet.',
+  'flex-grow': 'Hur mycket av den lediga platsen elementet tar.',
+  'row-gap': 'Luften mellan raderna i en flex eller grid.',
+  'column-gap': 'Luften mellan kolumnerna i en flex eller grid.',
+  'min-width':
+    'Elementet blir aldrig smalare än så här. I en flexbox med `flex-wrap` hoppar det hellre ner på nästa rad.',
+  'list-style-type': '`none` tar bort punkterna i en lista.',
   position:
     'Hur elementet placeras. `relative`, `absolute`, `fixed` eller `sticky`.',
   top: 'Avståndet från toppen, när `position` inte är `static`.',
@@ -252,6 +263,13 @@ const CSS_VALUES = {
   solid: 'En hel linje.',
   dashed: 'En streckad linje.',
   dotted: 'En prickad linje.',
+  'flex-start': 'I början: till vänster, eller uppe.',
+  'flex-end': 'I slutet: till höger, eller nere.',
+  stretch:
+    'Utsträckt så att det fyller hela platsen. Det vanliga i en flexbox.',
+  'space-evenly': 'Lika mycket luft överallt, även vid kanterna.',
+  span: 'Sträck dig över så många rader eller kolumner som talet efter säger.',
+  'device-width': 'Skärmens riktiga bredd. Står i viewport-raden.',
   row: 'Åt sidan, på en rad.',
   column: 'Nedåt, i en kolumn.',
   wrap: 'Gå vidare på en ny rad när det inte får plats.',

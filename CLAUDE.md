@@ -46,13 +46,15 @@ Push till `main` kör testerna och publicerar via
 - `src/components/PagePreview.jsx` – förhandsvisningen under editorn,
   300 ms efter senaste ändringen, `sandbox="allow-scripts allow-forms"`.
   Ett tillagt skript rullar till `#id`-länkar, öppnar andra länkar i ny
-  flik och visar vad ett formulär skulle ha skickat.
+  flik och visar vad ett formulär skulle ha skickat. 💻/📱 byter bredd
+  (mobilen 375 px, samma som `width: 375` i testerna).
 - `src/runner/htmlWarnings.js` – varningar för vanliga HTML-misstag
   (tagg som aldrig stängs, fel ordning, `<h7>`, `<img>` utan `alt`), med
   radnummer. Visas i gula rutan i `FeedbackPanel`. Facit får inte varna.
   CSS i `<style>` läses av `runner/cssWarnings.js` (felstavade
   egenskaper, `;` och `}` som saknas, tal utan enhet, färger som inte
-  finns, selektorer som inte hittar något). Dess `CSS_PROPERTIES` och
+  finns, selektorer som inte hittar något, flex- och grid-egenskaper
+  utan `display: flex`/`grid` för samma selektor). Dess `CSS_PROPERTIES` och
   `closest` används också av hovern.
 - `src/editor/codeInfo.js` – förklaringen när man håller musen över
   koden, byggd på syntaxträdet (`@codemirror/lang-html`, med CSS i

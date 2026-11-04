@@ -48,8 +48,12 @@ document.addEventListener('submit', event => {
 
 // Elevens sida, som uppdateras en stund efter att man slutat skriva. Utan
 // allow-same-origin kommer sidan inte åt något utanför rutan.
+// Mobilbredden är samma som rättningen använder i testerna med width.
+const MOBILE_WIDTH = 375;
+
 export default function PagePreview({ code }) {
   const [shown, setShown] = useState(code);
+  const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShown(code), DELAY_MS);
@@ -57,13 +61,35 @@ export default function PagePreview({ code }) {
   }, [code]);
 
   return (
-    <figure className="page-preview">
-      <figcaption>👀 Din sida</figcaption>
-      <iframe
-        title="Din sida"
-        sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
-        srcDoc={shown + PREVIEW_SCRIPT}
-      />
+    <figure className={mobile ? 'page-preview is-mobile' : 'page-preview'}>
+      <figcaption>
+        <span>👀 Din sida</span>
+        <span className="preview-sizes" role="group" aria-label="Skärmbredd">
+          <button
+            type="button"
+            aria-pressed={!mobile}
+            onClick={() => setMobile(false)}
+          >
+            💻 Dator
+          </button>
+          <button
+            type="button"
+            aria-pressed={mobile}
+            onClick={() => setMobile(true)}
+            title={`Visa sidan ${MOBILE_WIDTH} pixlar bred, som på en mobil`}
+          >
+            📱 Mobil
+          </button>
+        </span>
+      </figcaption>
+      <div className="preview-frame">
+        <iframe
+          title="Din sida"
+          sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+          srcDoc={shown + PREVIEW_SCRIPT}
+          style={mobile ? { width: `${MOBILE_WIDTH}px` } : undefined}
+        />
+      </div>
     </figure>
   );
 }

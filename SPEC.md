@@ -31,7 +31,9 @@ Tänkt ordning för eleven: **HTML/CSS → JS Academy → Python Academy**.
 
 - **Förhandsvisningen** (`components/PagePreview.jsx`) uppdateras 300 ms
   efter senaste tangenttrycket. `sandbox="allow-scripts"` utan
-  `allow-same-origin`, så att sidan inte kommer åt appen.
+  `allow-same-origin`, så att sidan inte kommer åt appen. Knapparna
+  💻 Dator och 📱 Mobil byter rutans bredd; mobilen är 375 px, samma som
+  testerna med `width: 375`.
 - **Rättningen** (`runner/page.js`) laddar sidan i en osynlig iframe med
   `sandbox="allow-same-origin"` (inga skript), läser dokumentet och kör
   testerna. Iframen är 800 × 600 px, så att layouten räknas ut. Ett test
@@ -62,7 +64,9 @@ CSS i `<style>` läses av `runner/cssWarnings.js`: egenskaper som inte
 finns (`colour` – menade du `color`?), ett `;` eller `}` som saknas, tal
 utan enhet (`width: 300`), färger som inte finns (`röd` – menade du
 `red`?), trasiga hexkoder och selektorer som inte hittar något (`.krot`
-när sidan har `class="kort"`).
+när sidan har `class="kort"`). Den säger också till när `justify-content`,
+`gap`, `flex-direction` eller `grid-template-*` står i en regel vars
+selektor aldrig får `display: flex` eller `grid`.
 
 ### Bilder och länkar i förhandsvisningen
 
@@ -197,5 +201,5 @@ Användaren testar efter varje etapp.
    quiz och resurser. Varningar för CSS. Hjälpare för CSS som ger samma
    svar i jsdom och Chrome. Namnet blir HTML & CSS Academy (adressen
    `/html-academy/` är kvar).
-5b. **Bana 8–10** (flexbox, grid, responsivt) och layouttesterna.
+5b. ✅ **Bana 8–10** (flexbox, grid, responsivt) och layouttesterna i Chrome.
 6. **Slutprojektet** och **Tailwind**.

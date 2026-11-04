@@ -571,4 +571,352 @@ export const BOSSES = {
       },
     ],
   },
+  flexbox: {
+    id: 'flexbox-boss',
+    track: 'flexbox',
+    title: 'Boss: Sidhuvudet',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'Ett sidhuvud som på en riktig sajt: loggan till vänster, menyn i mitten och en knapp till höger – allt på en rad.',
+    task: `Uppgift: Bygg sidhuvudet för en pizzeria, som en hel sida.
+  1. En \`header\` med tre barn: en länk med klassen \`logga\` och texten \`🍕 Pizzabaren\`, en \`nav\` med tre länkar (\`Meny\`, \`Om oss\`, \`Hitta hit\`) och en länk med klassen \`knapp\` och texten \`Beställ\`.
+  2. \`header\` är en flexbox där barnen står utspridda (\`space-between\`) och mitt på höjden (\`center\`), med padding \`16px 24px\` och bakgrunden \`firebrick\`.
+  3. \`nav\` är en flexbox med \`24px\` mellan länkarna.
+  4. Alla länkar i \`header\` är vita och utan streck under.
+  5. Knappen har bakgrunden \`goldenrod\`, padding \`8px 16px\` och hörnen \`8px\`.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Pizzabaren</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 24px;
+        background-color: firebrick;
+      }
+      header a {
+        color: white;
+        text-decoration: none;
+      }
+      .logga {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      nav {
+        display: flex;
+        gap: 24px;
+      }
+      .knapp {
+        background-color: goldenrod;
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="logga" href="#">🍕 Pizzabaren</a>
+      <nav>
+        <a href="#">Meny</a>
+        <a href="#">Om oss</a>
+        <a href="#">Hitta hit</a>
+      </nav>
+      <a class="knapp" href="#">Beställ</a>
+    </header>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Sidhuvudet har logga, meny med tre länkar och knapp',
+        code: "[text('header > .logga'), texts('header nav a'), text('header > .knapp')]",
+        expected: ['🍕 Pizzabaren', ['Meny', 'Om oss', 'Hitta hit'], 'Beställ'],
+      },
+      {
+        description: 'Loggan, menyn och knappen står på en rad i den ordningen',
+        code: "[rows('header > *'), inOrder('header > .logga, header > .knapp')]",
+        expected: [1, ['🍕 Pizzabaren', 'Beställ']],
+      },
+      {
+        description: 'De står utspridda och mitt på höjden',
+        code: "[css('header', 'justify-content'), css('header', 'align-items')]",
+        expected: ['space-between', 'center'],
+      },
+      {
+        description: 'Knappen står ända ut till höger, innanför paddingen',
+        code: "Math.abs(rect('header').left + rect('header').width - 24 - rect('.knapp').left - rect('.knapp').width) <= 1",
+        expected: true,
+      },
+      {
+        description:
+          'Sidhuvudet har padding 16px 24px och bakgrunden firebrick',
+        code: "[px('header', 'padding-top'), px('header', 'padding-left'), colorOf('header', 'background-color')]",
+        expected: [16, 24, 'firebrick'],
+      },
+      {
+        description: 'Menyn har 24px mellan länkarna',
+        code: "[rows('nav a'), gapX('nav a')]",
+        expected: [1, 24],
+      },
+      {
+        description: 'Länkarna är vita och utan streck under',
+        code: "[...colorsOf('header a'), css('nav a', 'text-decoration-line')]",
+        expected: ['white', 'white', 'white', 'white', 'white', 'none'],
+      },
+      {
+        description: 'Knappen är goldenrod med padding 8px 16px och 8px hörn',
+        code: "[colorOf('.knapp', 'background-color'), px('.knapp', 'padding-top'), px('.knapp', 'padding-left'), css('.knapp', 'border-radius')]",
+        expected: ['goldenrod', 8, 16, '8px'],
+      },
+    ],
+  },
+  grid: {
+    id: 'grid-boss',
+    track: 'grid',
+    title: 'Boss: Tidningssidan',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'En förstasida för skoltidningen: en stor toppnyhet och fyra mindre nyheter i ett grid.',
+    task: `Uppgift: Bygg förstasidan till skoltidningen, som en hel sida.
+  1. En \`h1\` med texten \`Skolbladet\`, och ett \`div\` med klassen \`tidning\` med fem \`article\`. Varje \`article\` har en \`h2\` och ett stycke. Den första har klassen \`topp\`.
+  2. \`.tidning\` är ett grid med tre lika breda kolumner (\`repeat\` och \`fr\`) och \`16px\` luft åt alla håll.
+  3. \`.topp\` sträcker sig över två kolumner, så att alla fem nyheter får plats på två rader.
+  4. Varje \`article\` har vit bakgrund, \`16px\` padding och hörnen \`8px\`. Sidan har bakgrunden \`gainsboro\`.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Skolbladet</title>
+    <style>
+      body {
+        background-color: gainsboro;
+        font-family: Georgia, serif;
+      }
+      .tidning {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      article {
+        background-color: white;
+        padding: 16px;
+        border-radius: 8px;
+      }
+      .topp {
+        grid-column: span 2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Skolbladet</h1>
+    <div class="tidning">
+      <article class="topp">
+        <h2>Rektorn hoppade bungyjump</h2>
+        <p>Insamlingen till nya klätterställningen gick över målet.</p>
+      </article>
+      <article>
+        <h2>Snöbollskrig förbjudet?</h2>
+        <p>Elevrådet tycker till.</p>
+      </article>
+      <article>
+        <h2>Ny bok i biblioteket</h2>
+        <p>Kön är redan lång.</p>
+      </article>
+      <article>
+        <h2>Matsalen testar tacos</h2>
+        <p>Varje fredag i en månad.</p>
+      </article>
+      <article>
+        <h2>Schackturnering</h2>
+        <p>Anmäl dig senast på måndag.</p>
+      </article>
+    </div>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Sidan har rubriken Skolbladet och fem nyheter',
+        code: "[text('h1'), count('.tidning > article'), count('.tidning article h2'), count('.tidning article p')]",
+        expected: ['Skolbladet', 5, 5, 5],
+      },
+      {
+        description: 'Den första nyheten har klassen topp',
+        code: "count('.tidning > article:first-child.topp')",
+        expected: 1,
+      },
+      {
+        description: '.tidning är ett grid med tre lika breda kolumner',
+        code: "[css('.tidning', 'display'), new Set(widths('.tidning > article:not(.topp)')).size]",
+        expected: ['grid', 1],
+      },
+      {
+        description:
+          'Nyheterna står på två rader: två på första och tre på andra',
+        code: "[rows('.tidning > article'), perRow('.tidning > article')]",
+        expected: [2, 2],
+      },
+      {
+        description: 'Toppnyheten är två kolumner bred',
+        code: "Math.abs(widths('.topp')[0] - 2 * widths('.tidning > article:last-child')[0] - 16) <= 1",
+        expected: true,
+      },
+      {
+        description: 'Det är 16px luft åt alla håll',
+        code: "[gapX('.tidning > article'), gapY('.tidning > article')]",
+        expected: [16, 16],
+      },
+      {
+        description: 'Nyheterna är vita med 16px padding och 8px hörn',
+        code: "[colorOf('article', 'background-color'), px('article', 'padding-top'), css('article', 'border-radius')]",
+        expected: ['white', 16, '8px'],
+      },
+      {
+        description: 'Sidan har bakgrunden gainsboro',
+        code: "colorOf('body', 'background-color')",
+        expected: 'gainsboro',
+      },
+    ],
+  },
+  responsivt: {
+    id: 'responsivt-boss',
+    track: 'responsivt',
+    title: 'Boss: Restaurangsidan',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'En restaurangsida som fungerar lika bra på mobilen som på datorn. Den rättas i båda bredderna.',
+    task: `Uppgift: Bygg en sida för en restaurang, som en hel sida.
+  1. viewport-raden i \`head\`.
+  2. En \`header\` med en \`h1\` och en \`nav\` med tre länkar. På datorn står de bredvid varandra (flexbox, \`space-between\`). När fönstret är högst \`600px\` brett står \`h1\` ovanför menyn (\`flex-direction: column\`).
+  3. En bild med \`width="800"\` och \`height="600"\` som aldrig blir bredare än sidan, och behåller sin form.
+  4. Ett \`div\` med klassen \`meny\` med tre \`div\` med klassen \`ratt\`. På datorn är \`.meny\` ett grid med tre kolumner och \`16px\` gap. När fönstret är högst \`600px\` brett har den en kolumn.
+  5. Ingenting får sticka ut på mobilen.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nudelbaren</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav {
+        display: flex;
+        gap: 16px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      .meny {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .ratt {
+        background-color: seashell;
+        padding: 16px;
+        border-radius: 8px;
+      }
+      @media (max-width: 600px) {
+        header {
+          flex-direction: column;
+        }
+        .meny {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🍜 Nudelbaren</h1>
+      <nav>
+        <a href="#meny">Meny</a>
+        <a href="#">Boka bord</a>
+        <a href="#">Hitta hit</a>
+      </nav>
+    </header>
+    <img src="bilder/pannkakor.svg" alt="Pannkakor på ett fat" width="800" height="600">
+    <div class="meny" id="meny">
+      <div class="ratt"><h2>Ramen</h2><p>Buljong, nudlar och ägg. 129 kr</p></div>
+      <div class="ratt"><h2>Pad thai</h2><p>Stekta nudlar med jordnötter. 119 kr</p></div>
+      <div class="ratt"><h2>Gyoza</h2><p>Sex dumplings med sås. 89 kr</p></div>
+    </div>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Sidan har viewport-raden',
+        code: "(attr('meta[name=viewport]', 'content') ?? '').replace(/\\s+/g, '')",
+        expected: 'width=device-width,initial-scale=1',
+      },
+      {
+        description: 'Sidhuvudet har en h1 och en meny med tre länkar',
+        code: "[count('header h1'), count('header nav a')]",
+        expected: [1, 3],
+      },
+      {
+        description: 'På datorn står rubriken och menyn bredvid varandra',
+        code: "rows('header > *')",
+        expected: 1,
+      },
+      {
+        description: 'På mobilen står rubriken ovanför menyn',
+        code: "rows('header > *')",
+        expected: 2,
+        width: 375,
+      },
+      {
+        description: 'Menyn har tre rätter i tre kolumner på datorn',
+        code: "[count('.meny .ratt'), perRow('.ratt'), gapX('.ratt')]",
+        expected: [3, 3, 16],
+      },
+      {
+        description: 'På mobilen står rätterna i en kolumn',
+        code: "perRow('.ratt')",
+        expected: 1,
+        width: 375,
+      },
+      {
+        description:
+          'Bilden är 800 × 600 i HTML:en och behåller formen på mobilen',
+        code: "[attr('img', 'width'), attr('img', 'height'), Math.abs(heights('img')[0] * 4 - widths('img')[0] * 3) <= 4]",
+        expected: ['800', '600', true],
+        width: 375,
+      },
+      {
+        description: 'Ingenting sticker ut på mobilen',
+        code: 'fitsScreen()',
+        expected: true,
+        width: 375,
+      },
+    ],
+  },
 };

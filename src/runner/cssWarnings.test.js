@@ -78,4 +78,22 @@ a[href^="http"] { --egen: 3; -webkit-text-stroke: 1px; }`,
       /står utanför en regel/,
     );
   });
+
+  it('säger till om flex- och grid-egenskaper utan display', () => {
+    expect(warn('.kort { justify-content: center; gap: 8px; }')).toEqual([
+      '`justify-content` i `.kort` på rad 2 gör bara något när elementet har `display: flex` eller `display: grid`. Lägg till det i samma regel.',
+    ]);
+    expect(
+      warn('h1 { display: flex; grid-template-columns: 1fr 1fr; }'),
+    ).toEqual([
+      '`grid-template-columns` i `h1` på rad 2 gör bara något när elementet har `display: grid`. Lägg till det i samma regel.',
+    ]);
+    expect(
+      warn(
+        `.kort { display: flex; }
+@media (max-width: 600px) { .kort { flex-direction: column; gap: 4px; } }
+h1 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }`,
+      ),
+    ).toEqual([]);
+  });
 });

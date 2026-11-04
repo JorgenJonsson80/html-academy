@@ -120,7 +120,9 @@ function helpers(doc) {
   }
 
   // Elementen i rader som ögat ser dem: ett element börjar en ny rad när
-  // det står under allt i raden innan. Varje rad från vänster till höger.
+  // det står under det lägsta elementet i raden innan. Då hamnar en ruta
+  // som är två rader hög i den första raden, och resten i nästa. Varje
+  // rad från vänster till höger.
   function lines(selector) {
     const sorted = boxes(selector).sort((a, b) => a.top - b.top);
     const result = [];
@@ -131,7 +133,7 @@ function helpers(doc) {
         bottom = box.bottom;
       } else {
         result.at(-1).push(box);
-        bottom = Math.max(bottom, box.bottom);
+        bottom = Math.min(bottom, box.bottom);
       }
     }
     return result.map(line => line.sort((a, b) => a.left - b.left));

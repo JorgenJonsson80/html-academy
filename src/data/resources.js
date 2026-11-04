@@ -1,5 +1,5 @@
 // Andra sätt att lära sig banans ämnen, för den som kört fast.
-// read: en sida på MDN (på engelska).
+// read: en sida på MDN (på engelska), eller ett spel att öva med.
 // video: en sökning på YouTube. Vi länkar till en sökning i stället för
 // enskilda videor, eftersom videor kan försvinna men sökningen finns kvar.
 const LEARN = 'https://developer.mozilla.org/en-US/docs/Learn_web_development/';
@@ -107,6 +107,57 @@ export const RESOURCES = {
       topic: 'Bredd och storlek',
       read: `${LEARN}Core/Styling_basics/Sizing`,
       video: 'css width max-width box-sizing border-box',
+    },
+  ],
+  flexbox: [
+    {
+      topic: 'Flexbox från början',
+      read: `${LEARN}Core/CSS_layout/Flexbox`,
+      video: 'css flexbox beginners tutorial',
+    },
+    {
+      topic: 'justify-content och align-items',
+      read: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container',
+      video: 'flexbox justify-content align-items explained',
+    },
+    {
+      topic: 'Öva med ett spel',
+      read: 'https://flexboxfroggy.com/#sv',
+      video: 'flexbox froggy',
+    },
+  ],
+  grid: [
+    {
+      topic: 'Grid från början',
+      read: `${LEARN}Core/CSS_layout/Grids`,
+      video: 'css grid beginners tutorial',
+    },
+    {
+      topic: 'Områden med namn',
+      read: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Grid_template_areas',
+      video: 'css grid-template-areas',
+    },
+    {
+      topic: 'Öva med ett spel',
+      read: 'https://cssgridgarden.com/#sv',
+      video: 'grid garden css',
+    },
+  ],
+  responsivt: [
+    {
+      topic: 'Responsiv design',
+      read: `${LEARN}Core/CSS_layout/Responsive_Design`,
+      video: 'responsive web design beginners',
+    },
+    {
+      topic: '@media',
+      read: `${LEARN}Core/CSS_layout/Media_queries`,
+      video: 'css media queries beginners',
+    },
+    {
+      topic: 'Bilder som krymper',
+      read: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_images',
+      video: 'responsive images max-width 100%',
     },
   ],
 };

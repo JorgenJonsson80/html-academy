@@ -226,6 +226,10 @@ export function cssWarnings(rawCss, firstLine, page) {
     }
   }
 
+  // Varje regels egenskaper, för varningen om flex och grid.
+  const rules = [];
+  let currentRule = null;
+
   function checkDeclarations(start, end) {
     let index = start;
     for (const piece of css.slice(start, end).split(';')) {
@@ -274,6 +278,7 @@ export function cssWarnings(rawCss, firstLine, page) {
         );
         continue;
       }
+      currentRule?.declarations.push([property, value.toLowerCase()]);
       checkValue(property, value, line);
     }
   }
@@ -314,6 +319,8 @@ export function cssWarnings(rawCss, firstLine, page) {
       continue;
     }
     const line = lineFrom(preludeStart);
+    currentRule = { selector, line, declarations: [] };
+    rules.push(currentRule);
     if (selector) checkSelector(selector, line);
     else
       warnings.push(`\`{\` på rad ${lineAt(i)} saknar en selektor före sig.`);
@@ -352,6 +359,56 @@ export function cssWarnings(rawCss, firstLine, page) {
     warnings.push(
       `\`${block.name}\` på rad ${block.line} stängs aldrig – skriv \`}\` sist.`,
     );
+  }
+  return [...warnings, ...layoutWarnings(rules)];
+}
+
+// Egenskaper som bara gör något i en flex- eller grid-behållare.
+const FLEX_OR_GRID = new Set([
+  'justify-content',
+  'align-items',
+  'align-content',
+  'gap',
+  'row-gap',
+  'column-gap',
+]);
+const FLEX_ONLY = new Set(['flex-direction', 'flex-wrap', 'flex-flow']);
+const GRID_ONLY = /^grid-template(-(columns|rows|areas))?$/;
+
+const normalize = selector => selector.replace(/\s+/g, ' ').trim();
+
+// justify-content i en regel vars element inte är flex eller grid gör
+// ingenting, och webbläsaren säger inget. Displayen kan stå i en annan
+// regel med samma selektor, så den letas upp i alla regler.
+function layoutWarnings(rules) {
+  const displays = new Map();
+  for (const rule of rules) {
+    for (const [property, value] of rule.declarations) {
+      if (property !== 'display') continue;
+      const key = normalize(rule.selector);
+      displays.set(key, [...(displays.get(key) ?? []), value]);
+    }
+  }
+  const warnings = [];
+  for (const rule of rules) {
+    const shown = displays.get(normalize(rule.selector)) ?? [];
+    const flex = shown.some(value => value.includes('flex'));
+    const grid = shown.some(value => value.includes('grid'));
+    for (const [property] of rule.declarations) {
+      let needs = null;
+      if (FLEX_OR_GRID.has(property) && !flex && !grid) {
+        needs = '`display: flex` eller `display: grid`';
+      } else if (FLEX_ONLY.has(property) && !flex) {
+        needs = '`display: flex`';
+      } else if (GRID_ONLY.test(property) && !grid) {
+        needs = '`display: grid`';
+      }
+      if (!needs) continue;
+      warnings.push(
+        `\`${property}\` i \`${rule.selector}\` på rad ${rule.line} gör bara något när elementet har ${needs}. Lägg till det i samma regel.`,
+      );
+      break;
+    }
   }
   return warnings;
 }

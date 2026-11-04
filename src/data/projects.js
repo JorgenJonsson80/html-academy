@@ -63,6 +63,124 @@ const LAPPAR = `<h1>Att göra</h1>
 `;
 const lappar = withStyle(LAPPAR);
 
+const NAVMENY = `<nav class="meny">
+  <a class="logga" href="#">🐾 Hundskolan</a>
+  <ul class="lankar">
+    <li><a href="#">Kurser</a></li>
+    <li><a href="#">Lärare</a></li>
+    <li><a href="#">Boka</a></li>
+  </ul>
+</nav>
+`;
+const navmeny = withStyle(NAVMENY);
+
+const KORTRAD = `<h1>Månadens böcker</h1>
+<div class="hylla">
+  <div class="bok">
+    <h2>Drakens ö</h2>
+    <p>En flicka hittar ett drakägg på stranden.</p>
+    <a class="las" href="#">Läs mer</a>
+  </div>
+  <div class="bok">
+    <h2>Hamstern</h2>
+    <p>Hamstern Sigge följer av misstag med en raket till månen, och måste
+    hitta hem innan maten tar slut. På vägen träffar han en ensam robot.</p>
+    <a class="las" href="#">Läs mer</a>
+  </div>
+  <div class="bok">
+    <h2>Spökskolan</h2>
+    <p>Någon spökar i matsalen.</p>
+    <a class="las" href="#">Läs mer</a>
+  </div>
+  <div class="bok">
+    <h2>Bollen</h2>
+    <p>Bollen försvinner mitt i finalen.</p>
+    <a class="las" href="#">Läs mer</a>
+  </div>
+</div>
+`;
+const kortrad = withStyle(KORTRAD);
+
+const CHATT = `<div class="chatt">
+  <p class="kompis">Kommer du på fotbollen i dag?</p>
+  <p class="mig">Ja! Vilken tid?</p>
+  <p class="kompis">Kvart i fem 😊</p>
+  <p class="mig">Toppen, ses där!</p>
+</div>
+`;
+const chatt = withStyle(CHATT);
+
+const GALLERI = `<h1>Sommarlovet</h1>
+<div class="galleri">
+  <figure class="stor"><div class="bild">🏕️</div><figcaption>Tältet</figcaption></figure>
+  <figure><div class="bild">🛶</div><figcaption>Kanoten</figcaption></figure>
+  <figure><div class="bild">🐟</div><figcaption>Fisken</figcaption></figure>
+  <figure><div class="bild">🍦</div><figcaption>Glassen</figcaption></figure>
+  <figure><div class="bild">🦟</div><figcaption>Myggan</figcaption></figure>
+  <figure class="panorama"><div class="bild">🌅</div><figcaption>Solnedgången över sjön</figcaption></figure>
+</div>
+`;
+const galleri = withStyle(GALLERI);
+
+const PANEL = `<h1>Min dag</h1>
+<div class="panel">
+  <div class="siffra"><span class="tal">8 432</span> steg</div>
+  <div class="siffra"><span class="tal">9 h</span> sömn</div>
+  <div class="siffra"><span class="tal">6</span> glas vatten</div>
+  <div class="siffra"><span class="tal">45 min</span> läsning</div>
+  <div class="diagram">📈 Steg den här veckan</div>
+  <div class="lista">✅ Läxa<br>✅ Träning<br>⬜ Städa</div>
+</div>
+`;
+const panel = withStyle(PANEL);
+
+const SCHEMA = `<div class="schema">
+  <div></div><div class="dag">Mån</div><div class="dag">Tis</div><div class="dag">Ons</div><div class="dag">Tor</div><div class="dag">Fre</div>
+  <div class="tid">8:00</div><div>Matte</div><div>Svenska</div><div class="dubbel">Idrott</div><div>Engelska</div><div>Bild</div>
+  <div class="tid">9:00</div><div>Svenska</div><div>Matte</div><div>NO</div><div>Musik</div>
+  <div class="tid">10:00</div><div class="rast">Rast 🍎</div>
+</div>
+`;
+const schema = withStyle(SCHEMA);
+
+const PORTFOLIO = `<meta name="viewport" content="width=device-width, initial-scale=1">
+<h1>Hej, jag heter Sam</h1>
+<p>Jag ritar, bakar och bygger hemsidor. Här är några saker jag har gjort.</p>
+<div class="projekt">
+  <div class="kort"><img src="bilder/katt.svg" alt="En ritad katt" width="400" height="300"><h3>Kattserien</h3></div>
+  <div class="kort"><img src="bilder/pannkakor.svg" alt="Pannkakor" width="400" height="300"><h3>Receptboken</h3></div>
+  <div class="kort"><img src="bilder/hund.svg" alt="En ritad hund" width="400" height="300"><h3>Hundsidan</h3></div>
+</div>
+`;
+const portfolio = withStyle(PORTFOLIO);
+
+const PRODUKT = `<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="produkt">
+  <img src="bilder/hund.svg" alt="En gosedjurshund" width="400" height="300">
+  <div class="info">
+    <h1>Gosehunden Bamse</h1>
+    <p class="pris">199 kr</p>
+    <p>Mjuk, tvättbar och alltid glad. Passar i de flesta famnar.</p>
+    <a class="kop" href="#">Lägg i varukorgen</a>
+  </div>
+</div>
+`;
+const produkt = withStyle(PRODUKT);
+
+const EVENEMANG = `<meta name="viewport" content="width=device-width, initial-scale=1">
+<header>
+  <h1>🎪 Cirkusdagen</h1>
+  <p class="datum">Söndag 7 september</p>
+</header>
+<div class="program">
+  <div class="punkt"><h2>11:00</h2><p>Jonglering för alla</p></div>
+  <div class="punkt"><h2>12:30</h2><p>Lunch i det gröna</p></div>
+  <div class="punkt"><h2>14:00</h2><p>Akrobatik på lina</p></div>
+  <div class="punkt"><h2>16:00</h2><p>Stora föreställningen</p></div>
+</div>
+`;
+const evenemang = withStyle(EVENEMANG);
+
 // Delarna i ett projekt bygger på varandra. Tester på fri text kollar
 // formen (en h1 som börjar med …) och inte exakta ord, så att eleven kan
 // skriva om sig själv.
@@ -2752,6 +2870,1342 @@ ${LAPPAR}`,
             description: 'Rubriken står i mitten',
             code: "css('h1', 'text-align')",
             expected: 'center',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-navmeny',
+    track: 'flexbox',
+    title: 'Navigeringsmenyn',
+    reward: { emoji: '🗺️', name: 'Karta' },
+    summary:
+      'En meny som på en riktig sajt: loggan till vänster och länkarna till höger.',
+    steps: [
+      {
+        title: 'Länkarna på rad',
+        why: 'En meny är en lista med länkar, så den skrivs med ul. Men punkterna och listans egen luft passar inte i en meny – de tas bort, och flexbox lägger länkarna på rad.',
+        xp: 15,
+        description:
+          'Länkarna står i en lista, under varandra och med punkter. Lägg dem på en rad.',
+        task: 'Uppgift: Gör `.lankar` till en flexbox med `24px` gap. Ta bort punkterna med `list-style: none`, och listans luft med `margin: 0` och `padding: 0`.',
+        starterCode: `<!-- Steg 1: länkarna på rad -->
+${NAVMENY}`,
+        solution: navmeny(`  .lankar {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+`),
+        hints: [
+          'Allt står i en regel för .lankar, listan.',
+          'display, gap, list-style, margin och padding.',
+          '.lankar { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }',
+        ],
+        tests: [
+          {
+            description: 'Länkarna står på en rad med 24px emellan',
+            code: "[rows('.lankar li'), gapX('.lankar li')]",
+            expected: [1, 24],
+          },
+          {
+            description: 'Listan har inga punkter och ingen egen luft',
+            code: "[css('.lankar', 'list-style-type'), px('.lankar', 'padding-left'), px('.lankar', 'margin-top')]",
+            expected: ['none', 0, 0],
+          },
+        ],
+      },
+      {
+        title: 'Loggan och menyn',
+        why: 'Den yttre flexboxen har bara två barn: loggan och listan. space-between skjuter dem till var sin kant, oavsett hur bred skärmen är.',
+        xp: 20,
+        description:
+          'Loggan står ovanför länkarna. Den ska stå till vänster och länkarna till höger, på en mörkgrön rad.',
+        task: 'Uppgift: Gör `.meny` till en flexbox med `space-between` och `align-items: center`. Ge den bakgrunden `darkgreen` och padding `12px 24px`.',
+        solution: navmeny(`  .lankar {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .meny {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkgreen;
+    padding: 12px 24px;
+  }
+`),
+        hints: [
+          'En ny regel för .meny.',
+          'justify-content: space-between och align-items: center.',
+          '.meny { display: flex; justify-content: space-between; align-items: center; background-color: darkgreen; padding: 12px 24px; }',
+        ],
+        tests: [
+          {
+            description: 'Loggan och länkarna står på en rad',
+            code: "rows('.meny > *')",
+            expected: 1,
+          },
+          {
+            description: 'Länkarna står ända ut till höger, innanför paddingen',
+            code: "Math.abs(rect('.meny').left + rect('.meny').width - 24 - rect('.lankar li:last-child').left - rect('.lankar li:last-child').width) <= 1",
+            expected: true,
+          },
+          {
+            description: 'Menyn är darkgreen med padding 12px 24px',
+            code: "[colorOf('.meny', 'background-color'), px('.meny', 'padding-top'), px('.meny', 'padding-left')]",
+            expected: ['darkgreen', 12, 24],
+          },
+        ],
+      },
+      {
+        title: 'Vita länkar med hover',
+        why: 'Blå länkar syns dåligt på grönt. Vita länkar utan streck ser ut som en meny, och en bakgrund under musen visar vilken länk man är på väg att trycka på.',
+        xp: 20,
+        description:
+          'Länkarna är fortfarande blå och understrukna. Gör dem vita, och låt dem lysa upp när musen är över.',
+        task: 'Uppgift: Gör alla länkar i `.meny` vita utan streck. Ge länkarna i `.lankar` padding `8px 12px` och hörnen `6px`, och bakgrunden `seagreen` när musen är över.',
+        solution: navmeny(`  .lankar {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .meny {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkgreen;
+    padding: 12px 24px;
+  }
+  .meny a {
+    color: white;
+    text-decoration: none;
+  }
+  .lankar a {
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+  .lankar a:hover {
+    background-color: seagreen;
+  }
+`),
+        hints: [
+          'Tre nya regler: .meny a, .lankar a och .lankar a:hover.',
+          'color och text-decoration i den första, padding och border-radius i den andra.',
+          '.lankar a:hover { background-color: seagreen; }',
+        ],
+        tests: [
+          {
+            description: 'Alla länkar är vita utan streck',
+            code: "[colorsOf('.meny a'), css('.lankar a', 'text-decoration-line')]",
+            expected: [['white', 'white', 'white', 'white'], 'none'],
+          },
+          {
+            description: 'Länkarna har padding 8px 12px och 6px hörn',
+            code: "[px('.lankar a', 'padding-top'), px('.lankar a', 'padding-left'), css('.lankar a', 'border-radius')]",
+            expected: [8, 12, '6px'],
+          },
+          {
+            description: 'Länkarna blir seagreen när musen är över',
+            code: "colorName(hover('.lankar a', 'background-color'))",
+            expected: 'seagreen',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-kortrad',
+    track: 'flexbox',
+    title: 'Kortraden',
+    reward: { emoji: '🎴', name: 'Spelkort' },
+    summary:
+      'Lika breda kort i rader, med knappen längst ner på varje kort – som på en riktig sajt.',
+    steps: [
+      {
+        title: 'Lika breda kort',
+        why: 'flex: 1 på alla kort gör att de delar raden lika, hur bred skärmen än är. Du behöver aldrig räkna ut bredden själv.',
+        xp: 15,
+        description:
+          'Fyra boktips står under varandra. Lägg dem bredvid varandra, lika breda.',
+        task: 'Uppgift: Gör `.hylla` till en flexbox med `16px` gap. Ge `.bok` `flex: 1`, bakgrunden `linen`, padding `16px` och hörnen `8px`.',
+        starterCode: `<!-- Steg 1: lika breda kort -->
+${KORTRAD}`,
+        solution: kortrad(`  .hylla {
+    display: flex;
+    gap: 16px;
+  }
+  .bok {
+    flex: 1;
+    background-color: linen;
+    padding: 16px;
+    border-radius: 8px;
+  }
+`),
+        hints: [
+          'En regel för .hylla och en för .bok.',
+          'flex: 1 står på varje kort, gap på hyllan.',
+          '.hylla { display: flex; gap: 16px; }\n.bok { flex: 1; background-color: linen; padding: 16px; border-radius: 8px; }',
+        ],
+        tests: [
+          {
+            description: 'Korten står på en rad med 16px emellan',
+            code: "[rows('.bok'), gapX('.bok')]",
+            expected: [1, 16],
+          },
+          {
+            description: 'Alla kort är lika breda',
+            code: "new Set(widths('.bok')).size",
+            expected: 1,
+          },
+          {
+            description: 'Korten är linen med 16px padding och 8px hörn',
+            code: "[colorOf('.bok', 'background-color'), px('.bok', 'padding-top'), css('.bok', 'border-radius')]",
+            expected: ['linen', 16, '8px'],
+          },
+        ],
+      },
+      {
+        title: 'Nya rader',
+        why: 'Fyra kort får plats på en dator men blir för smala på mindre skärmar. Med min-width och flex-wrap hoppar ett kort ner på nästa rad hellre än att bli för smalt.',
+        xp: 20,
+        description:
+          'Korten är ganska smala. De ska vara minst 200 pixlar breda och hellre gå vidare på en ny rad.',
+        task: 'Uppgift: Ge `.hylla` `flex-wrap: wrap` och `.bok` `min-width: 200px`.',
+        solution: kortrad(`  .hylla {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .bok {
+    flex: 1;
+    min-width: 200px;
+    background-color: linen;
+    padding: 16px;
+    border-radius: 8px;
+  }
+`),
+        hints: [
+          'En rad i varje regel.',
+          'flex-wrap på hyllan, min-width på korten.',
+          'flex-wrap: wrap; och min-width: 200px;',
+        ],
+        tests: [
+          {
+            description: 'Tre kort på första raden och ett på nästa',
+            code: "[perRow('.bok'), rows('.bok')]",
+            expected: [3, 2],
+          },
+          {
+            description: 'Det är 16px mellan raderna',
+            code: "gapY('.bok')",
+            expected: 16,
+          },
+        ],
+      },
+      {
+        title: 'Knappen längst ner',
+        why: 'Korten har olika mycket text, så knapparna hamnar på olika höjd och det ser stökigt ut. Ett kort som också är en flexbox nedåt kan skjuta knappen till botten med margin-top: auto – auto tar all luft som blir över.',
+        xp: 20,
+        description:
+          'Läs mer-länkarna står på olika höjd. De ska bli knappar som alla står längst ner i sina kort.',
+        task: 'Uppgift: Gör `.bok` till en flexbox med `flex-direction: column`. Ge `.las` `margin-top: auto`, bakgrunden `teal`, vit text utan streck, padding `8px`, hörnen `6px` och texten i mitten.',
+        solution: kortrad(`  .hylla {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .bok {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    background-color: linen;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  .las {
+    margin-top: auto;
+    background-color: teal;
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+  }
+`),
+        hints: [
+          'Två nya rader i .bok och en ny regel för .las.',
+          'margin-top: auto skjuter knappen så långt ner det går.',
+          '.bok: display: flex; flex-direction: column;\n.las { margin-top: auto; background-color: teal; color: white; … }',
+        ],
+        tests: [
+          {
+            description: 'Korten är flexboxar nedåt',
+            code: "[css('.bok', 'display'), css('.bok', 'flex-direction')]",
+            expected: ['flex', 'column'],
+          },
+          {
+            description: 'Knapparna på första raden står på samma höjd',
+            code: "new Set([1, 2, 3].map(n => rect('.bok:nth-child(' + n + ') .las').top)).size",
+            expected: 1,
+          },
+          {
+            description: 'Knapparna är teal med vit text i mitten',
+            code: "[colorOf('.las', 'background-color'), colorOf('.las'), css('.las', 'text-align'), css('.las', 'text-decoration-line')]",
+            expected: ['teal', 'white', 'center', 'none'],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-chatt',
+    track: 'flexbox',
+    title: 'Chattbubblorna',
+    reward: { emoji: '💬', name: 'Pratbubbla' },
+    summary:
+      'En chatt som i mobilen: kompisens bubblor till vänster och dina till höger.',
+    steps: [
+      {
+        title: 'Bubblorna',
+        why: 'En flexbox nedåt med gap ger jämn luft mellan meddelandena. margin: 0 tar bort styckenas egen luft, så att bara gap bestämmer.',
+        xp: 15,
+        description:
+          'Meddelandena är vanliga stycken. Gör dem till bubblor i en smal chatt.',
+        task: 'Uppgift: Gör `.chatt` till en flexbox nedåt med `8px` gap och bredden `320px`. Ge styckena i chatten `margin: 0`, padding `8px 12px`, hörnen `16px` och bakgrunden `gainsboro`.',
+        starterCode: `<!-- Steg 1: bubblorna -->
+${CHATT}`,
+        solution: chatt(`  .chatt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 320px;
+  }
+  .chatt p {
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 16px;
+    background-color: gainsboro;
+  }
+`),
+        hints: [
+          'En regel för .chatt och en för .chatt p.',
+          'flex-direction: column gör att flexboxen går nedåt.',
+          '.chatt { display: flex; flex-direction: column; gap: 8px; width: 320px; }',
+        ],
+        tests: [
+          {
+            description: 'Chatten är 320px bred, med bubblorna under varandra',
+            code: "[widths('.chatt')[0], rows('.chatt p')]",
+            expected: [320, 4],
+          },
+          {
+            description: 'Det är 8px mellan bubblorna',
+            code: "gapY('.chatt p')",
+            expected: 8,
+          },
+          {
+            description: 'Bubblorna är gainsboro med 16px hörn',
+            code: "[colorOf('.chatt p', 'background-color'), css('.chatt p', 'border-radius')]",
+            expected: ['gainsboro', '16px'],
+          },
+        ],
+      },
+      {
+        title: 'Lagom breda',
+        why: 'I en flexbox sträcks barnen ut på tvären – align-items: stretch är det vanliga. Med flex-start blir varje bubbla bara så bred som sin text.',
+        xp: 15,
+        description:
+          'Alla bubblor är lika breda som chatten, även de korta. De ska bara vara så breda som texten.',
+        task: 'Uppgift: Ge `.chatt` `align-items: flex-start`.',
+        solution: chatt(`  .chatt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 320px;
+  }
+  .chatt p {
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 16px;
+    background-color: gainsboro;
+  }
+`),
+        hints: [
+          'En ny rad i regeln för .chatt.',
+          'När flexboxen går nedåt gäller align-items åt sidan.',
+          'align-items: flex-start;',
+        ],
+        tests: [
+          {
+            description: 'Alla bubblor är smalare än chatten',
+            code: "widths('.chatt p').every(width => width < 320)",
+            expected: true,
+          },
+        ],
+      },
+      {
+        title: 'Mina till höger',
+        why: 'align-self gör samma sak som align-items, men bara för ett element. Så kan dina bubblor stå till höger medan kompisens står kvar till vänster.',
+        xp: 20,
+        description:
+          'Alla bubblor står till vänster. Dina egna, `.mig`, ska stå till höger och vara blå.',
+        task: 'Uppgift: Ge dina bubblor `align-self: flex-end`, bakgrunden `dodgerblue` och vit text. Skriv selektorn `.chatt .mig`, så att den vinner över `.chatt p`.',
+        solution: chatt(`  .chatt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 320px;
+  }
+  .chatt p {
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 16px;
+    background-color: gainsboro;
+  }
+  .chatt .mig {
+    align-self: flex-end;
+    background-color: dodgerblue;
+    color: white;
+  }
+`),
+        hints: [
+          '.chatt p har en klass och en tagg och vinner över bara .mig. .chatt .mig har två klasser och vinner.',
+          'align-self: flex-end skjuter bubblan till höger.',
+          '.chatt .mig { align-self: flex-end; background-color: dodgerblue; color: white; }',
+        ],
+        tests: [
+          {
+            description: 'Dina bubblor står till höger',
+            code: "Math.abs(rect('.mig').left + rect('.mig').width - rect('.chatt').left - rect('.chatt').width) <= 1",
+            expected: true,
+          },
+          {
+            description: 'Kompisens bubblor står kvar till vänster',
+            code: "rect('.kompis').left === rect('.chatt').left",
+            expected: true,
+          },
+          {
+            description: 'Dina bubblor är dodgerblue med vit text',
+            code: "[colorOf('.mig', 'background-color'), colorOf('.mig')]",
+            expected: ['dodgerblue', 'white'],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-galleri',
+    track: 'grid',
+    title: 'Fotogalleriet',
+    reward: { emoji: '🎞️', name: 'Filmrulle' },
+    summary:
+      'Ett galleri från sommarlovet med en stor bild, små bilder och en panoramabild.',
+    steps: [
+      {
+        title: 'Rutnätet',
+        why: 'figure är taggen för en bild med bildtext, men den har stor egen margin. Med margin: 0 bestämmer gap all luft i galleriet.',
+        xp: 15,
+        description:
+          'Bilderna från sommarlovet står under varandra. Lägg dem i ett rutnät.',
+        task: 'Uppgift: Gör `.galleri` till ett grid med tre lika breda kolumner och `12px` gap. Ge `figure` `margin: 0` och bakgrunden `azure`, och `.bild` storleken `3rem` och texten i mitten.',
+        starterCode: `<!-- Steg 1: rutnätet -->
+${GALLERI}`,
+        solution: galleri(`  .galleri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  figure {
+    margin: 0;
+    background-color: azure;
+  }
+  .bild {
+    font-size: 3rem;
+    text-align: center;
+  }
+`),
+        hints: [
+          'Tre regler: .galleri, figure och .bild.',
+          'repeat(3, 1fr) ger tre lika breda kolumner.',
+          '.galleri { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }',
+        ],
+        tests: [
+          {
+            description: 'Bilderna står i tre kolumner och två rader',
+            code: "[perRow('figure'), rows('figure')]",
+            expected: [3, 2],
+          },
+          {
+            description: 'Det är 12px mellan bilderna',
+            code: "[gapX('figure'), gapY('figure')]",
+            expected: [12, 12],
+          },
+          {
+            description: 'Bilderna har ingen egen margin',
+            code: "px('figure', 'margin-left')",
+            expected: 0,
+          },
+        ],
+      },
+      {
+        title: 'Den stora bilden',
+        why: 'Tältet är sommarens bästa bild och får fyra rutor. Med fasta radhöjder blir den exakt lika hög som två små bilder plus gap.',
+        xp: 20,
+        description:
+          'Tältet ska vara störst: två kolumner brett och två rader högt.',
+        task: 'Uppgift: Ge `.galleri` `grid-auto-rows: 120px`. Låt `.stor` sträcka sig över två kolumner och två rader.',
+        solution: galleri(`  .galleri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 120px;
+    gap: 12px;
+  }
+  figure {
+    margin: 0;
+    background-color: azure;
+  }
+  .bild {
+    font-size: 3rem;
+    text-align: center;
+  }
+  .stor {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+`),
+        hints: [
+          'grid-auto-rows på .galleri och en ny regel för .stor.',
+          'span 2 både för grid-column och grid-row.',
+          '.stor { grid-column: span 2; grid-row: span 2; }',
+        ],
+        tests: [
+          {
+            description: 'Den stora bilden är två rader hög (120 + 12 + 120)',
+            code: "heights('.stor')[0]",
+            expected: 252,
+          },
+          {
+            description: 'Den stora bilden är två kolumner bred',
+            code: "Math.abs(widths('.stor')[0] - 2 * widths('figure:nth-child(2)')[0] - 12) <= 1",
+            expected: true,
+          },
+        ],
+      },
+      {
+        title: 'Panoramabilden',
+        why: 'Linjerna i ett grid har nummer, och -1 är alltid den sista. 1 / -1 betyder från första till sista linjen – hela bredden, hur många kolumner det än blir.',
+        xp: 20,
+        description:
+          'Solnedgången är en panoramabild. Den ska gå över hela galleriets bredd.',
+        task: 'Uppgift: Ge `.panorama` `grid-column: 1 / -1`.',
+        solution: galleri(`  .galleri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 120px;
+    gap: 12px;
+  }
+  figure {
+    margin: 0;
+    background-color: azure;
+  }
+  .bild {
+    font-size: 3rem;
+    text-align: center;
+  }
+  .stor {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .panorama {
+    grid-column: 1 / -1;
+  }
+`),
+        hints: [
+          'En ny regel för .panorama.',
+          'Från linje 1 till linje -1, med snedstreck emellan.',
+          '.panorama { grid-column: 1 / -1; }',
+        ],
+        tests: [
+          {
+            description: 'Panoramabilden går över hela bredden',
+            code: "widths('.panorama')[0] === widths('.galleri')[0]",
+            expected: true,
+          },
+          {
+            description: 'Den står sist, på en egen rad',
+            code: "inOrder('figure').at(-1)",
+            expected: '🌅Solnedgången över sjön',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-panel',
+    track: 'grid',
+    title: 'Instrumentpanelen',
+    reward: { emoji: '🎛️', name: 'Reglage' },
+    summary:
+      'En panel över din dag med fyra siffror, ett stort diagram och en lista.',
+    steps: [
+      {
+        title: 'Fyra rutor',
+        why: 'En panel har många lika stora rutor. Ett grid med fyra kolumner lägger dem i rader av sig själv, och samma regel ger alla rutor samma utseende.',
+        xp: 15,
+        description:
+          'Rutorna i panelen står under varandra. Lägg dem i fyra kolumner.',
+        task: 'Uppgift: Gör `.panel` till ett grid med fyra lika breda kolumner och `16px` gap. Ge alla `div` i panelen vit bakgrund, padding `16px` och hörnen `12px`. Ge `body` bakgrunden `aliceblue`.',
+        starterCode: `<!-- Steg 1: fyra rutor -->
+${PANEL}`,
+        solution: panel(`  body {
+    background-color: aliceblue;
+  }
+  .panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .panel > div {
+    background-color: white;
+    padding: 16px;
+    border-radius: 12px;
+  }
+`),
+        hints: [
+          'Tre regler: body, .panel och .panel > div.',
+          'repeat(4, 1fr) ger fyra lika breda kolumner.',
+          '.panel { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }',
+        ],
+        tests: [
+          {
+            description: 'Siffrorna står på en rad med 16px emellan',
+            code: "[perRow('.siffra'), rows('.siffra'), gapX('.siffra')]",
+            expected: [4, 1, 16],
+          },
+          {
+            description: 'Rutorna är vita med 16px padding och 12px hörn',
+            code: "[colorOf('.siffra', 'background-color'), px('.siffra', 'padding-top'), css('.siffra', 'border-radius')]",
+            expected: ['white', 16, '12px'],
+          },
+          {
+            description: 'Sidan är aliceblue',
+            code: "colorOf('body', 'background-color')",
+            expected: 'aliceblue',
+          },
+        ],
+      },
+      {
+        title: 'Det stora diagrammet',
+        why: 'Diagrammet behöver plats. Tre kolumner för diagrammet och en för listan fyller raden exakt – griddet räknar ut bredden.',
+        xp: 20,
+        description:
+          'Diagrammet är lika litet som siffrorna. Det ska ta tre kolumner, och listan den sista.',
+        task: 'Uppgift: Låt `.diagram` sträcka sig över tre kolumner.',
+        solution: panel(`  body {
+    background-color: aliceblue;
+  }
+  .panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .panel > div {
+    background-color: white;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .diagram {
+    grid-column: span 3;
+  }
+`),
+        hints: [
+          'En ny regel för .diagram.',
+          'span med antalet kolumner.',
+          '.diagram { grid-column: span 3; }',
+        ],
+        tests: [
+          {
+            description: 'Diagrammet och listan står på andra raden',
+            code: "[rows('.panel > div'), inOrder('.diagram, .lista').length]",
+            expected: [2, 2],
+          },
+          {
+            description: 'Diagrammet är tre kolumner brett',
+            code: "Math.abs(widths('.diagram')[0] - 3 * widths('.siffra')[0] - 32) <= 1",
+            expected: true,
+          },
+        ],
+      },
+      {
+        title: 'Siffrorna i mitten',
+        why: 'En ruta i ett grid kan själv vara en flexbox. Nedåt med align-items: center hamnar talet ovanför ordet, båda i mitten.',
+        xp: 20,
+        description:
+          'Talen står på samma rad som orden. Talet ska stå stort ovanför, och båda i mitten av rutan.',
+        task: 'Uppgift: Gör `.siffra` till en flexbox nedåt med `align-items: center`. Ge `.tal` storleken `2rem` och fet stil.',
+        solution: panel(`  body {
+    background-color: aliceblue;
+  }
+  .panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .panel > div {
+    background-color: white;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .diagram {
+    grid-column: span 3;
+  }
+  .siffra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tal {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+`),
+        hints: [
+          'En regel för .siffra och en för .tal.',
+          'display: flex; flex-direction: column; align-items: center;',
+          '.tal { font-size: 2rem; font-weight: bold; }',
+        ],
+        tests: [
+          {
+            description: 'Talet står i mitten av rutan',
+            code: "[css('.siffra', 'flex-direction'), Math.abs(rect('.tal').left - rect('.siffra').left - (rect('.siffra').left + rect('.siffra').width - rect('.tal').left - rect('.tal').width)) <= 1]",
+            expected: ['column', true],
+          },
+          {
+            description: 'Talet är 32px och fett',
+            code: "[px('.tal', 'font-size'), css('.tal', 'font-weight')]",
+            expected: [32, '700'],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-veckoschema',
+    track: 'grid',
+    title: 'Skolveckan',
+    reward: { emoji: '🗓️', name: 'Väggkalender' },
+    summary:
+      'Ett skolschema med dagar, tider, en dubbellektion och en rast över hela veckan.',
+    steps: [
+      {
+        title: 'Dagar och tider',
+        why: 'Tiderna behöver inte lika mycket plats som lektionerna. En fast kolumn först och fem lika breda efter går att skriva på en rad med repeat.',
+        xp: 15,
+        description:
+          'Schemat är en lång rad rutor. Gör det till en tabell med tider till vänster och fem dagar.',
+        task: 'Uppgift: Gör `.schema` till ett grid med kolumnerna `80px repeat(5, 1fr)` och `4px` gap. Ge alla `div` i schemat bakgrunden `white` och padding `8px`, och `.dag` och `.tid` fet stil. Ge `.schema` bakgrunden `lightgray`.',
+        starterCode: `<!-- Steg 1: dagar och tider -->
+${SCHEMA}`,
+        solution: schema(`  .schema {
+    display: grid;
+    grid-template-columns: 80px repeat(5, 1fr);
+    gap: 4px;
+    background-color: lightgray;
+  }
+  .schema div {
+    background-color: white;
+    padding: 8px;
+  }
+  .dag,
+  .tid {
+    font-weight: bold;
+  }
+`),
+        hints: [
+          'Tre regler: .schema, .schema div och .dag, .tid.',
+          'Först 80px för tiderna, sedan repeat(5, 1fr) för dagarna.',
+          'grid-template-columns: 80px repeat(5, 1fr);',
+        ],
+        tests: [
+          {
+            description: 'Schemat har sex kolumner',
+            code: "perRow('.schema > div')",
+            expected: 6,
+          },
+          {
+            description: 'Tidskolumnen är 80px och dagarna lika breda',
+            code: "[widths('.tid')[0], new Set(widths('.dag')).size]",
+            expected: [80, 1],
+          },
+          {
+            description: 'Dagarna och tiderna är feta',
+            code: "[css('.dag', 'font-weight'), css('.tid', 'font-weight')]",
+            expected: ['700', '700'],
+          },
+        ],
+      },
+      {
+        title: 'Dubbellektionen',
+        why: 'Idrott är två timmar i rad. Med fasta radhöjder och grid-row: span 2 blir rutan exakt två lektioner hög – och lektionerna efter flyttar sig själva.',
+        xp: 20,
+        description:
+          'Idrotten på onsdag är en dubbellektion. Rutan ska vara två rader hög.',
+        task: 'Uppgift: Ge `.schema` `grid-auto-rows: 48px`. Låt `.dubbel` sträcka sig över två rader och ge den bakgrunden `palegreen`.',
+        solution: schema(`  .schema {
+    display: grid;
+    grid-template-columns: 80px repeat(5, 1fr);
+    grid-auto-rows: 48px;
+    gap: 4px;
+    background-color: lightgray;
+  }
+  .schema div {
+    background-color: white;
+    padding: 8px;
+  }
+  .dag,
+  .tid {
+    font-weight: bold;
+  }
+  .schema .dubbel {
+    grid-row: span 2;
+    background-color: palegreen;
+  }
+`),
+        hints: [
+          'grid-auto-rows på .schema och en ny regel för dubbellektionen.',
+          '.schema div ger alla rutor vit bakgrund. Skriv .schema .dubbel, så att den nya regeln vinner.',
+          '.schema .dubbel { grid-row: span 2; background-color: palegreen; }',
+        ],
+        tests: [
+          {
+            description: 'Idrotten är två rader hög (48 + 4 + 48)',
+            code: "heights('.dubbel')[0]",
+            expected: 100,
+          },
+          {
+            description: 'Idrotten är palegreen',
+            code: "colorOf('.dubbel', 'background-color')",
+            expected: 'palegreen',
+          },
+        ],
+      },
+      {
+        title: 'Rasten',
+        why: 'Rasten gäller alla dagar. grid-column: 2 / -1 börjar efter tidskolumnen och går till sista linjen, så rutan täcker hela veckan.',
+        xp: 20,
+        description:
+          'Rasten klockan tio gäller alla dagar. Den ska gå över hela veckan.',
+        task: 'Uppgift: Låt `.rast` gå från linje `2` till sista linjen (`-1`). Ge den bakgrunden `lemonchiffon` och texten i mitten.',
+        solution: schema(`  .schema {
+    display: grid;
+    grid-template-columns: 80px repeat(5, 1fr);
+    grid-auto-rows: 48px;
+    gap: 4px;
+    background-color: lightgray;
+  }
+  .schema div {
+    background-color: white;
+    padding: 8px;
+  }
+  .dag,
+  .tid {
+    font-weight: bold;
+  }
+  .schema .dubbel {
+    grid-row: span 2;
+    background-color: palegreen;
+  }
+  .schema .rast {
+    grid-column: 2 / -1;
+    background-color: lemonchiffon;
+    text-align: center;
+  }
+`),
+        hints: [
+          'En ny regel för rasten, med .schema före som för dubbellektionen.',
+          'Från linje 2 till linje -1.',
+          '.schema .rast { grid-column: 2 / -1; background-color: lemonchiffon; text-align: center; }',
+        ],
+        tests: [
+          {
+            description: 'Rasten går över alla fem dagar',
+            code: "Math.abs(widths('.rast')[0] - (widths('.schema')[0] - 80 - 4)) <= 1",
+            expected: true,
+          },
+          {
+            description: 'Rasten är lemonchiffon med texten i mitten',
+            code: "[colorOf('.rast', 'background-color'), css('.rast', 'text-align')]",
+            expected: ['lemonchiffon', 'center'],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-portfolio',
+    track: 'responsivt',
+    title: 'Portfolion',
+    reward: { emoji: '💼', name: 'Portfölj' },
+    summary:
+      'En portfolio med dina projekt som fungerar lika bra på mobilen som på datorn.',
+    steps: [
+      {
+        title: 'Projekten i rutnät',
+        why: 'Bilderna är 400 pixlar breda, mer än en kolumn. max-width: 100% låter dem krympa till sina kort, och height: auto håller formen.',
+        xp: 15,
+        description:
+          'Projekten och bilderna står under varandra och bilderna är för stora. Lägg projekten i tre kolumner.',
+        task: 'Uppgift: Ge `img` `max-width: 100%` och `height: auto`. Gör `.projekt` till ett grid med tre lika breda kolumner och `16px` gap. Ge `.kort` bakgrunden `whitesmoke`, padding `8px` och hörnen `8px`.',
+        starterCode: `<!-- Steg 1: projekten i rutnät -->
+${PORTFOLIO}`,
+        solution: portfolio(`  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .projekt {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .kort {
+    background-color: whitesmoke;
+    padding: 8px;
+    border-radius: 8px;
+  }
+`),
+        hints: [
+          'Tre regler: img, .projekt och .kort.',
+          'repeat(3, 1fr) för kolumnerna.',
+          'img { max-width: 100%; height: auto; }',
+        ],
+        tests: [
+          {
+            description: 'Projekten står i tre kolumner på datorn',
+            code: "perRow('.kort')",
+            expected: 3,
+          },
+          {
+            description: 'Bilderna får plats i sina kort',
+            code: "widths('.kort img').every(width => width <= widths('.kort')[0] - 16)",
+            expected: true,
+          },
+          {
+            description: 'Korten är whitesmoke med 8px padding',
+            code: "[colorOf('.kort', 'background-color'), px('.kort', 'padding-top')]",
+            expected: ['whitesmoke', 8],
+          },
+        ],
+      },
+      {
+        title: 'En kolumn på mobilen',
+        why: 'Tre kolumner på en mobil blir bara drygt hundra pixlar breda. En kolumn gör bilderna stora igen.',
+        xp: 20,
+        description:
+          'Tryck på 📱. Korten blir pyttesmå på mobilen. Där ska de stå under varandra.',
+        task: 'Uppgift: Ge `.projekt` en enda kolumn när fönstret är högst `600px` brett.',
+        solution: portfolio(`  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .projekt {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .kort {
+    background-color: whitesmoke;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  @media (max-width: 600px) {
+    .projekt {
+      grid-template-columns: 1fr;
+    }
+  }
+`),
+        hints: [
+          '@media sist, med en regel för .projekt inuti.',
+          'En kolumn skrivs 1fr.',
+          '@media (max-width: 600px) {\n  .projekt { grid-template-columns: 1fr; }\n}',
+        ],
+        tests: [
+          {
+            description: 'På mobilen står korten i en kolumn',
+            code: "[perRow('.kort'), rows('.kort')]",
+            expected: [1, 3],
+            width: 375,
+          },
+          {
+            description: 'Sidan får plats på mobilen',
+            code: 'fitsScreen()',
+            expected: true,
+            width: 375,
+          },
+          {
+            description: 'På datorn står de kvar i tre kolumner',
+            code: "perRow('.kort')",
+            expected: 3,
+          },
+        ],
+      },
+      {
+        title: 'Rubriken',
+        why: 'En stor rubrik gör sig bra på datorn men tar halva mobilskärmen. Samma @media kan ändra både griddet och rubriken.',
+        xp: 15,
+        description:
+          'Ge rubriken en tydlig storlek på datorn, och en mindre på mobilen.',
+        task: 'Uppgift: Ge `h1` storleken `2.5rem` och färgen `indigo`. Gör den `1.75rem` på mobilen, i samma `@media`.',
+        solution: portfolio(`  h1 {
+    font-size: 2.5rem;
+    color: indigo;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  .projekt {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .kort {
+    background-color: whitesmoke;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  @media (max-width: 600px) {
+    .projekt {
+      grid-template-columns: 1fr;
+    }
+    h1 {
+      font-size: 1.75rem;
+    }
+  }
+`),
+        hints: [
+          'En vanlig regel för h1 överst, och en till inuti @media.',
+          '@media kan innehålla flera regler.',
+          'h1 { font-size: 1.75rem; } inuti @media.',
+        ],
+        tests: [
+          {
+            description: 'Rubriken är 40px och indigo på datorn',
+            code: "[px('h1', 'font-size'), colorOf('h1')]",
+            expected: [40, 'indigo'],
+          },
+          {
+            description: 'Rubriken är 28px på mobilen',
+            code: "px('h1', 'font-size')",
+            expected: 28,
+            width: 375,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-produktsida',
+    track: 'responsivt',
+    title: 'Produktsidan',
+    reward: { emoji: '🛍️', name: 'Shoppingkasse' },
+    summary:
+      'En produktsida med bilden bredvid texten på datorn och ovanför på mobilen.',
+    steps: [
+      {
+        title: 'Bild och text bredvid',
+        why: 'På en bred skärm är det lättare att se bilden och priset samtidigt. width: 50% gör bilden halva bredden, hur bred skärmen än är.',
+        xp: 15,
+        description: 'Bilden står ovanför texten. Ställ dem bredvid varandra.',
+        task: 'Uppgift: Gör `.produkt` till en flexbox med `24px` gap och `align-items: center`. Ge `.produkt img` bredden `50%` och `height: auto`.',
+        starterCode: `<!-- Steg 1: bild och text bredvid -->
+${PRODUKT}`,
+        solution: produkt(`  .produkt {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .produkt img {
+    width: 50%;
+    height: auto;
+  }
+`),
+        hints: [
+          'En regel för .produkt och en för .produkt img.',
+          'Bredden i procent, höjden auto.',
+          '.produkt img { width: 50%; height: auto; }',
+        ],
+        tests: [
+          {
+            description: 'Bilden och texten står bredvid varandra',
+            code: "rows('.produkt > *')",
+            expected: 1,
+          },
+          {
+            description: 'Bilden är halva bredden',
+            code: "Math.round(widths('.produkt img')[0] / widths('.produkt')[0] * 100)",
+            expected: 50,
+          },
+        ],
+      },
+      {
+        title: 'Under varandra på mobilen',
+        why: 'På en mobil blir både bilden och texten för smala bredvid varandra. Nedåt får båda hela bredden.',
+        xp: 20,
+        description:
+          'Tryck på 📱. Texten blir en smal remsa bredvid bilden. På mobilen ska bilden stå ovanför, i full bredd.',
+        task: 'Uppgift: När fönstret är högst `600px` brett: ge `.produkt` `flex-direction: column` och bilden bredden `100%`.',
+        solution: produkt(`  .produkt {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .produkt img {
+    width: 50%;
+    height: auto;
+  }
+  @media (max-width: 600px) {
+    .produkt {
+      flex-direction: column;
+    }
+    .produkt img {
+      width: 100%;
+    }
+  }
+`),
+        hints: [
+          '@media med två regler inuti.',
+          'flex-direction: column på .produkt och width: 100% på bilden.',
+          '@media (max-width: 600px) {\n  .produkt { flex-direction: column; }\n  .produkt img { width: 100%; }\n}',
+        ],
+        tests: [
+          {
+            description: 'På mobilen står bilden ovanför texten',
+            code: "rows('.produkt > *')",
+            expected: 2,
+            width: 375,
+          },
+          {
+            description: 'Bilden tar hela bredden på mobilen',
+            code: "widths('.produkt img')[0] === widths('.produkt')[0]",
+            expected: true,
+            width: 375,
+          },
+          {
+            description: 'Sidan får plats på mobilen',
+            code: 'fitsScreen()',
+            expected: true,
+            width: 375,
+          },
+        ],
+      },
+      {
+        title: 'En stor köpknapp',
+        why: 'På mobilen trycker man med tummen. En knapp över hela bredden är lätt att träffa, men på datorn ser den konstig ut – där får den vara lagom.',
+        xp: 20,
+        description:
+          'Länken längst ner ska bli en knapp – och på mobilen en stor knapp över hela bredden.',
+        task: 'Uppgift: Gör `.kop` till en `inline-block` med bakgrunden `darkorange`, vit text utan streck, padding `12px 24px` och hörnen `8px`. På mobilen: `display: block` och texten i mitten.',
+        solution: produkt(`  .produkt {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .produkt img {
+    width: 50%;
+    height: auto;
+  }
+  .kop {
+    display: inline-block;
+    background-color: darkorange;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+  @media (max-width: 600px) {
+    .produkt {
+      flex-direction: column;
+    }
+    .produkt img {
+      width: 100%;
+    }
+    .kop {
+      display: block;
+      text-align: center;
+    }
+  }
+`),
+        hints: [
+          'En regel för .kop före @media, och en till inuti.',
+          'block gör att knappen tar hela bredden.',
+          '.kop { display: block; text-align: center; } inuti @media.',
+        ],
+        tests: [
+          {
+            description: 'Knappen är darkorange med vit text på datorn',
+            code: "[css('.kop', 'display'), colorOf('.kop', 'background-color'), colorOf('.kop'), px('.kop', 'padding-left')]",
+            expected: ['inline-block', 'darkorange', 'white', 24],
+          },
+          {
+            description: 'På mobilen tar knappen hela bredden',
+            code: "[widths('.kop')[0] === widths('.info')[0], css('.kop', 'text-align')]",
+            expected: [true, 'center'],
+            width: 375,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-evenemang',
+    track: 'responsivt',
+    title: 'Evenemangssidan',
+    reward: { emoji: '🎪', name: 'Cirkustält' },
+    summary: 'En sida för cirkusdagen, byggd med mobilen först.',
+    steps: [
+      {
+        title: 'Mobilen först',
+        why: 'De flesta läser sidan på mobilen. Därför byggs den först: en kolumn med jämn luft. Ett grid utan kolumner har en kolumn.',
+        xp: 15,
+        description:
+          'Programmet är fyra lådor. Börja med hur de ska se ut på mobilen: under varandra med luft emellan.',
+        task: 'Uppgift: Gör `.program` till ett grid med `12px` gap. Ge `.punkt` bakgrunden `lavender`, padding `12px` och hörnen `8px`, och `.punkt h2` `margin: 0`.',
+        starterCode: `<!-- Steg 1: mobilen först -->
+${EVENEMANG}`,
+        solution: evenemang(`  .program {
+    display: grid;
+    gap: 12px;
+  }
+  .punkt {
+    background-color: lavender;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .punkt h2 {
+    margin: 0;
+  }
+`),
+        hints: [
+          'Tre regler: .program, .punkt och .punkt h2.',
+          'Inga kolumner behövs – en kolumn är det vanliga.',
+          '.program { display: grid; gap: 12px; }',
+        ],
+        tests: [
+          {
+            description:
+              'På mobilen står punkterna under varandra med 12px emellan',
+            code: "[css('.program', 'display'), rows('.punkt'), gapY('.punkt')]",
+            expected: ['grid', 4, 12],
+            width: 375,
+          },
+          {
+            description: 'Punkterna är lavender med 8px hörn',
+            code: "[colorOf('.punkt', 'background-color'), css('.punkt', 'border-radius')]",
+            expected: ['lavender', '8px'],
+          },
+        ],
+      },
+      {
+        title: 'Två kolumner på datorn',
+        why: 'Med mobilen först lägger man till för större skärmar. min-width gäller från 700 pixlar och uppåt, så mobilen behåller sin enda kolumn.',
+        xp: 20,
+        description:
+          'På datorn blir lådorna onödigt breda. Där ska programmet ha två kolumner.',
+        task: 'Uppgift: Ge `.program` två lika breda kolumner när fönstret är minst `700px` brett.',
+        solution: evenemang(`  .program {
+    display: grid;
+    gap: 12px;
+  }
+  .punkt {
+    background-color: lavender;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .punkt h2 {
+    margin: 0;
+  }
+  @media (min-width: 700px) {
+    .program {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+`),
+        hints: [
+          '@media med min-width, inte max-width.',
+          'repeat(2, 1fr) inuti.',
+          '@media (min-width: 700px) {\n  .program { grid-template-columns: repeat(2, 1fr); }\n}',
+        ],
+        tests: [
+          {
+            description: 'På datorn har programmet två kolumner',
+            code: "[perRow('.punkt'), rows('.punkt')]",
+            expected: [2, 2],
+          },
+          {
+            description: 'På mobilen är det kvar en kolumn',
+            code: "perRow('.punkt')",
+            expected: 1,
+            width: 375,
+          },
+        ],
+      },
+      {
+        title: 'Sidhuvudet på datorn',
+        why: 'På mobilen står rubriken och datumet bäst under varandra. På datorn finns plats bredvid – samma @media kan göra sidhuvudet till en flexbox.',
+        xp: 20,
+        description:
+          'På datorn ska rubriken stå till vänster och datumet till höger.',
+        task: 'Uppgift: Gör `header` till en flexbox med `space-between` och `align-items: center` när fönstret är minst `700px` brett.',
+        solution: evenemang(`  .program {
+    display: grid;
+    gap: 12px;
+  }
+  .punkt {
+    background-color: lavender;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .punkt h2 {
+    margin: 0;
+  }
+  @media (min-width: 700px) {
+    .program {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+`),
+        hints: [
+          'En ny regel för header i samma @media.',
+          'display: flex, justify-content och align-items.',
+          'header { display: flex; justify-content: space-between; align-items: center; }',
+        ],
+        tests: [
+          {
+            description: 'På datorn står rubriken och datumet bredvid varandra',
+            code: "[rows('header > *'), css('header', 'justify-content')]",
+            expected: [1, 'space-between'],
+          },
+          {
+            description: 'På mobilen står de under varandra',
+            code: "rows('header > *')",
+            expected: 2,
+            width: 375,
           },
         ],
       },

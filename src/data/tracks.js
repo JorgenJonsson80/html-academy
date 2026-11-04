@@ -184,4 +184,79 @@ export const TRACKS = [
       },
     ],
   },
+  {
+    id: 'flexbox',
+    title: 'Flexbox',
+    teaches: [
+      'display: flex',
+      'gap',
+      'justify-content',
+      'align-items',
+      'flex-direction',
+      'flex-wrap',
+      'flex: 1',
+    ],
+    reward: { emoji: '🧩', name: 'Pussel' },
+    canBuild:
+      'sidhuvuden med logga och meny, rader med kort och sidor med en meny vid sidan',
+    docs: [
+      {
+        title: 'Flexbox',
+        url: `${MDN}Learn_web_development/Core/CSS_layout/Flexbox`,
+      },
+      {
+        title: 'Linjera saker i flexbox',
+        url: `${MDN}Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container`,
+      },
+    ],
+  },
+  {
+    id: 'grid',
+    title: 'Grid',
+    teaches: [
+      'display: grid',
+      'grid-template-columns',
+      'fr',
+      'repeat()',
+      'span',
+      'grid-template-areas',
+    ],
+    reward: { emoji: '♟️', name: 'Schackpjäs' },
+    canBuild:
+      'gallerier, kalendrar, tidningssidor och hela sidor med sidhuvud, meny och sidfot',
+    docs: [
+      {
+        title: 'Grid',
+        url: `${MDN}Learn_web_development/Core/CSS_layout/Grids`,
+      },
+      {
+        title: 'Områden med namn',
+        url: `${MDN}Web/CSS/CSS_grid_layout/Grid_template_areas`,
+      },
+    ],
+  },
+  {
+    id: 'responsivt',
+    title: 'Mobil och dator',
+    teaches: [
+      'viewport',
+      '%',
+      'max-width',
+      'bilder som krymper',
+      '@media',
+      'mobilen först',
+    ],
+    reward: { emoji: '📱', name: 'Mobil' },
+    canBuild: 'sidor som fungerar lika bra på mobilen som på datorn',
+    docs: [
+      {
+        title: 'Responsiv design',
+        url: `${MDN}Learn_web_development/Core/CSS_layout/Responsive_Design`,
+      },
+      {
+        title: '@media',
+        url: `${MDN}Learn_web_development/Core/CSS_layout/Media_queries`,
+      },
+    ],
+  },
 ];
