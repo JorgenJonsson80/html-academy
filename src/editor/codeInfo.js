@@ -2,6 +2,10 @@
 // "vad är det här och vad tillhör det?" när man håller musen över koden.
 // Förklaringarna säger *när* man tar till något, inte bara vad det är.
 import { guessTag, VOID_TAGS } from '../runner/htmlWarnings';
+import {
+  closest,
+  CSS_PROPERTIES as KNOWN_PROPERTIES,
+} from '../runner/cssWarnings';
 
 const TAGS = {
   html: 'Hela sidan. Allt utom `<!doctype html>` står inuti den. `lang` på den säger sidans språk.',
@@ -219,6 +223,13 @@ const CSS_PROPERTIES = {
   transition:
     'Gör att ändringar, t.ex. vid `:hover`, sker mjukt i stället för direkt.',
   'object-fit': '`cover` fyller rutan med bilden utan att den blir utdragen.',
+  'text-transform':
+    '`uppercase` gör all text till versaler, utan att ändra i HTML:en.',
+  'letter-spacing': 'Avståndet mellan bokstäverna.',
+  'border-color': 'Kantens färg.',
+  'border-width': 'Kantens tjocklek.',
+  'border-style': 'Kantens stil: `solid`, `dashed`, `dotted` eller `none`.',
+  'text-decoration-line': 'Strecket: `underline`, `line-through` eller `none`.',
   overflow:
     'Vad som händer med innehåll som inte får plats: `hidden`, `auto` …',
 };
@@ -274,6 +285,34 @@ const PSEUDO = {
   'nth-child': 'Barn nummer n, t.ex. `:nth-child(2)` eller `:nth-child(odd)`.',
   visited: 'En länk man redan har besökt.',
 };
+
+const SIDES = {
+  top: 'uppe',
+  right: 'till höger',
+  bottom: 'nere',
+  left: 'till vänster',
+};
+const PARTS = {
+  width: 'Tjockleken på',
+  color: 'Färgen på',
+  style: 'Stilen på',
+};
+
+// margin-top, border-left-color och de andra som gäller en sida.
+function aboutSide(name) {
+  const parts = name.match(
+    /^(margin|padding|border)-(top|right|bottom|left)(?:-(width|color|style))?$/,
+  );
+  if (!parts) return null;
+  const [, box, side, part] = parts;
+  if (part) return `${PARTS[part]} kanten ${SIDES[side]}.`;
+  if (box === 'border') {
+    return `Kanten bara ${SIDES[side]}: tjocklek, stil och färg, t.ex. \`2px solid black\`.`;
+  }
+  return box === 'margin'
+    ? `Luft *utanför* kanten, bara ${SIDES[side]}.`
+    : `Luft *innanför* kanten, bara ${SIDES[side]}.`;
+}
 
 const text = (src, node) => src.slice(node.from, node.to);
 const lineOf = (src, pos) => src.slice(0, pos).split('\n').length;
@@ -405,8 +444,17 @@ function describeCss(src, node) {
   const value = text(src, node);
   switch (node.name) {
     case 'PropertyName': {
-      const about = CSS_PROPERTIES[value];
-      if (!about) return null;
+      const about = CSS_PROPERTIES[value] ?? aboutSide(value);
+      if (!about) {
+        if (KNOWN_PROPERTIES.has(value) || value.startsWith('-')) return null;
+        const meant = closest(value, KNOWN_PROPERTIES);
+        return {
+          title: value,
+          body:
+            'Den här egenskapen finns inte i CSS, så webbläsaren hoppar över raden.' +
+            (meant ? ` Menade du \`${meant}\`?` : ''),
+        };
+      }
       const selector = selectorOf(src, node);
       return {
         title: value,

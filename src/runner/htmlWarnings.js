@@ -1,6 +1,8 @@
 // Varningar för vanliga HTML-misstag. Webbläsaren lagar felen tyst – en
 // strong som aldrig stängs gör bara resten av sidan fet – så vi läser
-// koden själva och säger vad som hände, med radnummer.
+// koden själva och säger vad som hände, med radnummer. CSS i <style>
+// läses av cssWarnings.js.
+import { cssWarnings } from './cssWarnings';
 
 // Taggar som aldrig stängs.
 export const VOID_TAGS = new Set([
@@ -112,6 +114,7 @@ function tags(code) {
       closing: slash === '/',
       selfClosing: attributes.trim().endsWith('/'),
       attributes,
+      end: match.index + match[0].length,
     });
     if (!slash && RAW_TEXT.has(name)) rawUntil = name;
   }
@@ -121,10 +124,41 @@ function tags(code) {
 const hasAttribute = (attributes, name) =>
   new RegExp(`(^|\\s)${name}(\\s*=|\\s|/|$)`, 'i').test(attributes);
 
+// Värdena i class och id på sidan, att jämföra med selektorerna i CSS.
+function namesIn(found, attribute) {
+  const pattern = new RegExp(
+    `(?:^|\\s)${attribute}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`,
+    'i',
+  );
+  return new Set(
+    found.flatMap(tag => {
+      const match = tag.attributes.match(pattern);
+      return match ? (match[1] ?? match[2] ?? match[3]).split(/\s+/) : [];
+    }),
+  );
+}
+
+function styleWarnings(code, found) {
+  const page = {
+    classes: namesIn(found, 'class'),
+    ids: namesIn(found, 'id'),
+    isTag: name => KNOWN.has(name),
+    guessTag,
+  };
+  return found
+    .filter(tag => tag.name === 'style' && !tag.closing)
+    .flatMap(tag => {
+      const close = code.indexOf('</style', tag.end);
+      const css = code.slice(tag.end, close === -1 ? undefined : close);
+      return cssWarnings(css, code.slice(0, tag.end).split('\n').length, page);
+    });
+}
+
 export function htmlWarnings(code) {
   const warnings = [];
   const open = [];
-  for (const tag of tags(code)) {
+  const found = tags(code);
+  for (const tag of found) {
     const { name, line } = tag;
     if (!KNOWN.has(name) && !name.includes('-')) {
       if (tag.closing) continue;
@@ -174,5 +208,5 @@ export function htmlWarnings(code) {
       `<${tag.name}> på rad ${tag.line} stängs aldrig${effect}. Skriv </${tag.name}> där den ska sluta.`,
     );
   }
-  return warnings.slice(0, MAX_WARNINGS);
+  return [...warnings, ...styleWarnings(code, found)].slice(0, MAX_WARNINGS);
 }

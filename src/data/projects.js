@@ -5,6 +5,64 @@
 // regler som övningarna (se test/concepts.js).
 const KATT = 'https://sv.wikipedia.org/wiki/Katt';
 
+// Sidorna i CSS-projekten. Stegen ändrar bara <style>, så HTML:en står
+// här en gång och funktionerna sätter ihop den med stegets CSS.
+const withStyle = html => css => `<style>\n${css}</style>\n${html}`;
+
+const AFFISCH = `<h1>Sommarkonsert</h1>
+<p class="datum">Lördag 14 juni kl. 18</p>
+<p>Skolans kör och band spelar i parken. Ta med filt och fika!</p>
+<p class="pris">Fri entré</p>
+`;
+const affisch = withStyle(AFFISCH);
+
+const KAFE = `<h1>Café Kanelbullen</h1>
+<h2>Fika</h2>
+<ul>
+  <li>Kanelbulle <span class="pris">25 kr</span></li>
+  <li>Chokladboll <span class="pris">20 kr</span> <span class="vegansk">vegansk</span></li>
+</ul>
+<h2>Att dricka</h2>
+<ul>
+  <li>Kaffe <span class="pris">30 kr</span></li>
+  <li>Varm choklad <span class="pris">35 kr</span> <span class="vegansk">vegansk</span></li>
+</ul>
+<p>Hitta hit: <a href="https://www.openstreetmap.org">karta</a></p>
+`;
+const kafe = withStyle(KAFE);
+
+const MORKT = `<h1>Min blogg</h1>
+<p class="ingress">Om kod, katter och kanelbullar.</p>
+<h2>Dagens inlägg</h2>
+<p>Idag lärde jag mig CSS. Nu kan jag byta färg på allt!</p>
+<p>Läs mer på <a href="https://developer.mozilla.org">MDN</a>.</p>
+`;
+const morkt = withStyle(MORKT);
+
+const PROFIL = `<div class="profil">
+  <img src="bilder/katt.svg" alt="Katten Måns som tittar in i kameran" width="200">
+  <h2>Måns</h2>
+  <p class="roll">Chefskatt</p>
+  <p>Gillar lådor, solfläckar och att sitta på tangentbordet.</p>
+</div>
+`;
+const profil = withStyle(PROFIL);
+
+const KNAPPAR = `<h1>Vill du spara?</h1>
+<p>
+  <a class="knapp" href="#">Spara</a>
+  <a class="knapp knapp-andra" href="#">Avbryt</a>
+</p>
+`;
+const knappar = withStyle(KNAPPAR);
+
+const LAPPAR = `<h1>Att göra</h1>
+<div class="lapp">Köp mjölk och bröd</div>
+<div class="lapp viktig">Lämna in läxan på måndag</div>
+<div class="lapp">Ring mormor</div>
+`;
+const lappar = withStyle(LAPPAR);
+
 // Delarna i ett projekt bygger på varandra. Tester på fri text kollar
 // formen (en h1 som börjar med …) och inte exakta ord, så att eleven kan
 // skriva om sig själv.
@@ -1957,6 +2015,743 @@ det kallas visst för vinter.</p>
             description: 'Knappen säger Skicka svar',
             code: "text('form button')",
             expected: 'Skicka svar',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-affisch',
+    track: 'css',
+    title: 'Affischen',
+    reward: { emoji: '🖼️', name: 'Tavla' },
+    summary:
+      'En affisch för en sommarkonsert, med mörk bakgrund, stora bokstäver och det viktiga i färg.',
+    steps: [
+      {
+        title: 'Färgerna',
+        why: 'En affisch ska synas på långt håll. Mörk bakgrund med ljus text ger stark kontrast, och en egen färg på rubriken drar blicken dit först.',
+        xp: 15,
+        description:
+          'Texten till affischen finns redan. Nu får den färg – börja med bakgrunden och texten.',
+        task: 'Uppgift: Lägg till en `<style>` överst. Ge `body` bakgrunden `midnightblue` och texten `white`. Gör rubriken `gold`.',
+        starterCode: `<!-- Steg 1: färgerna -->
+${AFFISCH}`,
+        solution: affisch(`  body {
+    background-color: midnightblue;
+    color: white;
+  }
+  h1 { color: gold; }
+`),
+        hints: [
+          'Två regler: en för body och en för h1.',
+          'color på body ärvs av alla stycken.',
+          'body { background-color: midnightblue; color: white; }\nh1 { color: gold; }',
+        ],
+        tests: [
+          {
+            description: 'Sidan har bakgrunden midnightblue',
+            code: "colorOf('body', 'background-color')",
+            expected: 'midnightblue',
+          },
+          {
+            description: 'Styckena är vita',
+            code: "colorsOf('p')",
+            expected: ['white', 'white', 'white'],
+          },
+          {
+            description: 'Rubriken är gold',
+            code: "colorOf('h1')",
+            expected: 'gold',
+          },
+        ],
+      },
+      {
+        title: 'Typsnitten',
+        why: 'Ett kraftigt typsnitt i stor storlek gör rubriken till affischens huvudperson. Text i mitten känns som en affisch och inte som en bok.',
+        xp: 15,
+        description: 'Nu ska rubriken bli stor och allt ställa sig i mitten.',
+        task: 'Uppgift: Ge rubriken typsnittet `Impact, sans-serif` och storleken `4rem`. Ställ all text i mitten med en regel på `body`, och gör styckena `1.25rem`.',
+        solution: affisch(`  body {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+  }
+  h1 {
+    color: gold;
+    font-family: Impact, sans-serif;
+    font-size: 4rem;
+  }
+  p { font-size: 1.25rem; }
+`),
+        hints: [
+          'text-align ärvs, så den kan stå på body.',
+          'font-family och font-size i h1, och en ny regel för p.',
+          'h1 { … font-family: Impact, sans-serif; font-size: 4rem; }\np { font-size: 1.25rem; }',
+        ],
+        tests: [
+          {
+            description:
+              'Rubriken har typsnittet Impact och storleken 4rem (64px)',
+            code: "[font('h1'), px('h1', 'font-size')]",
+            expected: ['impact', 64],
+          },
+          {
+            description: 'Texten står i mitten',
+            code: "css('p', 'text-align')",
+            expected: 'center',
+          },
+          {
+            description: 'Styckena är 1.25rem (20px)',
+            code: "px('p', 'font-size')",
+            expected: 20,
+          },
+        ],
+      },
+      {
+        title: 'Det viktiga sticker ut',
+        why: 'Datum och pris är det besökaren letar efter. Med klasser får just de styckena egna färger, utan att resten ändras.',
+        xp: 20,
+        description:
+          'Styckena har redan klasserna `datum` och `pris`. Använd dem.',
+        task: 'Uppgift: Gör `.datum` `gold` och `1.5rem`. Ge `.pris` bakgrunden `crimson`.',
+        solution: affisch(`  body {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+  }
+  h1 {
+    color: gold;
+    font-family: Impact, sans-serif;
+    font-size: 4rem;
+  }
+  p { font-size: 1.25rem; }
+  .datum {
+    color: gold;
+    font-size: 1.5rem;
+  }
+  .pris { background-color: crimson; }
+`),
+        hints: [
+          'Klasserna väljs med punkt: .datum och .pris.',
+          'En klass vinner över en tagg, så .datum slår regeln för p.',
+          '.datum { color: gold; font-size: 1.5rem; }\n.pris { background-color: crimson; }',
+        ],
+        tests: [
+          {
+            description: 'Datumet är gold och 1.5rem (24px)',
+            code: "[colorOf('.datum'), px('.datum', 'font-size')]",
+            expected: ['gold', 24],
+          },
+          {
+            description: 'Priset har bakgrunden crimson och vit text',
+            code: "[colorOf('.pris', 'background-color'), colorOf('.pris')]",
+            expected: ['crimson', 'white'],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-kafe',
+    track: 'css',
+    title: 'Kaféets meny',
+    reward: { emoji: '☕', name: 'Kaffekopp' },
+    summary:
+      'En meny för ett kafé med varma färger, priser som syns och en märkning för veganskt.',
+    steps: [
+      {
+        title: 'Kaféets färger',
+        why: 'Färgerna ger kaféet en känsla innan någon har läst ett ord. Med komma mellan h1 och h2 räcker en regel för alla rubriker.',
+        xp: 15,
+        description: 'Menyn finns redan som HTML. Ge den kaféets färger.',
+        task: 'Uppgift: Ge `body` bakgrunden `linen`. Gör alla rubriker (`h1` och `h2`) `saddlebrown` med **en** regel.',
+        starterCode: `<!-- Steg 1: kaféets färger -->
+${KAFE}`,
+        solution: kafe(`  body { background-color: linen; }
+  h1, h2 { color: saddlebrown; }
+`),
+        hints: [
+          'En regel för body och en för h1 och h2.',
+          'Komma mellan selektorerna: h1, h2',
+          'body { background-color: linen; }\nh1, h2 { color: saddlebrown; }',
+        ],
+        tests: [
+          {
+            description: 'Sidan har bakgrunden linen',
+            code: "colorOf('body', 'background-color')",
+            expected: 'linen',
+          },
+          {
+            description: 'Alla rubriker är saddlebrown',
+            code: "colorsOf('h1, h2')",
+            expected: ['saddlebrown', 'saddlebrown', 'saddlebrown'],
+          },
+        ],
+      },
+      {
+        title: 'Priser och märkning',
+        why: 'Priserna har klassen pris, så alla får samma färg med en regel. Märkningen ska se ut som en liten etikett: ljus text på mörk bakgrund och lite mindre.',
+        xp: 20,
+        description:
+          'Priserna och märkningen står i `span` med klasserna `pris` och `vegansk`.',
+        task: 'Uppgift: Gör alla `.pris` `seagreen`. Ge `.vegansk` vit text, bakgrunden `olivedrab` och storleken `0.75rem`.',
+        solution: kafe(`  body { background-color: linen; }
+  h1, h2 { color: saddlebrown; }
+  .pris { color: seagreen; }
+  .vegansk {
+    color: white;
+    background-color: olivedrab;
+    font-size: 0.75rem;
+  }
+`),
+        hints: [
+          'Två nya regler: .pris och .vegansk.',
+          '0.75rem är tre fjärdedelar av den vanliga textstorleken.',
+          '.pris { color: seagreen; }\n.vegansk { color: white; background-color: olivedrab; font-size: 0.75rem; }',
+        ],
+        tests: [
+          {
+            description: 'Alla priser är seagreen',
+            code: "colorsOf('.pris')",
+            expected: ['seagreen', 'seagreen', 'seagreen', 'seagreen'],
+          },
+          {
+            description: 'Märkningen är vit på olivedrab och 0.75rem (12px)',
+            code: "[colorOf('.vegansk'), colorOf('.vegansk', 'background-color'), px('.vegansk', 'font-size')]",
+            expected: ['white', 'olivedrab', 12],
+          },
+        ],
+      },
+      {
+        title: 'Typsnitt och länk',
+        why: 'Ett typsnitt med klackar känns hemtrevligt, som en griffeltavla på ett kafé. Hover-färgen visar att länken går att klicka på.',
+        xp: 20,
+        description: 'Sista handen: kaféets namn och länken till kartan.',
+        task: 'Uppgift: Ge `h1` typsnittet `Georgia, serif` och ställ den i mitten. Gör länken `sienna`, och `chocolate` när musen är över.',
+        solution: kafe(`  body { background-color: linen; }
+  h1, h2 { color: saddlebrown; }
+  .pris { color: seagreen; }
+  .vegansk {
+    color: white;
+    background-color: olivedrab;
+    font-size: 0.75rem;
+  }
+  h1 {
+    font-family: Georgia, serif;
+    text-align: center;
+  }
+  a { color: sienna; }
+  a:hover { color: chocolate; }
+`),
+        hints: [
+          'En ny regel för h1, en för a och en för a:hover.',
+          'h1 kan ha en egen regel fast den också står i h1, h2.',
+          'a { color: sienna; }\na:hover { color: chocolate; }',
+        ],
+        tests: [
+          {
+            description:
+              'Kaféets namn har typsnittet Georgia och står i mitten',
+            code: "[font('h1'), css('h1', 'text-align')]",
+            expected: ['georgia', 'center'],
+          },
+          {
+            description: 'Länken är sienna',
+            code: "colorOf('a')",
+            expected: 'sienna',
+          },
+          {
+            description: 'Länken blir chocolate när musen är över',
+            code: "colorName(hover('a', 'color'))",
+            expected: 'chocolate',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-morkt',
+    track: 'css',
+    title: 'Mörkt läge',
+    reward: { emoji: '🌙', name: 'Måne' },
+    summary:
+      'Gör om en blogg till mörkt läge – skönt för ögonen på kvällen, och lite hemligt.',
+    steps: [
+      {
+        title: 'Släck lampan',
+        why: 'Helt svart med helt vit text bländar. En mycket mörk blå och en ljusgrå text är skönare för ögonen – så gör de flesta appar i mörkt läge.',
+        xp: 15,
+        description: 'Bloggen är ljus. Gör hela sidan mörk med ljus text.',
+        task: 'Uppgift: Ge `body` bakgrunden `#111827` och texten `gainsboro`.',
+        starterCode: `<!-- Steg 1: släck lampan -->
+${MORKT}`,
+        solution: morkt(`  body {
+    background-color: #111827;
+    color: gainsboro;
+  }
+`),
+        hints: [
+          'En regel för body med två egenskaper.',
+          'Hexkoden skrivs med # och sex tecken.',
+          'body { background-color: #111827; color: gainsboro; }',
+        ],
+        tests: [
+          {
+            description: 'Sidan har bakgrunden #111827',
+            code: "colorOf('body', 'background-color')",
+            expected: '#111827',
+          },
+          {
+            description: 'Texten är gainsboro',
+            code: "colorOf('p')",
+            expected: 'gainsboro',
+          },
+        ],
+      },
+      {
+        title: 'Rubriker som lyser',
+        why: 'I mörker syns starka färger extra bra. Ingressen är en sammanfattning, så den får vara lite större men mer dämpad än resten.',
+        xp: 20,
+        description:
+          'Rubrikerna och ingressen behöver egna färger för att synas i mörkret.',
+        task: 'Uppgift: Gör `h1` `gold` och `h2` `skyblue`. Ge `.ingress` färgen `darkgray` och storleken `1.25rem`.',
+        solution: morkt(`  body {
+    background-color: #111827;
+    color: gainsboro;
+  }
+  h1 { color: gold; }
+  h2 { color: skyblue; }
+  .ingress {
+    color: darkgray;
+    font-size: 1.25rem;
+  }
+`),
+        hints: [
+          'Tre nya regler: h1, h2 och .ingress.',
+          '.ingress vinner över body eftersom den gäller stycket direkt.',
+          'h1 { color: gold; }\nh2 { color: skyblue; }\n.ingress { color: darkgray; font-size: 1.25rem; }',
+        ],
+        tests: [
+          {
+            description: 'h1 är gold och h2 skyblue',
+            code: "[colorOf('h1'), colorOf('h2')]",
+            expected: ['gold', 'skyblue'],
+          },
+          {
+            description: 'Ingressen är darkgray och 1.25rem (20px)',
+            code: "[colorOf('.ingress'), px('.ingress', 'font-size')]",
+            expected: ['darkgray', 20],
+          },
+        ],
+      },
+      {
+        title: 'Länkar som syns i mörkret',
+        why: 'Länkens vanliga blå syns knappt på mörk bakgrund. En egen färg utan streck, som blir vit vid hover, är lätt att se och visar ändå att den går att klicka på.',
+        xp: 20,
+        description:
+          'Sist länken, som nästan försvinner mot den mörka bakgrunden.',
+        task: 'Uppgift: Gör länken `violet` utan streck under. När musen är över ska den bli `white`.',
+        solution: morkt(`  body {
+    background-color: #111827;
+    color: gainsboro;
+  }
+  h1 { color: gold; }
+  h2 { color: skyblue; }
+  .ingress {
+    color: darkgray;
+    font-size: 1.25rem;
+  }
+  a {
+    color: violet;
+    text-decoration: none;
+  }
+  a:hover { color: white; }
+`),
+        hints: [
+          'En regel för a och en för a:hover.',
+          'Strecket tas bort med text-decoration: none.',
+          'a { color: violet; text-decoration: none; }\na:hover { color: white; }',
+        ],
+        tests: [
+          {
+            description: 'Länken är violet utan streck',
+            code: "[colorOf('a'), css('a', 'text-decoration-line')]",
+            expected: ['violet', 'none'],
+          },
+          {
+            description: 'Länken blir vit när musen är över',
+            code: "colorName(hover('a', 'color'))",
+            expected: 'white',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-profilkort',
+    track: 'boxen',
+    title: 'Profilkortet',
+    reward: { emoji: '🪪', name: 'ID-kort' },
+    summary:
+      'Ett profilkort som på sociala medier: en låda med luft, kant, runda hörn och en rund bild.',
+    steps: [
+      {
+        title: 'Lådan',
+        why: 'Padding ger texten luft från kanten, och en tunn ljus kant med runda hörn gör att kortet ser ut som ett kort och inte bara som text.',
+        xp: 15,
+        description:
+          'Innehållet finns redan i ett `div` med klassen `profil`. Gör det till en låda.',
+        task: 'Uppgift: Ge `.profil` vit bakgrund, `24px` padding, kanten `1px solid lightgray` och hörnen `12px`.',
+        starterCode: `<!-- Steg 1: lådan -->
+${PROFIL}`,
+        solution: profil(`  .profil {
+    background-color: white;
+    padding: 24px;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+  }
+`),
+        hints: [
+          'Fyra egenskaper i en ny regel för .profil.',
+          'border har tre delar: 1px solid lightgray.',
+          '.profil { background-color: white; padding: 24px; border: 1px solid lightgray; border-radius: 12px; }',
+        ],
+        tests: [
+          {
+            description: 'Kortet har vit bakgrund och 24px padding',
+            code: "[colorOf('.profil', 'background-color'), px('.profil', 'padding-top')]",
+            expected: ['white', 24],
+          },
+          {
+            description: 'Kortet har en 1px lightgray kant och 12px hörn',
+            code: "[px('.profil', 'border-top-width'), colorOf('.profil', 'border-top-color'), css('.profil', 'border-radius')]",
+            expected: [1, 'lightgray', '12px'],
+          },
+        ],
+      },
+      {
+        title: 'Rätt bredd mitt på sidan',
+        why: 'Med border-box blir kortet precis så brett som det står, även med padding och kant. margin auto på sidorna ställer det i mitten.',
+        xp: 20,
+        description:
+          'Kortet är lika brett som sidan. Gör det smalt och ställ det i mitten.',
+        task: 'Uppgift: Gör kortet exakt `300px` brett med padding och kant. Ge det `margin: 40px auto` så att det står mitt på sidan med luft ovanför.',
+        solution: profil(`  .profil {
+    background-color: white;
+    padding: 24px;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    box-sizing: border-box;
+    width: 300px;
+    margin: 40px auto;
+  }
+`),
+        hints: [
+          'box-sizing: border-box gör att width räknar med padding och kant.',
+          'margin: 40px auto ger 40px uppe och nere och auto på sidorna.',
+          'box-sizing: border-box;\nwidth: 300px;\nmargin: 40px auto;',
+        ],
+        tests: [
+          {
+            description: 'Kortet är 300px brett med padding och kant',
+            code: "boxWidth('.profil')",
+            expected: 300,
+          },
+          {
+            description: 'Kortet står mitt på sidan med 40px luft ovanför',
+            code: "[centered('.profil'), px('.profil', 'margin-top')]",
+            expected: [true, 40],
+          },
+        ],
+      },
+      {
+        title: 'Bilden och texten',
+        why: 'En rund profilbild är något alla känner igen. Text i mitten passar ett smalt kort, och rollen i grått blir en undertitel som inte tar över.',
+        xp: 20,
+        description: 'Sist bilden och texten.',
+        task: 'Uppgift: Gör bilden rund med `border-radius: 50%`. Ställ texten i kortet i mitten och gör `.roll` `gray`.',
+        solution: profil(`  .profil {
+    background-color: white;
+    padding: 24px;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    box-sizing: border-box;
+    width: 300px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  .profil img { border-radius: 50%; }
+  .roll { color: gray; }
+`),
+        hints: [
+          'text-align: center i .profil, och två nya regler.',
+          '.profil img väljer bilden inuti kortet.',
+          '.profil img { border-radius: 50%; }\n.roll { color: gray; }',
+        ],
+        tests: [
+          {
+            description: 'Bilden har hörnen 50%',
+            code: "css('.profil img', 'border-radius')",
+            expected: '50%',
+          },
+          {
+            description: 'Texten i kortet står i mitten',
+            code: "css('.profil h2', 'text-align')",
+            expected: 'center',
+          },
+          {
+            description: 'Rollen är gray',
+            code: "colorOf('.roll')",
+            expected: 'gray',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-knappar',
+    track: 'boxen',
+    title: 'Knapparna',
+    reward: { emoji: '🔘', name: 'Knapp' },
+    summary:
+      'Två knappar som på en riktig sajt: en fylld huvudknapp och en med bara kant.',
+    steps: [
+      {
+        title: 'En riktig knapp',
+        why: 'En länk är inline och står i texten. Med inline-block blir den en riktig låda, så att padding och runda hörn fungerar som på en knapp.',
+        xp: 15,
+        description:
+          'Två länkar har klassen `knapp`. Få dem att se ut som knappar.',
+        task: 'Uppgift: Gör `.knapp` till `inline-block` med padding `12px 24px`, bakgrunden `royalblue`, vit text och hörnen `8px`.',
+        starterCode: `<!-- Steg 1: en riktig knapp -->
+${KNAPPAR}`,
+        solution: knappar(`  .knapp {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: royalblue;
+    color: white;
+    border-radius: 8px;
+  }
+`),
+        hints: [
+          'Fem egenskaper i en regel för .knapp.',
+          'display: inline-block gör länken till en låda.',
+          '.knapp { display: inline-block; padding: 12px 24px; background-color: royalblue; color: white; border-radius: 8px; }',
+        ],
+        tests: [
+          {
+            description: 'Knappen är inline-block med padding 12px 24px',
+            code: "[css('.knapp', 'display'), px('.knapp', 'padding-top'), px('.knapp', 'padding-left')]",
+            expected: ['inline-block', 12, 24],
+          },
+          {
+            description: 'Knappen är vit på royalblue med 8px hörn',
+            code: "[colorOf('.knapp'), colorOf('.knapp', 'background-color'), css('.knapp', 'border-radius')]",
+            expected: ['white', 'royalblue', '8px'],
+          },
+        ],
+      },
+      {
+        title: 'Utan streck och med hover',
+        why: 'Strecket under är till för länkar i text. På en knapp stör det. Att knappen blir mörkare under musen visar att den går att trycka på.',
+        xp: 15,
+        description:
+          'Knapparna har fortfarande streck under, och ingenting händer när musen är över.',
+        task: 'Uppgift: Ta bort strecket under `.knapp`. Ge den bakgrunden `navy` när musen är över.',
+        solution: knappar(`  .knapp {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: royalblue;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  .knapp:hover { background-color: navy; }
+`),
+        hints: [
+          'text-decoration i .knapp och en ny regel med :hover.',
+          'Hover-regeln ändrar bara background-color.',
+          'text-decoration: none;\n.knapp:hover { background-color: navy; }',
+        ],
+        tests: [
+          {
+            description: 'Knappen har inget streck under',
+            code: "css('.knapp', 'text-decoration-line')",
+            expected: 'none',
+          },
+          {
+            description: 'Knappen blir navy när musen är över',
+            code: "colorName(hover('.knapp', 'background-color'))",
+            expected: 'navy',
+          },
+        ],
+      },
+      {
+        title: 'Den andra knappen',
+        why: 'Den viktigaste knappen ska synas mest. Den andra får bara en kant, så att man förstår vilken man ska trycka på. Regeln står sist och vinner därför över .knapp.',
+        xp: 20,
+        description:
+          'Avbryt-knappen har också klassen `knapp-andra`. Den ska se mindre viktig ut.',
+        task: 'Uppgift: Ge `.knapp-andra` vit bakgrund, texten `royalblue` och kanten `2px solid royalblue`. Skriv regeln efter `.knapp`.',
+        solution: knappar(`  .knapp {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: royalblue;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  .knapp:hover { background-color: navy; }
+  .knapp-andra {
+    background-color: white;
+    color: royalblue;
+    border: 2px solid royalblue;
+  }
+`),
+        hints: [
+          'En ny regel för .knapp-andra, sist i <style>.',
+          'Två lika starka regler: den som står sist vinner.',
+          '.knapp-andra { background-color: white; color: royalblue; border: 2px solid royalblue; }',
+        ],
+        tests: [
+          {
+            description: 'Andra knappen är royalblue på vitt',
+            code: "[colorOf('.knapp-andra'), colorOf('.knapp-andra', 'background-color')]",
+            expected: ['royalblue', 'white'],
+          },
+          {
+            description: 'Andra knappen har en 2px royalblue kant',
+            code: "[px('.knapp-andra', 'border-top-width'), colorOf('.knapp-andra', 'border-top-color')]",
+            expected: [2, 'royalblue'],
+          },
+          {
+            description: 'Första knappen är fortfarande royalblue',
+            code: "colorOf('.knapp', 'background-color')",
+            expected: 'royalblue',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-lappar',
+    track: 'boxen',
+    title: 'Anteckningslapparna',
+    reward: { emoji: '🗒️', name: 'Anteckningsblock' },
+    summary:
+      'En att göra-lista som gula lappar, med en färgad kant på den viktigaste.',
+    steps: [
+      {
+        title: 'Lappar med luft',
+        why: 'Padding ger texten luft inuti lappen och margin ger luft mellan lapparna. Utan dem blir det en enda gul klump.',
+        xp: 15,
+        description: 'Varje sak att göra står i ett `div` med klassen `lapp`.',
+        task: 'Uppgift: Ge `.lapp` bakgrunden `lightyellow`, `16px` padding och `12px` margin under.',
+        starterCode: `<!-- Steg 1: lappar med luft -->
+${LAPPAR}`,
+        solution: lappar(`  .lapp {
+    background-color: lightyellow;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+`),
+        hints: [
+          'En regel för .lapp med tre egenskaper.',
+          'Luften under är margin-bottom.',
+          '.lapp { background-color: lightyellow; padding: 16px; margin-bottom: 12px; }',
+        ],
+        tests: [
+          {
+            description: 'Alla lappar är lightyellow',
+            code: "colorsOf('.lapp', 'background-color')",
+            expected: ['lightyellow', 'lightyellow', 'lightyellow'],
+          },
+          {
+            description: 'Lapparna har 16px padding och 12px margin under',
+            code: "[px('.lapp', 'padding-top'), px('.lapp', 'margin-bottom')]",
+            expected: [16, 12],
+          },
+        ],
+      },
+      {
+        title: 'En kant som markerar',
+        why: 'En tjock kant på bara ena sidan är ett vanligt sätt att markera något. Den viktiga lappen har två klasser, så en egen regel kan byta bara färgen.',
+        xp: 20,
+        description:
+          'Ge lapparna en kant till vänster, och den viktiga en egen färg.',
+        task: 'Uppgift: Ge `.lapp` kanten `6px solid gold` bara till vänster. Ge `.viktig` kantfärgen `crimson` med `border-left-color`.',
+        solution: lappar(`  .lapp {
+    background-color: lightyellow;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 6px solid gold;
+  }
+  .viktig { border-left-color: crimson; }
+`),
+        hints: [
+          'Kanten till vänster heter border-left.',
+          '.viktig står efter .lapp och vinner därför.',
+          'border-left: 6px solid gold;\n.viktig { border-left-color: crimson; }',
+        ],
+        tests: [
+          {
+            description: 'Lapparna har en 6px gold kant till vänster',
+            code: "[px('.lapp', 'border-left-width'), colorOf('.lapp', 'border-left-color')]",
+            expected: [6, 'gold'],
+          },
+          {
+            description: 'Ingen kant ovanför',
+            code: "px('.lapp', 'border-top-width')",
+            expected: 0,
+          },
+          {
+            description: 'Den viktiga lappen har en crimson kant',
+            code: "colorOf('.viktig', 'border-left-color')",
+            expected: 'crimson',
+          },
+        ],
+      },
+      {
+        title: 'Samla lapparna i mitten',
+        why: 'body är också en låda. Med max-width och margin auto på body hamnar hela sidan i en spalt i mitten, utan att du behöver ändra någon HTML.',
+        xp: 20,
+        description:
+          'På en bred skärm blir lapparna jättelånga. Samla dem i en spalt.',
+        task: 'Uppgift: Ge `body` en högsta bredd på `400px` och ställ den mitt på sidan med `margin: 0 auto`. Ställ rubriken i mitten.',
+        solution: lappar(`  body {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  h1 { text-align: center; }
+  .lapp {
+    background-color: lightyellow;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 6px solid gold;
+  }
+  .viktig { border-left-color: crimson; }
+`),
+        hints: [
+          'En ny regel för body och en för h1.',
+          'max-width: 400px och margin: 0 auto.',
+          'body { max-width: 400px; margin: 0 auto; }\nh1 { text-align: center; }',
+        ],
+        tests: [
+          {
+            description: 'Sidan är högst 400px bred',
+            code: "px('body', 'max-width')",
+            expected: 400,
+          },
+          {
+            description: 'Sidan står i mitten',
+            code: "centered('body')",
+            expected: true,
+          },
+          {
+            description: 'Rubriken står i mitten',
+            code: "css('h1', 'text-align')",
+            expected: 'center',
           },
         ],
       },

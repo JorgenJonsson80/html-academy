@@ -334,7 +334,7 @@ export default function App() {
     <>
       <header className="app-header">
         <h1>
-          <span aria-hidden="true">🧩</span> HTML Academy
+          <span aria-hidden="true">🧩</span> HTML &amp; CSS Academy
         </h1>
         <nav className="header-nav" aria-label="Verktyg">
           <button

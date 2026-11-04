@@ -21,6 +21,12 @@ const RULES = [
     pattern: /<(form|input|label|button)\b/i,
   },
   { track: 'css', name: 'CSS', pattern: /<style\b|\sstyle\s*=/i },
+  {
+    track: 'boxen',
+    name: 'boxmodellen',
+    pattern:
+      /(?<![\w-])(padding|margin|border|box-sizing|(max-|min-)?(width|height)|display)(-[a-z-]+)?\s*:/i,
+  },
   { track: 'flexbox', name: 'flexbox', pattern: /display\s*:\s*flex/i },
   { track: 'grid', name: 'grid', pattern: /display\s*:\s*grid/i },
   { track: 'responsivt', name: '@media', pattern: /@media\b/i },

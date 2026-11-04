@@ -13,7 +13,7 @@ const SRC = `<!doctype html>
 <!-- en lapp -->
 <style>
   h1 .kort #topp { color: #ff6347; margin: 2rem auto; display: flex; }
-  a:hover { gap: 1fr; }
+  a:hover { gap: 1fr; margin-bottom: 2px; colour: red; }
 </style>
 `;
 
@@ -78,6 +78,10 @@ describe('describeAt', () => {
     expect(at('flex;').body).toMatch(/flexbox/);
     expect(at('hover').title).toBe(':hover');
     expect(at('1fr').body).toMatch(/grid/);
+    expect(at('margin-bottom').body).toMatch(
+      /^Luft \*utanför\* kanten, bara nere\. Gäller `a:hover`/,
+    );
+    expect(at('colour').body).toMatch(/finns inte i CSS.*Menade du `color`\?/);
   });
 
   it('svarar null för vanlig text', () => {

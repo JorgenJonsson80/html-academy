@@ -151,11 +151,22 @@ export default function LessonPanel({
         // så att den som aldrig kodat hittar den.
         <details className="lesson-explain" open={lessonNumber <= 3}>
           <summary>📖 Ny på det här? Läs mer och se ett exempel</summary>
-          {lesson.explain.split('\n\n').map((paragraph, index) => (
-            <p key={`explain-${index}`}>
-              <CodeText text={paragraph} />
-            </p>
-          ))}
+          {lesson.explain.split('\n\n').map((paragraph, index) =>
+            // Ett stycke där varje rad börjar med "- " är en lista.
+            paragraph.split('\n').every(line => line.startsWith('- ')) ? (
+              <ul key={`explain-${index}`}>
+                {paragraph.split('\n').map((line, row) => (
+                  <li key={`explain-${index}-${row}`}>
+                    <CodeText text={line.slice(2)} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p key={`explain-${index}`}>
+                <CodeText text={paragraph} />
+              </p>
+            ),
+          )}
           <figure>
             <figcaption>Exempel, med andra värden än i uppgiften:</figcaption>
             <pre>

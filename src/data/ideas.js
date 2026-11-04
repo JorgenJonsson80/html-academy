@@ -202,6 +202,90 @@ export const IDEAS = [
     extra:
       'Testa `min` och `max` på sifferfältet, så att man inte kan boka 1000 biljetter.',
   },
+  {
+    id: 'idea-regnbage',
+    track: 'css',
+    emoji: '🌈',
+    title: 'Regnbågssidan',
+    summary: 'En sida om regnbågen där varje rubrik har sin egen färg.',
+    goals: [
+      'En `h2` för varje färg i regnbågen, var och en i sin färg.',
+      'En mörk bakgrund på `body` så att färgerna lyser.',
+      'Ett eget typsnitt på hela sidan och en stor `h1`.',
+    ],
+    extra:
+      'Ge varje rubrik en klass och byt färg med `:hover`, så att regnbågen ändras när musen är över.',
+  },
+  {
+    id: 'idea-filmaffisch',
+    track: 'css',
+    emoji: '🎬',
+    title: 'Filmaffischen',
+    summary: 'En affisch för en film du gillar – eller en du hittar på.',
+    goals: [
+      'Filmens namn i en stor `h1` med ett kraftigt typsnitt.',
+      'Skådespelarna i en klass med egen färg.',
+      'Premiärdatumet i mitten, i en färg som sticker ut.',
+    ],
+    extra:
+      'Prova en hexkod du hittar i en färgväljare, och gör all text versaler med `text-transform: uppercase`.',
+  },
+  {
+    id: 'idea-bakverk',
+    track: 'css',
+    emoji: '🧁',
+    title: 'Bakverkslistan',
+    summary: 'Dina favoritbakverk med pris, färger och märkning.',
+    goals: [
+      'En lista med bakverk där priset står i `span` med en klass.',
+      'Alla priser i samma färg med en enda regel.',
+      'En klass för det populäraste bakverket som får en bakgrundsfärg.',
+    ],
+    extra: 'Lägg till en länk till receptet som byter färg vid `:hover`.',
+  },
+  {
+    id: 'idea-samlarkort',
+    track: 'boxen',
+    emoji: '🃏',
+    title: 'Samlarkortet',
+    summary: 'Ett samlarkort för ett djur, en hjälte eller ett monster.',
+    goals: [
+      'Ett kort med fast bredd, padding, en tjock kant och runda hörn.',
+      'En bild överst som aldrig blir bredare än kortet.',
+      'Egenskaperna, till exempel styrka och fart, i små lådor med egen bakgrund.',
+    ],
+    extra:
+      'Gör tre kort i olika färger. Använd samma klass för formen och en egen klass för färgen.',
+  },
+  {
+    id: 'idea-skylt',
+    track: 'boxen',
+    emoji: '🪧',
+    title: 'Öppettidsskylten',
+    summary:
+      'En skylt med öppettider för en butik, ett bibliotek eller ditt rum.',
+    goals: [
+      'Skylten står mitt på sidan med `margin: 0 auto`.',
+      'En kant runt hela skylten och en kant under rubriken.',
+      'Luft mellan dagarna med `padding` eller `margin`.',
+    ],
+    extra:
+      'Markera dagen då det är stängt med en kant till vänster i en annan färg.',
+  },
+  {
+    id: 'idea-prislappar',
+    track: 'boxen',
+    emoji: '🏷️',
+    title: 'Prislapparna',
+    summary: 'Prislappar för en loppis, med runda hörn och rea-märkning.',
+    goals: [
+      'Varje sak i en låda som är `inline-block`, så att de står bredvid varandra.',
+      'Alla lådor lika breda tack vare `box-sizing: border-box`.',
+      'En streckad kant och runda hörn, som en riktig lapp.',
+    ],
+    extra:
+      'Ge sakerna på rea en klass med röd bakgrund, och gör lappen lite större vid `:hover`.',
+  },
 ];
 
 const FREE_START = `<!-- Skriv vad du vill. Sidan syns under editorn. -->

@@ -155,6 +155,76 @@ export const QUIZ = {
         'Det som skickas är name och värdet. Utan name skickas fältet inte alls.',
     },
   ],
+  css: [
+    {
+      question: 'Vilken färg får rubriken?',
+      code: '<style>\n  h1 { color: red; }\n  h1 { color: blue; }\n</style>\n<h1>Hej</h1>',
+      options: ['blue', 'red', 'lila – färgerna blandas', 'black'],
+      explain: 'Två lika starka regler: den som står sist vinner.',
+      check: "colorOf('h1')",
+    },
+    {
+      question: 'Vilken färg får stycket?',
+      code: '<style>\n  .varning { color: red; }\n  p { color: green; }\n</style>\n<p class="varning">Akta!</p>',
+      options: ['red', 'green', 'black', 'blue'],
+      explain:
+        'En klass är starkare än en tagg, så .varning vinner fast p står sist.',
+      check: "colorOf('p')",
+    },
+    {
+      question: 'Hur väljer man alla element med class="kort" i CSS?',
+      options: ['.kort', '#kort', 'kort', '<kort>'],
+      explain: 'Punkt för klass, # för id och bara namnet för en tagg.',
+    },
+    {
+      question: 'Hur stor är 2rem om sidans text är 16px?',
+      options: ['32px', '2px', '16px', '18px'],
+      explain: 'rem betyder gånger sidans textstorlek: 2 × 16 = 32.',
+    },
+  ],
+  boxen: [
+    {
+      question: 'Vad är padding?',
+      options: [
+        'Luft innanför kanten',
+        'Luft utanför kanten',
+        'Kantens tjocklek',
+        'Hur runda hörnen är',
+      ],
+      explain:
+        'padding är luften mellan kanten och innehållet. margin är luften utanför.',
+    },
+    {
+      question: 'Hur bred blir lådan, med padding och kant?',
+      code: '<style>\n  div {\n    width: 200px;\n    padding: 20px;\n    border: 5px solid black;\n  }\n</style>\n<div>Låda</div>',
+      options: ['250px', '200px', '225px', '245px'],
+      explain:
+        'width gäller bara innehållet: 200 + 20 + 20 i padding + 5 + 5 i kant = 250.',
+      check: "boxWidth('div') + 'px'",
+    },
+    {
+      question: 'Hur ställer man en låda med en bredd mitt på sidan?',
+      options: [
+        'margin: 0 auto',
+        'text-align: center',
+        'padding: auto',
+        'align: center',
+      ],
+      explain:
+        'auto på sidorna delar den lediga platsen lika. text-align centrerar bara texten inuti.',
+    },
+    {
+      question: 'Vilket värde gör att width räknas med padding och kant?',
+      options: [
+        'box-sizing: border-box',
+        'box-sizing: content-box',
+        'display: inline-block',
+        'margin: auto',
+      ],
+      explain:
+        'Med border-box är width hela lådan. Det är därför de flesta sajter sätter det på allt.',
+    },
+  ],
 };
 
 // Id:t som sparas bland de klara när man klarat en banas test. Det följer

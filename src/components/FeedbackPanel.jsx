@@ -1,4 +1,5 @@
 import Avatar from './Avatar';
+import CodeText from './CodeText';
 import DiffView from './DiffView';
 import ErrorBox from './ErrorBox';
 
@@ -31,7 +32,9 @@ export default function FeedbackPanel({ feedback, stage }) {
           <p className="html-warnings-title">⚠️ Webbläsaren fick gissa här</p>
           <ul>
             {feedback.warnings.map((warning, index) => (
-              <li key={`warning-${index}`}>{warning}</li>
+              <li key={`warning-${index}`}>
+                <CodeText text={warning} />
+              </li>
             ))}
           </ul>
         </div>

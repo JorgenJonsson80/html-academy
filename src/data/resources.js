@@ -70,6 +70,45 @@ export const RESOURCES = {
       video: 'html form radio checkbox select beginners',
     },
   ],
+  css: [
+    {
+      topic: 'Selektorer och regler',
+      read: `${LEARN}Core/Styling_basics/Basic_selectors`,
+      video: 'css för nybörjare selektorer class id',
+    },
+    {
+      topic: 'Färger och enheter',
+      read: `${LEARN}Core/Styling_basics/Values_and_units`,
+      video: 'css colors hex rgb rem beginners',
+    },
+    {
+      topic: 'Typsnitt och text',
+      read: `${LEARN}Core/Text_styling/Fundamentals`,
+      video: 'css font-family font-size text-align',
+    },
+    {
+      topic: 'Vilken regel vinner?',
+      read: `${LEARN}Core/Styling_basics/Handling_conflicts`,
+      video: 'css specificity explained',
+    },
+  ],
+  boxen: [
+    {
+      topic: 'Boxmodellen',
+      read: `${LEARN}Core/Styling_basics/Box_model`,
+      video: 'css box model padding margin border',
+    },
+    {
+      topic: 'Kanter och bakgrund',
+      read: `${LEARN}Core/Styling_basics/Backgrounds_and_borders`,
+      video: 'css border border-radius beginners',
+    },
+    {
+      topic: 'Bredd och storlek',
+      read: `${LEARN}Core/Styling_basics/Sizing`,
+      video: 'css width max-width box-sizing border-box',
+    },
+  ],
 };
 
 export function videoSearchUrl(query) {

@@ -1,4 +1,4 @@
-# HTML Academy
+# HTML & CSS Academy
 
 Lär dig HTML och CSS från noll, på svenska, direkt i webbläsaren.
 

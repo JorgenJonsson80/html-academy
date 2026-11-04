@@ -367,4 +367,208 @@ export const BOSSES = {
       },
     ],
   },
+  css: {
+    id: 'css-boss',
+    track: 'css',
+    title: 'Boss: Visitkortet',
+    isBoss: true,
+    xp: 50,
+    description:
+      BOSS_INTRO +
+      'Ett visitkort med egna färger och typsnitt, en klass för titeln och en länk som ändrar färg.',
+    task: `Uppgift: Bygg ett visitkort som en hel sida, med \`<style>\` i \`head\`.
+  1. Hela sidan har bakgrunden \`whitesmoke\` och typsnittet \`Arial, sans-serif\`.
+  2. I \`body\` står ett \`div\` med klassen \`kort\`. Kortet har bakgrunden \`white\` och all text i mitten.
+  3. I kortet står ditt namn i en \`h1\`: färgen \`midnightblue\`, typsnittet \`Georgia, serif\` och storleken \`2.5rem\`.
+  4. Under namnet ett stycke med klassen \`titel\` som säger vad du gör. Färgen \`gray\` och storleken \`1.25rem\`.
+  5. Sist en e-postlänk (\`mailto:\`) som blir \`crimson\` när musen är över.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Visitkort</title>
+    <style>
+      body {
+        background-color: whitesmoke;
+        font-family: Arial, sans-serif;
+      }
+      .kort {
+        background-color: white;
+        text-align: center;
+      }
+      h1 {
+        color: midnightblue;
+        font-family: Georgia, serif;
+        font-size: 2.5rem;
+      }
+      .titel {
+        color: gray;
+        font-size: 1.25rem;
+      }
+      a:hover { color: crimson; }
+    </style>
+  </head>
+  <body>
+    <div class="kort">
+      <h1>Ada Lovelace</h1>
+      <p class="titel">Programmerare</p>
+      <p><a href="mailto:ada@exempel.se">ada@exempel.se</a></p>
+    </div>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Sidan har bakgrunden whitesmoke',
+        code: "colorOf('body', 'background-color')",
+        expected: 'whitesmoke',
+      },
+      {
+        description: 'Titeln har ärvt typsnittet Arial',
+        code: "font('.kort .titel')",
+        expected: 'arial',
+      },
+      {
+        description: 'Kortet har vit bakgrund och texten i mitten',
+        code: "[colorOf('.kort', 'background-color'), css('.kort', 'text-align')]",
+        expected: ['white', 'center'],
+      },
+      {
+        description: 'Namnet är midnightblue, Georgia och 2.5rem (40px)',
+        code: "[colorOf('.kort h1'), font('.kort h1'), px('.kort h1', 'font-size')]",
+        expected: ['midnightblue', 'georgia', 40],
+      },
+      {
+        description: 'Titeln är gray och 1.25rem (20px)',
+        code: "[colorOf('.kort .titel'), px('.kort .titel', 'font-size')]",
+        expected: ['gray', 20],
+      },
+      {
+        description: 'Kortet har en e-postlänk',
+        code: "attr('.kort a', 'href')?.startsWith('mailto:') ?? null",
+        expected: true,
+      },
+      {
+        description: 'Länken blir crimson när musen är över',
+        code: "colorName(hover('.kort a', 'color'))",
+        expected: 'crimson',
+      },
+    ],
+  },
+  boxen: {
+    id: 'boxen-boss',
+    track: 'boxen',
+    title: 'Boss: Produktkortet',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'Ett produktkort som i en webbutik: rätt bredd, mitt på sidan, med kant, runda hörn och en knapp.',
+    task: `Uppgift: Bygg ett produktkort för pannkakor, som en hel sida.
+  1. Ett \`div\` med klassen \`produkt\` med bilden \`bilder/pannkakor.svg\`, rubriken \`Pannkakor\` i en \`h2\`, ett stycke med klassen \`pris\` och en länk med klassen \`knapp\`.
+  2. Kortet är exakt \`320px\` brett med padding och kant, och står mitt på sidan.
+  3. Kortet har \`24px\` padding, kanten \`1px solid lightgray\`, hörnen \`16px\` och vit bakgrund.
+  4. Bilden får aldrig bli bredare än kortet: \`max-width: 100%\`.
+  5. Knappen är \`inline-block\` med padding \`12px 24px\`, bakgrunden \`seagreen\` och vit text. När musen är över blir bakgrunden \`darkgreen\`.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Pannkakor</title>
+    <style>
+      body {
+        background-color: whitesmoke;
+        font-family: Arial, sans-serif;
+      }
+      .produkt {
+        box-sizing: border-box;
+        width: 320px;
+        margin: 40px auto;
+        padding: 24px;
+        background-color: white;
+        border: 1px solid lightgray;
+        border-radius: 16px;
+      }
+      .produkt img {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+      .pris {
+        color: seagreen;
+        font-size: 1.5rem;
+      }
+      .knapp {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: seagreen;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      .knapp:hover { background-color: darkgreen; }
+    </style>
+  </head>
+  <body>
+    <div class="produkt">
+      <img src="bilder/pannkakor.svg" alt="En hög pannkakor med sylt">
+      <h2>Pannkakor</h2>
+      <p class="pris">49 kr</p>
+      <a class="knapp" href="#">Köp nu</a>
+    </div>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Kortet har bild, rubrik, pris och knapp',
+        code: "[count('.produkt img'), text('.produkt h2'), count('.produkt .pris'), count('.produkt a.knapp')]",
+        expected: [1, 'Pannkakor', 1, 1],
+      },
+      {
+        description: 'Kortet är 320px brett med padding och kant',
+        code: "boxWidth('.produkt')",
+        expected: 320,
+      },
+      {
+        description: 'Kortet står mitt på sidan',
+        code: "centered('.produkt')",
+        expected: true,
+      },
+      {
+        description:
+          'Kortet har 24px padding, 1px lightgray kant och 16px hörn',
+        code: "[px('.produkt', 'padding-top'), px('.produkt', 'border-top-width'), colorOf('.produkt', 'border-top-color'), css('.produkt', 'border-radius')]",
+        expected: [24, 1, 'lightgray', '16px'],
+      },
+      {
+        description: 'Kortet har vit bakgrund',
+        code: "colorOf('.produkt', 'background-color')",
+        expected: 'white',
+      },
+      {
+        description: 'Bilden blir aldrig bredare än kortet',
+        code: "css('.produkt img', 'max-width')",
+        expected: '100%',
+      },
+      {
+        description: 'Knappen är inline-block med padding 12px 24px',
+        code: "[css('.knapp', 'display'), px('.knapp', 'padding-top'), px('.knapp', 'padding-left')]",
+        expected: ['inline-block', 12, 24],
+      },
+      {
+        description: 'Knappen är seagreen med vit text',
+        code: "[colorOf('.knapp', 'background-color'), colorOf('.knapp')]",
+        expected: ['seagreen', 'white'],
+      },
+      {
+        description: 'Knappen blir darkgreen när musen är över',
+        code: "colorName(hover('.knapp', 'background-color'))",
+        expected: 'darkgreen',
+      },
+    ],
+  },
 };

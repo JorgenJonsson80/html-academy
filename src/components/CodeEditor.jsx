@@ -64,12 +64,16 @@ function renderInfo({ title, body }) {
   const heading = document.createElement('strong');
   heading.textContent = title;
   const paragraph = document.createElement('p');
-  body.split(/`([^`]+)`/).forEach((part, index) => {
-    if (index % 2 === 0) paragraph.append(part);
-    else
-      paragraph.append(
-        Object.assign(document.createElement('code'), { textContent: part }),
-      );
+  // `kod` blir <code> och *ord* kursivt.
+  body.split(/(`[^`]+`|\*[^*]+\*)/).forEach(part => {
+    const tag = { '`': 'code', '*': 'em' }[part[0]];
+    paragraph.append(
+      tag && part.length > 2 && part.at(-1) === part[0]
+        ? Object.assign(document.createElement(tag), {
+            textContent: part.slice(1, -1),
+          })
+        : part,
+    );
   });
   dom.append(heading, paragraph);
   return dom;

@@ -1,4 +1,4 @@
-# HTML Academy – specifikation
+# HTML & CSS Academy – specifikation
 
 En svensk, interaktiv kodskola i HTML och CSS för den som aldrig kodat.
 Byggd på Python Academy (`../python från S`), som i sin tur bygger på JS
@@ -37,7 +37,9 @@ Tänkt ordning för eleven: **HTML/CSS → JS Academy → Python Academy**.
   testerna. Iframen är 800 × 600 px, så att layouten räknas ut.
 - I testerna gör `test/nodePage.js` samma sak med jsdom. jsdom räknar
   **inte ut layout** (storlek, placering, flex och grid). Tester på det
-  kan bara köras i webbläsaren – se "Öppna frågor".
+  kan bara köras i webbläsaren – se "Öppna frågor". `nodePage.js` rättar
+  två saker där jsdom skiljer sig från webbläsaren: `text-align` m.fl.
+  ärvs, och elevens `a { color }` vinner över jsdoms egen `:link`.
 
 ### Varningar för vanliga misstag
 
@@ -47,6 +49,12 @@ stängs, en stängande tagg utan öppnande, taggar som stängs i fel ordning,
 taggar som inte finns (`<h7>` – menade du `<h6>`?) och `<img>` utan `alt`.
 Varningarna visas i en gul ruta ovanför testraderna, även när testerna går
 igenom. Inget facit får ge en varning (`lessons.test.js`).
+
+CSS i `<style>` läses av `runner/cssWarnings.js`: egenskaper som inte
+finns (`colour` – menade du `color`?), ett `;` eller `}` som saknas, tal
+utan enhet (`width: 300`), färger som inte finns (`röd` – menade du
+`red`?), trasiga hexkoder och selektorer som inte hittar något (`.krot`
+när sidan har `class="kort"`).
 
 ### Bilder och länkar i förhandsvisningen
 
@@ -75,7 +83,13 @@ i `checkPage.js`:
 | `count('p')` | antal träffar |
 | `attr('a', 'href')` | ett attribut, eller `null` |
 | `css('h1', 'color')` | det beräknade värdet, t.ex. `rgb(255, 0, 0)` |
-| `color('red')` | en färg som webbläsaren skriver den, att jämföra med `css()` |
+| `colorOf('h1')`, `colorOf('h1', 'background-color')` | färgen som namn eller hex: `'tomato'`, `'#1e3a8a'`, `'transparent'` |
+| `colorsOf('p')` | färgen på alla träffar |
+| `colorName(hover('a', 'color'))` | det som står i en `:hover`-regel som gäller elementet, som färgnamn |
+| `px('h1', 'font-size')` | storleken i pixlar som tal (`2rem` → `32`) |
+| `font('p')` | första typsnittet: `'verdana'` |
+| `boxWidth('.kort')` | hela bredden med padding och kant |
+| `centered('.kort')` | står elementet mitt i sin förälder? |
 | `$`, `$$`, `doc` | `querySelector`, alla träffar som lista, dokumentet |
 
 ```js
@@ -92,12 +106,18 @@ i `checkPage.js`:
 
 - Hjälparna ger `null` när elementet saknas, så att eleven får "hittade
   det inte på sidan" i stället för ett JavaScript-fel.
-- Jämför färger med `color()`: `css('h1', 'color') === color('tomato')`
-  med `expected: true`, så spelar det ingen roll om eleven skriver
-  `tomato`, `#ff6347` eller `rgb(255, 99, 71)`.
-- Storlekar: jsdom ger det eleven skrev (`2rem`), webbläsaren pixlar
-  (`32px`). Testa hellre att regeln finns eller jämför två element med
-  varandra än exakta värden – tills layouttesterna finns.
+- jsdom ger värdena som eleven skrev dem (`2rem`), webbläsaren pixlar
+  (`32px`). Hjälparna för CSS ger samma svar på båda ställena. Använd
+  dem i stället för `css()` för färger och storlekar: då spelar det ingen
+  roll om eleven skriver `tomato`, `#ff6347` eller `rgb(255, 99, 71)`.
+- `boxWidth()` och `centered()` mäter i webbläsaren och räknar från
+  stilarna i jsdom.
+- Webbläsaren ger `p` och `h1` egen margin, men jsdom gör det inte. Testa
+  bara värden som eleven sätter.
+- `font-weight` (`bold` mot `700`) och `line-height` utan `px()` skiljer
+  sig också. Testa dem inte direkt.
+- Innan commit: `chrome-grade.mjs` i scratchpad rättar facit och startkod
+  för alla övningar i riktig Chrome med `runPage`.
 
 ## Banor
 
@@ -131,7 +151,8 @@ i `checkPage.js`:
 - Facit klarar sina egna tester. **Startkoden underkänns.**
 - Facit använder bara det tidigare banor lärt ut (`test/concepts.js`):
   inga länkar/bilder före bana 2, inga listor före bana 3, inga formulär
-  före bana 5, ingen CSS före bana 6, ingen flex, grid eller `@media`
+  före bana 5, ingen CSS före bana 6, ingen `padding`, `margin`,
+  `border`, `width` eller `display` före bana 7, ingen flex, grid eller `@media`
   före sina banor och ingen Tailwind före bana 12. En regel gäller först
   när dess bana finns i `tracks.js`.
 - Tre ledtrådar per övning, bossen inga. Bossen är sist i sin bana.
@@ -151,9 +172,10 @@ i `checkPage.js`:
 ## Öppna frågor
 
 - **Layouttester** för flexbox, grid och responsivt: jsdom räknar inte ut
-  layout. Alternativ: kör de banornas tester i Playwright (vitest browser
-  mode), eller testa beräknade stilar (`display`, `justify-content`) i
-  stället för placering. Bestäm innan bana 8.
+  layout och förstår inte `@media`. Förslag: kör testerna i riktig Chrome
+  med vitest browser mode, både lokalt och i GitHub Actions. Alternativet
+  är att bara testa beräknade stilar (`display`, `justify-content`).
+  Bestäm innan bana 8.
 
 ## Etapper
 
@@ -171,5 +193,9 @@ Användaren testar efter varje etapp.
    skickats. Begreppsregel: inga `header`/`nav`/`main` före bana 4.
 4. ✅ **Hover** i editorn för taggar, attribut, värden och CSS
    (`editor/codeInfo.js`).
-5. **Bana 6–10** med CSS, och layouttesterna inför bana 8.
+5. ✅ **5a: Bana 6–7** (Färg och form, Boxmodellen) med projekt, idéer,
+   quiz och resurser. Varningar för CSS. Hjälpare för CSS som ger samma
+   svar i jsdom och Chrome. Namnet blir HTML & CSS Academy (adressen
+   `/html-academy/` är kvar).
+5b. **Bana 8–10** (flexbox, grid, responsivt) och layouttesterna.
 6. **Slutprojektet** och **Tailwind**.

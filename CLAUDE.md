@@ -1,7 +1,9 @@
-# HTML Academy
+# HTML & CSS Academy
 
 En interaktiv kodskola i HTML och CSS på svenska för den som aldrig
-kodat. Eleven skriver riktig HTML i webbläsaren, ser sidan växa fram och
+kodat. Repot, adressen `/html-academy/`, tabellen och nycklarna heter
+fortfarande html-academy – bara det som syns heter HTML & CSS Academy.
+Eleven skriver riktig HTML i webbläsaren, ser sidan växa fram och
 koden rättas med tester. Hela planen och alla regler står i `SPEC.md` –
 läs den först. Kopierad från Python Academy (`../python från S`);
 `NY-AKADEMI.md` säger vad som återanvänts.
@@ -28,11 +30,15 @@ Push till `main` kör testerna och publicerar via
 - `src/runner/checkPage.js` – rättar ett färdigt dokument: kör
   testuttrycken med hjälparna (`text`, `texts`, `count`, `attr`, `css`,
   `color`, `$`, `$$`, `doc`) och svarar som körningen i Python Academy
-  (`syntaxError`, `error`, `tests`, `output`, `console`).
+  (`syntaxError`, `error`, `tests`, `output`, `console`). Hjälparna för
+  CSS (`colorOf`, `colorsOf`, `colorName`, `hover`, `px`, `font`,
+  `boxWidth`, `centered`) ger samma svar i jsdom och i webbläsaren – se
+  tabellen i SPEC.md. Färgnamnen finns i `runner/cssColors.js`.
 - `src/runner/page.js` – laddar elevens kod i en osynlig iframe
   (`sandbox="allow-same-origin"`, inga skript) och kör `checkPage`.
 - `src/test/nodePage.js` – samma rättning med jsdom i testerna. jsdom
-  räknar inte ut layout.
+  räknar inte ut layout. Den rättar också att jsdom inte ärver
+  `text-align` m.fl. och låter sin egen `:link`-färg vinna över elevens.
 - `src/components/PagePreview.jsx` – förhandsvisningen under editorn,
   300 ms efter senaste ändringen, `sandbox="allow-scripts allow-forms"`.
   Ett tillagt skript rullar till `#id`-länkar, öppnar andra länkar i ny
@@ -40,6 +46,10 @@ Push till `main` kör testerna och publicerar via
 - `src/runner/htmlWarnings.js` – varningar för vanliga HTML-misstag
   (tagg som aldrig stängs, fel ordning, `<h7>`, `<img>` utan `alt`), med
   radnummer. Visas i gula rutan i `FeedbackPanel`. Facit får inte varna.
+  CSS i `<style>` läses av `runner/cssWarnings.js` (felstavade
+  egenskaper, `;` och `}` som saknas, tal utan enhet, färger som inte
+  finns, selektorer som inte hittar något). Dess `CSS_PROPERTIES` och
+  `closest` används också av hovern.
 - `src/editor/codeInfo.js` – förklaringen när man håller musen över
   koden, byggd på syntaxträdet (`@codemirror/lang-html`, med CSS i
   `<style>`). Säger också var en tagg stängs och vilken tagg den ligger i.
@@ -60,6 +70,8 @@ Push till `main` kör testerna och publicerar via
   - `projects.js` tre projekt per bana med steg (`why` på varje steg).
     Fri text testas på formen, inte exakta ord. Facit får inte varna
   - `ideas.js` tre idéer per bana till Lekplatsen
+  - `explain` i en övning: `kod`, **fet**, *kursiv*, och ett stycke där
+    alla rader börjar med `- ` blir en lista
   - `sourceChecks` på en övning kollar koden med regex – för det
     webbläsaren lagar själv, som `html`, `head` och `body` som saknas
   - `resources.js` länkar per bana till Fastnat?-panelen
@@ -78,6 +90,7 @@ Push till `main` kör testerna och publicerar via
 Som i SPEC.md. Inga länkar eller bilder före bana 2, inga listor före
 bana 3, inga `header`/`nav`/`main`/`section`/`article`/`footer` före
 bana 4, inga formulär före bana 5, ingen CSS före bana 6, ingen
+`padding`/`margin`/`border`/`width`/`display` före bana 7, ingen
 flex/grid/`@media` före sina banor och ingen Tailwind före bana 12 i
 facit.
 
@@ -88,5 +101,7 @@ facit.
 - Två syskon får aldrig samma `key` – använd prefix.
 - Kortkommandon: läs `event.code`, inte tecknet.
 - Testa i en riktig webbläsare (Playwright mot `npx vite`) innan commit.
+  CSS-övningar: rätta facit och startkod med `runPage` i Chrome också,
+  eftersom jsdom och webbläsaren räknar stilar olika.
   Selektorer: `button:has-text(…)`, inte `text=…`.
 - Svara användaren på svenska. Föreslå nytt innehåll innan det byggs.

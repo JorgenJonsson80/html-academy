@@ -124,4 +124,64 @@ export const TRACKS = [
       },
     ],
   },
+  {
+    id: 'css',
+    title: 'Färg och form med CSS',
+    teaches: [
+      '<style>',
+      'selektorer',
+      'class',
+      'id',
+      'color',
+      'background-color',
+      'font-family',
+      'font-size',
+      'text-align',
+      ':hover',
+    ],
+    reward: { emoji: '🖍️', name: 'Kritor' },
+    canBuild:
+      'en affisch, en meny eller en sida i mörkt läge med egna färger och typsnitt',
+    docs: [
+      {
+        title: 'Vad är CSS?',
+        url: `${MDN}Learn_web_development/Core/Styling_basics/What_is_CSS`,
+      },
+      {
+        title: 'Selektorer',
+        url: `${MDN}Learn_web_development/Core/Styling_basics/Basic_selectors`,
+      },
+      {
+        title: 'Vilken regel vinner?',
+        url: `${MDN}Learn_web_development/Core/Styling_basics/Handling_conflicts`,
+      },
+    ],
+  },
+  {
+    id: 'boxen',
+    title: 'Boxmodellen',
+    teaches: [
+      'padding',
+      'margin',
+      'border',
+      'border-radius',
+      'width',
+      'max-width',
+      'box-sizing',
+      'display',
+    ],
+    reward: { emoji: '🪆', name: 'Matrjosjka' },
+    canBuild:
+      'kort, knappar och rutor med luft, kanter och runda hörn, mitt på sidan',
+    docs: [
+      {
+        title: 'Boxmodellen',
+        url: `${MDN}Learn_web_development/Core/Styling_basics/Box_model`,
+      },
+      {
+        title: 'Bakgrund och kanter',
+        url: `${MDN}Learn_web_development/Core/Styling_basics/Backgrounds_and_borders`,
+      },
+    ],
+  },
 ];

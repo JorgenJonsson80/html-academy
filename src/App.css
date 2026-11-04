@@ -648,6 +648,15 @@
   margin: 8px 0;
 }
 
+.lesson-explain ul {
+  margin: 8px 0;
+  padding-left: 22px;
+}
+
+.lesson-explain li + li {
+  margin-top: 4px;
+}
+
 .lesson-explain figure {
   margin: 8px 0 4px;
 }
