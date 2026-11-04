@@ -34,10 +34,18 @@ Tänkt ordning för eleven: **HTML/CSS → JS Academy → Python Academy**.
   `allow-same-origin`, så att sidan inte kommer åt appen.
 - **Rättningen** (`runner/page.js`) laddar sidan i en osynlig iframe med
   `sandbox="allow-same-origin"` (inga skript), läser dokumentet och kör
-  testerna. Iframen är 800 × 600 px, så att layouten räknas ut.
+  testerna. Iframen är 800 × 600 px, så att layouten räknas ut. Ett test
+  med `width: 375` rättas i en egen iframe med den bredden, så att
+  `@media` slår till.
 - I testerna gör `test/nodePage.js` samma sak med jsdom. jsdom räknar
-  **inte ut layout** (storlek, placering, flex och grid). Tester på det
-  kan bara köras i webbläsaren – se "Öppna frågor". `nodePage.js` rättar
+  **inte ut layout** (storlek, placering, flex och grid) och förstår inte
+  `@media`. Därför rättar `test/grading.browser.test.js` alla övningar
+  och projektsteg i riktig Chrome med vitest browser mode (projektet
+  `chrome` i `vite.config.js`, även i GitHub Actions). Övningar som mäter
+  layout eller har `width` hoppas över i jsdom (`test/layout.js`).
+  Layouthjälparna (`rows`, `perRow`, `gapX`, `gapY`, `widths`,
+  `heights`, `rect`, `inOrder`, `fitsScreen`) finns bara i webbläsaren
+  och testas i `runner/layout.browser.test.js`. `nodePage.js` rättar
   två saker där jsdom skiljer sig från webbläsaren: `text-align` m.fl.
   ärvs, och elevens `a { color }` vinner över jsdoms egen `:link`.
 
@@ -168,14 +176,6 @@ i `checkPage.js`:
 - Kortkommandon: läs `event.code`, inte tecknet.
 - "Ny på det här?" är öppen i de tre första övningarna.
 - Föreslå nytt innehåll och låt användaren reagera innan det byggs.
-
-## Öppna frågor
-
-- **Layouttester** för flexbox, grid och responsivt: jsdom räknar inte ut
-  layout och förstår inte `@media`. Förslag: kör testerna i riktig Chrome
-  med vitest browser mode, både lokalt och i GitHub Actions. Alternativet
-  är att bara testa beräknade stilar (`display`, `justify-content`).
-  Bestäm innan bana 8.
 
 ## Etapper
 

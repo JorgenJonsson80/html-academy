@@ -4,17 +4,19 @@ import { nodeRunPage } from '../../test/nodePage';
 import { LESSONS } from '.';
 import { TRACKS } from '../tracks';
 import { conceptsTooEarly } from '../../test/concepts';
+import { needsBrowser } from '../../test/layout';
 import { htmlWarnings } from '../../runner/htmlWarnings';
 
 const check = (lesson, code) =>
   evaluate(lesson, code, nodeRunPage({ code, tests: lesson.tests }));
 
 describe.each(LESSONS.map(lesson => [lesson.id, lesson]))('%s', (_, lesson) => {
-  it('facit klarar sina egna tester', () => {
+  // Layouten rättas bara i Chrome, se grading.browser.test.js.
+  it.skipIf(needsBrowser(lesson))('facit klarar sina egna tester', () => {
     expect(check(lesson, lesson.solution).isCorrect).toBe(true);
   });
 
-  it('startkoden underkänns', () => {
+  it.skipIf(needsBrowser(lesson))('startkoden underkänns', () => {
     expect(check(lesson, lesson.starterCode).isCorrect).toBe(false);
   });
 

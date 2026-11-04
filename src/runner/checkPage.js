@@ -11,7 +11,22 @@
 // båda ställena: px() räknar om till pixlar, colorOf() ger färgens namn,
 // och boxWidth() och centered() mäter i webbläsaren men räknar från
 // stilarna i jsdom.
+//
+// Hjälparna för layout (rows, perRow, rect …) kräver en riktig webbläsare.
+// Övningar som använder dem rättas i Chrome i testerna (*.browser.test.js).
 import { colorName } from './cssColors';
+
+export const LAYOUT_HELPERS = [
+  'rect',
+  'widths',
+  'heights',
+  'rows',
+  'perRow',
+  'gapX',
+  'gapY',
+  'inOrder',
+  'fitsScreen',
+];
 
 const ROOT_PX = 16;
 const BORDER_WIDTHS = { thin: 1, medium: 3, thick: 5 };
@@ -87,6 +102,41 @@ function helpers(doc) {
     return result;
   };
 
+  // Rutorna för alla element som matchar, i pixlar.
+  function boxes(selector) {
+    if (!hasLayout()) throw new Error('Det här testet behöver en webbläsare.');
+    return $$(selector).map(element => {
+      const box = element.getBoundingClientRect();
+      return {
+        element,
+        left: Math.round(box.left),
+        top: Math.round(box.top),
+        right: Math.round(box.right),
+        bottom: Math.round(box.bottom),
+        width: Math.round(box.width),
+        height: Math.round(box.height),
+      };
+    });
+  }
+
+  // Elementen i rader som ögat ser dem: ett element börjar en ny rad när
+  // det står under allt i raden innan. Varje rad från vänster till höger.
+  function lines(selector) {
+    const sorted = boxes(selector).sort((a, b) => a.top - b.top);
+    const result = [];
+    let bottom = -Infinity;
+    for (const box of sorted) {
+      if (box.top >= bottom - 1) {
+        result.push([box]);
+        bottom = box.bottom;
+      } else {
+        result.at(-1).push(box);
+        bottom = Math.max(bottom, box.bottom);
+      }
+    }
+    return result.map(line => line.sort((a, b) => a.left - b.left));
+  }
+
   const pxOf = (element, property) => {
     const value = toPx(element, property);
     return typeof value === 'number' ? value : 0;
@@ -154,6 +204,41 @@ function helpers(doc) {
           pxOf(element, 'border-left-width') +
           pxOf(element, 'border-right-width'),
       );
+    },
+    rect: selector => {
+      const [box] = boxes(selector);
+      if (!box) return null;
+      const { left, top, width, height } = box;
+      return { left, top, width, height };
+    },
+    widths: selector => boxes(selector).map(box => box.width),
+    heights: selector => boxes(selector).map(box => box.height),
+    // Hur många rader elementen står på, och hur många i första raden.
+    rows: selector => lines(selector).length,
+    perRow: selector => lines(selector)[0]?.length ?? 0,
+    // Luften mellan de två första i första raden, och mellan första och
+    // andra raden.
+    gapX: selector => {
+      const [first, second] = lines(selector)[0] ?? [];
+      return second ? second.left - first.right : null;
+    },
+    gapY: selector => {
+      const [first, second] = lines(selector);
+      if (!second) return null;
+      return (
+        Math.min(...second.map(box => box.top)) -
+        Math.max(...first.map(box => box.bottom))
+      );
+    },
+    // Texterna i den ordning de syns, rad för rad.
+    inOrder: selector =>
+      lines(selector)
+        .flat()
+        .map(box => box.element.textContent.replace(/\s+/g, ' ').trim()),
+    // Får sidan plats utan att man måste skrolla i sidled?
+    fitsScreen: () => {
+      boxes('html');
+      return doc.documentElement.scrollWidth <= view.innerWidth;
     },
     // Står elementet mitt i sin förälder, med lika mycket luft på båda
     // sidor? I jsdom: margin auto på båda sidor och en bredd.

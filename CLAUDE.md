@@ -18,7 +18,9 @@ egen tabell `html_progress` (se `supabase/migrations/`).
 ## Kommandon
 
 - `npm run dev` – utvecklingsserver
-- `npx vitest run` – testerna rättar facit med jsdom
+- `npx vitest run` – testerna rättar facit med jsdom (projektet `node`)
+  och alla övningar i riktig Chrome (projektet `chrome`, filerna
+  `*.browser.test.js`). Första gången: `npx playwright install chromium`
 - `npm run lint` och `npx prettier --check src`
 - `npm run build` – byggs med `base: /html-academy/`
 
@@ -37,7 +39,9 @@ Push till `main` kör testerna och publicerar via
 - `src/runner/page.js` – laddar elevens kod i en osynlig iframe
   (`sandbox="allow-same-origin"`, inga skript) och kör `checkPage`.
 - `src/test/nodePage.js` – samma rättning med jsdom i testerna. jsdom
-  räknar inte ut layout. Den rättar också att jsdom inte ärver
+  räknar inte ut layout, så övningar som mäter layout (`rows`, `perRow`,
+  `gapX` … eller ett test med `width`) rättas bara i Chrome
+  (`test/grading.browser.test.js`). Den rättar också att jsdom inte ärver
   `text-align` m.fl. och låter sin egen `:link`-färg vinna över elevens.
 - `src/components/PagePreview.jsx` – förhandsvisningen under editorn,
   300 ms efter senaste ändringen, `sandbox="allow-scripts allow-forms"`.

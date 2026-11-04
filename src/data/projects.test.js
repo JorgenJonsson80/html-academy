@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { evaluate } from '../runner/evaluate';
 import { nodeRunPage } from '../test/nodePage';
 import { conceptsTooEarly } from '../test/concepts';
+import { needsBrowser } from '../test/layout';
 import { htmlWarnings } from '../runner/htmlWarnings';
 import {
   isProjectComplete,
@@ -15,13 +16,14 @@ const check = (lesson, code) =>
   evaluate(lesson, code, nodeRunPage({ code, tests: lesson.tests }));
 
 describe.each(PROJECT_STEPS.map(item => [item.id, item]))('%s', (_, item) => {
-  it('facit klarar sina egna tester', () => {
+  // Layouten rättas bara i Chrome, se grading.browser.test.js.
+  it.skipIf(needsBrowser(item))('facit klarar sina egna tester', () => {
     const result = check(item, item.solution);
     expect(result.results.filter(entry => !entry.passed)).toEqual([]);
     expect(result.isCorrect).toBe(true);
   });
 
-  it('startkoden underkänns', () => {
+  it.skipIf(needsBrowser(item))('startkoden underkänns', () => {
     expect(check(item, item.starterCode).isCorrect).toBe(false);
   });
 
