@@ -2,6 +2,8 @@
 // ledtrådar. Banan räknas inte som klar förrän bossen är besegrad.
 // index.js lägger varje boss sist i sin bana.
 
+const TW =
+  '<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>';
 const BOSS_INTRO = 'Bossen har inga ledtrådar – visa vad du kan! ';
 
 export const BOSSES = {
@@ -916,6 +918,279 @@ export const BOSSES = {
         code: 'fitsScreen()',
         expected: true,
         width: 375,
+      },
+    ],
+  },
+  slutprojekt: {
+    id: 'slutprojekt-boss',
+    track: 'slutprojekt',
+    title: 'Boss: Din hemsida',
+    isBoss: true,
+    xp: 100,
+    description:
+      BOSS_INTRO +
+      'Allt du har lärt dig i en sida: en hemsida om dig själv som fungerar på både dator och mobil.',
+    task: `Uppgift: Bygg din egen hemsida, som en hel sida. Texterna väljer du själv.
+  1. viewport-raden i \`head\`. Ett färgtema i \`:root\` med \`--huvudfarg\`, som används för rubriken \`h1\` och knappen.
+  2. En \`header\` med en \`h1\` och en \`nav\` med tre länkar, som följer med när man skrollar (\`position: sticky\`, \`top: 0\`) och har en bakgrund.
+  3. \`main\` med tre \`section\`: \`om\`, \`projekt\` och \`kontakt\`. Menyns länkar går dit.
+  4. I \`#om\`: en länk med klassen \`knapp\`.
+  5. I \`#projekt\`: ett \`div\` med klassen \`projekt\` och tre \`div\` med klassen \`kort\`, i tre kolumner på datorn och en kolumn när fönstret är högst \`600px\` brett.
+  6. I \`#kontakt\`: ett formulär med en \`label\` och ett fält som hör ihop, och en knapp.
+  7. En \`footer\`. Ingenting får sticka ut på mobilen.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kims sajt</title>
+    <style>
+      :root {
+        --huvudfarg: darkslateblue;
+        --bakgrund: ghostwhite;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background-color: var(--bakgrund);
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        background-color: white;
+      }
+      h1 {
+        margin: 0;
+        color: var(--huvudfarg);
+      }
+      nav {
+        display: flex;
+        gap: 16px;
+      }
+      section {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px 16px;
+      }
+      .knapp {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 6px;
+        background-color: var(--huvudfarg);
+        color: white;
+        text-decoration: none;
+      }
+      .projekt {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .kort {
+        padding: 16px;
+        border-radius: 8px;
+        background-color: white;
+      }
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px;
+        font: inherit;
+      }
+      footer {
+        padding: 16px;
+        text-align: center;
+      }
+      @media (max-width: 600px) {
+        .projekt {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Kim</h1>
+      <nav>
+        <a href="#om">Om mig</a>
+        <a href="#projekt">Projekt</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
+    <main>
+      <section id="om">
+        <h2>Om mig</h2>
+        <p>Jag är tretton år och gillar att bygga hemsidor, rita och spela fotboll.</p>
+        <a class="knapp" href="#kontakt">Säg hej</a>
+      </section>
+      <section id="projekt">
+        <h2>Mina projekt</h2>
+        <div class="projekt">
+          <div class="kort"><h3>Receptsidan</h3><p>Mormors bästa bullar.</p></div>
+          <div class="kort"><h3>Fotbollslaget</h3><p>Matcher och resultat.</p></div>
+          <div class="kort"><h3>Ritblocket</h3><p>Mina teckningar.</p></div>
+        </div>
+      </section>
+      <section id="kontakt">
+        <h2>Kontakt</h2>
+        <form>
+          <label for="meddelande">Ditt meddelande</label>
+          <input id="meddelande" name="meddelande">
+          <button>Skicka</button>
+        </form>
+      </section>
+    </main>
+    <footer>© Kim</footer>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Sidan har viewport-raden',
+        code: "(attr('meta[name=viewport]', 'content') ?? '').replace(/\\s+/g, '')",
+        expected: 'width=device-width,initial-scale=1',
+      },
+      {
+        description:
+          'header med h1 och en nav som länkar till om, projekt och kontakt',
+        code: "[count('header h1'), $$('header nav a').map(link => link.getAttribute('href'))]",
+        expected: [1, ['#om', '#projekt', '#kontakt']],
+      },
+      {
+        description: 'main har sektionerna om, projekt och kontakt',
+        code: "$$('main > section').map(section => section.id)",
+        expected: ['om', 'projekt', 'kontakt'],
+      },
+      {
+        description:
+          'Det finns en knapp i #om, ett formulär med label i #kontakt och en footer',
+        code: "[count('#om a.knapp'), $$('#kontakt label').some(label => $('#kontakt #' + label.htmlFor)), count('#kontakt button'), count('footer')]",
+        expected: [1, true, 1, 1],
+      },
+      {
+        description: 'Rubriken och knappen använder --huvudfarg',
+        code: "(doc.documentElement.style.setProperty('--huvudfarg', 'crimson'), [colorOf('h1'), colorOf('.knapp', 'background-color')])",
+        expected: ['crimson', 'crimson'],
+      },
+      {
+        description:
+          'Sidhuvudet följer med när man skrollar och har en bakgrund',
+        code: "[css('header', 'position'), css('header', 'top'), colorOf('header', 'background-color') !== 'transparent']",
+        expected: ['sticky', '0px', true],
+      },
+      {
+        description: 'Projekten står i tre kolumner på datorn',
+        code: "[count('#projekt .projekt .kort'), perRow('.kort')]",
+        expected: [3, 3],
+      },
+      {
+        description: 'På mobilen står projekten i en kolumn',
+        code: "perRow('.kort')",
+        expected: 1,
+        width: 375,
+      },
+      {
+        description: 'Ingenting sticker ut på mobilen',
+        code: 'fitsScreen()',
+        expected: true,
+        width: 375,
+      },
+    ],
+  },
+  tailwind: {
+    id: 'tailwind-boss',
+    track: 'tailwind',
+    title: 'Boss: Produktkortet i Tailwind',
+    isBoss: true,
+    xp: 60,
+    description:
+      BOSS_INTRO +
+      'Ett produktkort helt i Tailwind – utan en enda rad egen CSS.',
+    task: `Uppgift: Bygg ett produktkort för en cykelkorg med bara Tailwind-klasser. Inget \`<style>\`.
+  1. Tailwind-raden. \`body\` har bakgrunden \`slate-100\` och padding \`p-8\`.
+  2. Ett \`div\` med klassen \`kort\` som är högst \`max-w-sm\` brett och står i mitten (\`mx-auto\`), med vit bakgrund, \`rounded-xl\`, \`shadow-lg\` och \`p-6\`.
+  3. I kortet: en bild (\`bilder/hund.svg\`, med \`alt\`) som är \`w-full\` och \`rounded-lg\`, och en \`h2\` med \`text-2xl\` och \`font-bold\`.
+  4. Längst ner ett \`div\` som är \`flex\`, \`justify-between\` och \`items-center\`, med priset i ett \`span\` med \`text-emerald-600\` och en länk med klassen \`knapp\`.
+  5. Knappen har \`bg-emerald-600\`, vit text, \`px-4 py-2\`, \`rounded-lg\` och \`bg-emerald-700\` när musen är över.`,
+    starterCode: '<!-- Skriv din kod här -->\n',
+    solution: `<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Hundcykeln</title>
+    ${TW}
+  </head>
+  <body class="bg-slate-100 p-8">
+    <div class="kort max-w-sm mx-auto bg-white rounded-xl shadow-lg p-6">
+      <img class="w-full rounded-lg" src="bilder/hund.svg" alt="En glad hund i en cykelkorg">
+      <h2 class="text-2xl font-bold mt-4">Cykelkorgen Vovve</h2>
+      <p class="text-slate-600">Plats för en liten hund och en stor matsäck.</p>
+      <div class="flex justify-between items-center mt-4">
+        <span class="text-emerald-600 text-xl font-bold">349 kr</span>
+        <a class="knapp bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg" href="#">Köp</a>
+      </div>
+    </div>
+  </body>
+</html>
+`,
+    hints: [],
+    tests: [
+      {
+        description: 'Sidan har ingen egen CSS',
+        code: "count('style:not([data-tailwind])') + count('[style]')",
+        expected: 0,
+      },
+      {
+        description: 'Sidan är slate-100 med 32px padding',
+        code: "[twColor('body', 'background-color'), px('body', 'padding-top')]",
+        expected: ['slate-100', 32],
+      },
+      {
+        description: 'Kortet är högst 384px brett och står i mitten',
+        code: "[widths('.kort')[0], centered('.kort')]",
+        expected: [384, true],
+      },
+      {
+        description: 'Kortet är vitt med 12px hörn, skugga och 24px padding',
+        code: "[twColor('.kort', 'background-color'), css('.kort', 'border-radius'), css('.kort', 'box-shadow') !== 'none', px('.kort', 'padding-top')]",
+        expected: ['white', '12px', true, 24],
+      },
+      {
+        description: 'Bilden fyller kortet, och rubriken är 24px och fet',
+        code: "[attr('.kort img', 'alt') !== null, widths('.kort img')[0], px('.kort h2', 'font-size'), css('.kort h2', 'font-weight')]",
+        expected: [true, 336, 24, '700'],
+      },
+      {
+        description: 'Priset och knappen står på en rad, utspridda',
+        code: "[rows('.kort span, .kort .knapp'), css('.knapp', 'display') !== 'none', twColor('.kort span')]",
+        expected: [1, true, 'emerald-600'],
+      },
+      {
+        description: 'Knappen står ända ut till höger i kortet',
+        code: "Math.abs(rect('.kort').left + rect('.kort').width - 24 - rect('.knapp').left - rect('.knapp').width) <= 1",
+        expected: true,
+      },
+      {
+        description:
+          'Knappen är emerald-600 med vit text, padding 8px 16px och 8px hörn',
+        code: "[twColor('.knapp', 'background-color'), twColor('.knapp'), px('.knapp', 'padding-top'), px('.knapp', 'padding-left'), css('.knapp', 'border-radius')]",
+        expected: ['emerald-600', 'white', 8, 16, '8px'],
+      },
+      {
+        description: 'Knappen blir emerald-700 när musen är över',
+        code: "twName(hover('.knapp', 'background-color'))",
+        expected: 'emerald-700',
       },
     ],
   },

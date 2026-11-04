@@ -1,5 +1,6 @@
 // Andra sätt att lära sig banans ämnen, för den som kört fast.
-// read: en sida på MDN (på engelska), eller ett spel att öva med.
+// read: en sida på MDN (på engelska), Tailwinds egen dokumentation eller
+// ett spel att öva med.
 // video: en sökning på YouTube. Vi länkar till en sökning i stället för
 // enskilda videor, eftersom videor kan försvinna men sökningen finns kvar.
 const LEARN = 'https://developer.mozilla.org/en-US/docs/Learn_web_development/';
@@ -158,6 +159,40 @@ export const RESOURCES = {
       topic: 'Bilder som krymper',
       read: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_images',
       video: 'responsive images max-width 100%',
+    },
+  ],
+  slutprojekt: [
+    {
+      topic: 'CSS-variabler',
+      read: 'https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties',
+      video: 'css variables custom properties beginners',
+    },
+    {
+      topic: 'position och sticky',
+      read: `${LEARN}Core/CSS_layout/Positioning`,
+      video: 'css position sticky absolute relative',
+    },
+    {
+      topic: 'Bygg en hel sajt',
+      read: `${LEARN}Getting_started/Your_first_website`,
+      video: 'build a personal website html css beginners',
+    },
+  ],
+  tailwind: [
+    {
+      topic: 'Kom igång med Tailwind',
+      read: 'https://tailwindcss.com/docs/installation/play-cdn',
+      video: 'tailwind css beginners tutorial',
+    },
+    {
+      topic: 'hover: och md:',
+      read: 'https://tailwindcss.com/docs/responsive-design',
+      video: 'tailwind responsive design md breakpoint',
+    },
+    {
+      topic: 'Färgerna',
+      read: 'https://tailwindcss.com/docs/colors',
+      video: 'tailwind css colors',
     },
   ],
 };

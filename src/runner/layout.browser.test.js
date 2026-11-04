@@ -67,3 +67,42 @@ describe('hjälparna för layout (i Chrome)', () => {
     expect(result.tests.map(test => test.actual)).toEqual([3, 1]);
   });
 });
+
+describe('Tailwind (i Chrome)', () => {
+  const TAILWIND = `<head><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script></head>
+<h1 class="text-red-500 p-4 md:p-8 hover:text-blue-600">Hej</h1>
+<div class="flex gap-4"><span>A</span><span>B</span></div>
+<p class="bg-white text-black">Vit</p>`;
+  const tw = async (code, width) =>
+    (await runPage({ code: TAILWIND, tests: [{ code, width }] })).tests[0]
+      .actual;
+
+  it('gör klasserna till CSS utan att köra skriptet', async () => {
+    expect(await tw("twColor('h1')")).toBe('red-500');
+    expect(await tw("px('h1', 'padding-top')")).toBe(32);
+    expect(await tw("px('h1', 'padding-top')", 375)).toBe(16);
+    expect(await tw("[rows('.flex span'), gapX('.flex span')]")).toEqual([
+      1, 16,
+    ]);
+    expect(await tw("count('script')")).toBe(0);
+  });
+
+  it('ger namnet på färgen, även white och black', async () => {
+    expect(await tw("twColor('p', 'background-color')")).toBe('white');
+    expect(await tw("twColor('p')")).toBe('black');
+    expect(await tw("twName(hover('h1', 'color'))")).toBe('blue-600');
+  });
+});
+
+describe('varningar för Tailwind (i Chrome)', () => {
+  it('säger till om klasser som inte finns, men inte om egna', async () => {
+    const code = `<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<div class="kort text-red p-4 text-rd-500 hover:bg-blue-600 md:p-44 bg-blu-500">Hej</div>`;
+    const { warnings } = await runPage({ code, tests: [] });
+    expect(warnings.map(text => text.split('`')[1])).toEqual([
+      'text-red',
+      'text-rd-500',
+      'bg-blu-500',
+    ]);
+  });
+});

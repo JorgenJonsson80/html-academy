@@ -6,6 +6,7 @@ import {
   closest,
   CSS_PROPERTIES as KNOWN_PROPERTIES,
 } from '../runner/cssWarnings';
+import { tailwindInfo } from './tailwindInfo';
 
 const TAGS = {
   html: 'Hela sidan. Allt utom `<!doctype html>` står inuti den. `lang` på den säger sidans språk.',
@@ -447,6 +448,22 @@ function describeValue(src, node) {
   return body && { title: `${name}="${value}"`, body };
 }
 
+// Ordet under musen i class="…", om det är en Tailwind-klass.
+function classAt(src, node, pos) {
+  if (attributeParts(src, node).name !== 'class') return null;
+  const value = text(src, node);
+  const offset = pos - node.from;
+  for (const match of value.matchAll(/[^\s"']+/g)) {
+    if (offset < match.index || offset > match.index + match[0].length) {
+      continue;
+    }
+    const info = tailwindInfo(match[0]);
+    const from = node.from + match.index;
+    return info && { from, to: from + match[0].length, ...info };
+  }
+  return null;
+}
+
 // CSS-regeln som en egenskap står i, t.ex. "h1 .kort".
 function selectorOf(src, node) {
   for (let parent = node.parent; parent; parent = parent.parent) {
@@ -538,6 +555,8 @@ export function describeAt(tree, src, pos, side = 1) {
   } else if (node.name === 'AttributeName') {
     info = describeAttribute(src, node);
   } else if (node.name === 'AttributeValue') {
+    const word = classAt(src, node, pos);
+    if (word) return word;
     info = describeValue(src, node);
   } else if (node.name === 'EntityReference') {
     const entity = text(src, node);

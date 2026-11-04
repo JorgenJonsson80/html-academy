@@ -17,6 +17,8 @@
 import { colorName } from './cssColors';
 
 export const LAYOUT_HELPERS = [
+  'twColor',
+  'twName',
   'rect',
   'widths',
   'heights',
@@ -66,21 +68,21 @@ function helpers(doc) {
       : number;
   }
 
-  // Det som står i regler med :hover som gäller elementet.
-  function hover(selector, property) {
+  // Det som står i regler med :hover (eller :focus) som gäller elementet.
+  function inState(state, selector, property) {
     const element = $(selector);
     if (!element) return null;
     let found = null;
     const visit = rules => {
       for (const rule of rules) {
         if (rule.cssRules && !rule.selectorText) visit(rule.cssRules);
-        if (!rule.selectorText?.includes(':hover')) continue;
+        if (!rule.selectorText?.includes(state)) continue;
         const value = rule.style.getPropertyValue(property);
         if (!value) continue;
         const matches = rule.selectorText.split(',').some(part => {
-          if (!part.includes(':hover')) return false;
+          if (!part.includes(state)) return false;
           try {
-            return element.matches(part.replaceAll(':hover', ''));
+            return element.matches(part.replaceAll(state, ''));
           } catch {
             return false;
           }
@@ -139,6 +141,34 @@ function helpers(doc) {
     return result.map(line => line.sort((a, b) => a.left - b.left));
   }
 
+  // Tailwinds färger, som namn: 'red-500'. Tailwind skriver bara ut de
+  // färger sidan använder, som variabler i @theme.
+  function tailwindColor(selector, property) {
+    const element = $(selector);
+    if (!element) return null;
+    return tailwindName(style(element).getPropertyValue(property));
+  }
+
+  // En färg, t.ex. 'var(--color-blue-600)' från hover(), som Tailwind-namn.
+  function tailwindName(value) {
+    if (!value) return null;
+    if (!hasLayout()) throw new Error('Det här testet behöver en webbläsare.');
+    const wanted = color(value);
+    const names = new Set();
+    const visit = rules => {
+      for (const rule of rules) {
+        if (rule.cssRules) visit(rule.cssRules);
+        if (!rule.style) continue;
+        for (const name of rule.style) {
+          if (name.startsWith('--color-')) names.add(name);
+        }
+      }
+    };
+    for (const sheet of doc.styleSheets) visit(sheet.cssRules);
+    const found = [...names].find(name => color(`var(${name})`) === wanted);
+    return found ? found.slice('--color-'.length) : colorName(wanted);
+  }
+
   const pxOf = (element, property) => {
     const value = toPx(element, property);
     return typeof value === 'number' ? value : 0;
@@ -188,7 +218,8 @@ function helpers(doc) {
         .replace(/^["']|["']$/g, '')
         .toLowerCase();
     },
-    hover,
+    hover: (selector, property) => inState(':hover', selector, property),
+    focus: (selector, property) => inState(':focus', selector, property),
     // Hela bredden med padding och kant, i pixlar.
     boxWidth: selector => {
       const element = $(selector);
@@ -207,6 +238,9 @@ function helpers(doc) {
           pxOf(element, 'border-right-width'),
       );
     },
+    twColor: (selector, property = 'color') =>
+      tailwindColor(selector, property),
+    twName: tailwindName,
     rect: selector => {
       const [box] = boxes(selector);
       if (!box) return null;

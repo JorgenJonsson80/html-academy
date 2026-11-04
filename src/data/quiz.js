@@ -338,6 +338,88 @@ export const QUIZ = {
       check: "px('.text', 'max-width') + 'px'",
     },
   ],
+  slutprojekt: [
+    {
+      question: 'Hur använder man variabeln --huvudfarg?',
+      code: ':root {\n  --huvudfarg: teal;\n}',
+      options: [
+        'color: var(--huvudfarg);',
+        'color: --huvudfarg;',
+        'color: $huvudfarg;',
+        'color: huvudfarg();',
+      ],
+      explain: 'En CSS-variabel används alltid inuti var().',
+    },
+    {
+      question: 'Vad gör position: sticky; top: 0?',
+      options: [
+        'Elementet följer med högst upp när man skrollar',
+        'Elementet hamnar längst ner',
+        'Elementet döljs när man skrollar',
+        'Elementet kan inte flyttas',
+      ],
+      explain:
+        'sticky står vanligt tills det når kanten som top säger, och fastnar sedan där.',
+    },
+    {
+      question: 'Vilken färg får knappen?',
+      code: '<style>\n  .knapp { background-color: navy; }\n  .knapp-rod { background-color: crimson; }\n</style>\n<a class="knapp knapp-rod">Köp</a>',
+      options: ['crimson', 'navy', 'Ingen färg', 'Båda, randigt'],
+      explain:
+        'Elementet har båda klasserna. Reglerna är lika starka, så den som står sist vinner.',
+      check: "colorOf('a', 'background-color')",
+    },
+    {
+      question: 'Vad behöver en label för att höra ihop med sitt fält?',
+      options: [
+        'for som är samma som fältets id',
+        'name som är samma som fältets name',
+        'class som är samma som fältets class',
+        'Att stå efter fältet',
+      ],
+      explain:
+        'label for="epost" hör ihop med input id="epost". Då går det att trycka på texten.',
+    },
+  ],
+  tailwind: [
+    {
+      question: 'Hur mycket padding ger p-4?',
+      options: ['16px', '4px', '40px', '4rem'],
+      explain: 'Ett steg i Tailwind är 4 pixlar: 4 × 4 = 16.',
+    },
+    {
+      question: 'Vad betyder md:grid-cols-3?',
+      options: [
+        'Tre kolumner när fönstret är minst 768 pixlar brett',
+        'Tre kolumner på mobilen',
+        'Tre medelstora kolumner',
+        'Tre kolumner när musen är över',
+      ],
+      explain:
+        'md: gäller från 768 pixlar och uppåt. Utan ord före gäller klassen alltid.',
+    },
+    {
+      question: 'Vilken klass ger bakgrunden när musen är över?',
+      options: [
+        'hover:bg-sky-700',
+        'bg-sky-700:hover',
+        'bg-hover-sky-700',
+        'mouse:bg-sky-700',
+      ],
+      explain: 'Ordet och kolonet står före klassen: hover:, focus:, md:.',
+    },
+    {
+      question: 'Vad händer med klassen bg-whte?',
+      options: [
+        'Ingenting – klassen finns inte',
+        'Bakgrunden blir vit',
+        'Sidan visar ett felmeddelande',
+        'Bakgrunden blir grå',
+      ],
+      explain:
+        'En felstavad klass gör ingenting, och inget fel syns. Därför är stavningen viktig.',
+    },
+  ],
 };
 
 // Id:t som sparas bland de klara när man klarat en banas test. Det följer

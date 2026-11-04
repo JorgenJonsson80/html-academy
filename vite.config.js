@@ -8,6 +8,9 @@ export default defineConfig(({ command, isPreview }) => ({
   base: command === 'build' || isPreview ? '/html-academy/' : '/',
   plugins: [react()],
   worker: { format: 'es' },
+  // Tailwind laddas först i bana 12. Utan den här raden hittar Vite den då
+  // och laddar om sidan mitt i rättningen (bara under utveckling).
+  optimizeDeps: { include: ['tailwindcss'] },
   // Två omgångar: allt i Node med jsdom, och *.browser.test.js i riktig
   // Chrome, där layouten räknas ut och @media slår till.
   test: {

@@ -198,7 +198,13 @@ export default function LessonPanel({
       </p>
       {track.docs?.length > 0 && (
         <details className="lesson-docs">
-          <summary>📚 Läs mer på MDN (engelska)</summary>
+          <summary>
+            📚 Läs mer{' '}
+            {track.docs.every(doc => doc.url.includes('mozilla.org'))
+              ? 'på MDN '
+              : ''}
+            (engelska)
+          </summary>
           <ul>
             {track.docs.map(doc => (
               <li key={doc.url}>

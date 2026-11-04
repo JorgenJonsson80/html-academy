@@ -413,6 +413,93 @@ export const IDEAS = [
     extra:
       'Låt bakgrunden vara en färg på mobilen och en annan på datorn, så ser du direkt när `@media` slår till.',
   },
+  {
+    id: 'idea-recept-sajt',
+    track: 'slutprojekt',
+    emoji: '🧑‍🍳',
+    title: 'Familjens receptsajt',
+    summary:
+      'En sajt med familjens bästa recept, från mormors bullar till pappas tacos.',
+    goals: [
+      'En meny som hoppar till varje recept, och `scroll-behavior: smooth`.',
+      'Ett färgtema med CSS-variabler och en stor topp med `linear-gradient`.',
+      'Recepten som kort i ett grid, en kolumn på mobilen.',
+    ],
+    extra:
+      'Lägg till ett formulär där man kan skicka in ett eget recept, med `:focus` på fälten.',
+  },
+  {
+    id: 'idea-band',
+    track: 'slutprojekt',
+    emoji: '🎸',
+    title: 'Bandets sajt',
+    summary:
+      'En sajt för ett påhittat band med låtar, spelningar och bandmedlemmar.',
+    goals: [
+      'Ett sidhuvud som följer med när man skrollar (`position: sticky`).',
+      'Bandmedlemmarna i ett grid med runda bilder.',
+      'Spelningarna i en tabell eller lista med datum och stad.',
+    ],
+    extra:
+      'Gör två färgteman: byt bara värdena i `:root` och se hela sajten ändras.',
+  },
+  {
+    id: 'idea-klass',
+    track: 'slutprojekt',
+    emoji: '🏫',
+    title: 'Klassens sajt',
+    summary:
+      'En sajt för din klass med schema, nyheter och en sida om varje ämne.',
+    goals: [
+      'Veckans schema i ett grid med dagarna som kolumner.',
+      'Nyheter som kort, med den viktigaste över två kolumner.',
+      'Allt fungerar på mobilen – kolla med 📱.',
+    ],
+    extra:
+      'Lägg till en sidfot med kontaktinformation och en knapp som tar dig tillbaka till toppen.',
+  },
+  {
+    id: 'idea-vaderkort',
+    track: 'tailwind',
+    emoji: '🌤️',
+    title: 'Väderkortet',
+    summary: 'Ett väderkort som i en väderapp, helt med Tailwind.',
+    goals: [
+      'Ett kort med `rounded-2xl`, `shadow-lg` och en färgad bakgrund.',
+      'Dagens temperatur stort med `text-6xl`, och vädret med en emoji.',
+      'Veckans dagar på en rad med `flex` och `justify-between`.',
+    ],
+    extra:
+      'Prova en övergång i Tailwind: `bg-linear-to-b from-sky-400 to-blue-700`.',
+  },
+  {
+    id: 'idea-tw-biljett',
+    track: 'tailwind',
+    emoji: '🎫',
+    title: 'Biljetten',
+    summary: 'En biljett till en konsert eller match, gjord med Tailwind.',
+    goals: [
+      'Biljetten är en `flex`-rad med två delar: info till vänster och en stub till höger.',
+      'En streckad kant mellan delarna med `border-l-2 border-dashed`.',
+      'Datum, plats och plats-nummer med olika textstorlekar.',
+    ],
+    extra:
+      'Gör så att delarna hamnar under varandra på mobilen med `flex-col md:flex-row`.',
+  },
+  {
+    id: 'idea-topplista',
+    track: 'tailwind',
+    emoji: '📊',
+    title: 'Topplistan',
+    summary: 'En topplista över dina favoritspel, filmer eller låtar.',
+    goals: [
+      'Varje plats är en rad med `flex`, `items-center` och `gap-4`.',
+      'Placeringen i en rund bricka med `rounded-full` och fast storlek.',
+      'Varannan rad har en annan bakgrund, och raden lyser upp med `hover:`.',
+    ],
+    extra:
+      'Ge ettan, tvåan och trean guld, silver och brons med Tailwinds färger.',
+  },
 ];
 
 const FREE_START = `<!-- Skriv vad du vill. Sidan syns under editorn. -->

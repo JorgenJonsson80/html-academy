@@ -9,6 +9,8 @@ import { BOXEN } from './boxen';
 import { FLEXBOX } from './flexbox';
 import { GRID } from './grid';
 import { RESPONSIVT } from './responsivt';
+import { SLUTPROJEKT } from './slutprojekt';
+import { TAILWIND } from './tailwind';
 
 // Alla övningar i banornas ordning, med bossen sist i varje bana. Se
 // SPEC.md för alla fält.
@@ -33,4 +35,8 @@ export const LESSONS = [
   BOSSES.grid,
   ...RESPONSIVT,
   BOSSES.responsivt,
+  ...SLUTPROJEKT,
+  BOSSES.slutprojekt,
+  ...TAILWIND,
+  BOSSES.tailwind,
 ];

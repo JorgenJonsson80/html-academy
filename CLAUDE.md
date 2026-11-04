@@ -43,6 +43,15 @@ Push till `main` kör testerna och publicerar via
   `gapX` … eller ett test med `width`) rättas bara i Chrome
   (`test/grading.browser.test.js`). Den rättar också att jsdom inte ärver
   `text-align` m.fl. och låter sin egen `:link`-färg vinna över elevens.
+- `src/runner/tailwind.js` – bana 12. Elevens skriptrad för
+  `@tailwindcss/browser` (`tailwindScript.js`) byts mot CSS som npm-paketet
+  `tailwindcss` gör, i förhandsvisningen och i rättningen, så inget
+  skript körs. `unknownTailwindClasses` varnar för felstavade klasser
+  (via `raw.warnings` i `evaluate.js`). Testhjälparna `twColor`/`twName`
+  ger färgnamn som `sky-600`, och `focus()` läser `:focus`-regler som
+  `hover()`. `editor/tailwindInfo.js` förklarar klasserna i hovern.
+  `optimizeDeps` i `vite.config.js` hindrar att Vite laddar om sidan när
+  Tailwind laddas första gången under utveckling.
 - `src/components/PagePreview.jsx` – förhandsvisningen under editorn,
   300 ms efter senaste ändringen, `sandbox="allow-scripts allow-forms"`.
   Ett tillagt skript rullar till `#id`-länkar, öppnar andra länkar i ny

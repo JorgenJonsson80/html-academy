@@ -152,10 +152,15 @@ i `checkPage.js`:
   quizfrågor och minst två resurser (MDN + YouTube-sökning).
 - **Tailwind** är en bonusbana sist, som Streamlit i Python Academy. Den
   förutsätter vanlig CSS: `p-4` är bara `padding: 1rem` i kortform.
-  Tekniskt: `@tailwindcss/browser` som skript i elevens sida (fast
-  version från jsDelivr). Förhandsvisningen tillåter redan skript.
-  Rättningen gör det inte – den behöver `allow-scripts` och vänta på att
-  Tailwind har skrivit sina stilar innan testerna körs.
+  Tekniskt: eleven skriver skriptraden för `@tailwindcss/browser` som på
+  riktiga sajter, men skriptet körs aldrig. `runner/tailwind.js` gör
+  CSS:en med npm-paketet `tailwindcss` (`compile`, laddas med `import()`
+  först i bana 12) och byter raden mot ett `<style>`, både i
+  förhandsvisningen och i rättningen. Rättningen kör alltså inga skript,
+  och allt fungerar utan nät. Klasser som ser ut som Tailwind men inte
+  finns (`bg-whte`) ger en varning. `twColor()` och `twName()` ger
+  Tailwinds färgnamn (`sky-600`). Hovern förklarar klasserna
+  (`editor/tailwindInfo.js`): `p-4` är `padding: 16px`.
 - Ingen JavaScript i den här kursen. Det är JS Academy.
 
 ## Kvalitetsregler (som tester)
@@ -202,4 +207,4 @@ Användaren testar efter varje etapp.
    svar i jsdom och Chrome. Namnet blir HTML & CSS Academy (adressen
    `/html-academy/` är kvar).
 5b. ✅ **Bana 8–10** (flexbox, grid, responsivt) och layouttesterna i Chrome.
-6. **Slutprojektet** och **Tailwind**.
+6. ✅ **Slutprojektet** och **Tailwind**.

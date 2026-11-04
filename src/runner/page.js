@@ -1,4 +1,5 @@
 import { checkPage } from './checkPage';
+import { usesTailwind } from './tailwindScript';
 
 export const PAGE_WIDTH = 800;
 
@@ -30,7 +31,14 @@ const widthOf = test => test.width ?? PAGE_WIDTH;
 
 // Elevens sida rättas i webbläsaren. Ett test med width (t.ex. 375 för en
 // mobil) rättas i en egen iframe med den bredden, så att @media slår till.
-export async function runPage({ code, tests }) {
+export async function runPage({ code: written, tests }) {
+  let code = written;
+  let warnings = [];
+  if (usesTailwind(written)) {
+    const tailwind = await import('./tailwind');
+    code = await tailwind.withTailwind(written);
+    warnings = await tailwind.unknownTailwindClasses(written);
+  }
   const results = new Map();
   for (const width of new Set(tests.map(widthOf))) {
     const frame = await loadPage(code, width);
@@ -45,5 +53,6 @@ export async function runPage({ code, tests }) {
     tests: tests.map(test => results.get(test)),
     output: [],
     console: [],
+    warnings,
   };
 }

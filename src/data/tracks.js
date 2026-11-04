@@ -259,4 +259,53 @@ export const TRACKS = [
       },
     ],
   },
+  {
+    id: 'slutprojekt',
+    title: 'Slutprojekt: din egen hemsida',
+    teaches: [
+      'planera sidan',
+      'CSS-variabler',
+      'klasser som återanvänds',
+      'linear-gradient',
+      'scroll-behavior',
+      ':focus',
+      'position: sticky',
+    ],
+    reward: { emoji: '🎓', name: 'Studentmössa' },
+    canBuild: 'en hel egen sajt som fungerar på både dator och mobil',
+    docs: [
+      {
+        title: 'CSS-variabler',
+        url: `${MDN}Web/CSS/Using_CSS_custom_properties`,
+      },
+      {
+        title: 'position',
+        url: `${MDN}Learn_web_development/Core/CSS_layout/Positioning`,
+      },
+    ],
+  },
+  {
+    id: 'tailwind',
+    title: 'Bonus: Tailwind',
+    teaches: [
+      'text- och bg-',
+      'p-4 och m-2',
+      'rounded och shadow',
+      'flex och grid',
+      'hover:',
+      'md:',
+    ],
+    reward: { emoji: '🪄', name: 'Trollstav' },
+    canBuild: 'sidor med bara klasser, så som många företag bygger sina sajter',
+    docs: [
+      {
+        title: 'Tailwind: kom igång',
+        url: 'https://tailwindcss.com/docs/installation/play-cdn',
+      },
+      {
+        title: 'Tailwind: färgerna',
+        url: 'https://tailwindcss.com/docs/colors',
+      },
+    ],
+  },
 ];

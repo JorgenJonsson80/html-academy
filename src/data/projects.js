@@ -181,6 +181,102 @@ const EVENEMANG = `<meta name="viewport" content="width=device-width, initial-sc
 `;
 const evenemang = withStyle(EVENEMANG);
 
+const KLUBB = `<meta name="viewport" content="width=device-width, initial-scale=1">
+<header>
+  <a class="logga" href="#">⚽ IK Bollen</a>
+  <nav>
+    <a href="#lag">Lagen</a>
+    <a href="#tider">Träningstider</a>
+    <a href="#bli-medlem">Bli medlem</a>
+  </nav>
+</header>
+<div class="topp">
+  <h1>Välkommen till IK Bollen</h1>
+  <p>Fotboll för alla mellan 7 och 15 år.</p>
+  <a class="knapp" href="#bli-medlem">Bli medlem</a>
+</div>
+<section id="lag">
+  <h2>Lagen</h2>
+  <div class="lag">
+    <div class="kort">P10</div>
+    <div class="kort">F11</div>
+    <div class="kort">P12</div>
+    <div class="kort">F13</div>
+  </div>
+</section>
+<section id="tider">
+  <h2>Träningstider</h2>
+  <p>Måndag och torsdag kl. 17–18.30 på Bollplanen.</p>
+</section>
+<section id="bli-medlem">
+  <h2>Bli medlem</h2>
+  <p>Kom på en träning och prova – det kostar ingenting!</p>
+</section>
+`;
+const klubb = withStyle(KLUBB);
+
+const BUTIK = `<meta name="viewport" content="width=device-width, initial-scale=1">
+<h1>Leksaksladan</h1>
+<div class="produkter">
+  <div class="produkt">
+    <span class="rea">REA</span>
+    <div class="bild">🧸</div>
+    <h2>Nalle</h2>
+    <p class="pris">149 kr</p>
+    <a class="knapp" href="#">Köp</a>
+  </div>
+  <div class="produkt">
+    <div class="bild">🪀</div>
+    <h2>Jojo</h2>
+    <p class="pris">39 kr</p>
+    <a class="knapp" href="#">Köp</a>
+  </div>
+  <div class="produkt">
+    <div class="bild">🪁</div>
+    <h2>Drake</h2>
+    <p class="pris">199 kr</p>
+    <a class="knapp" href="#">Köp</a>
+  </div>
+  <div class="produkt">
+    <div class="bild">🎲</div>
+    <h2>Tärningar</h2>
+    <p class="pris">25 kr</p>
+    <a class="knapp" href="#">Köp</a>
+  </div>
+</div>
+`;
+const butik = withStyle(BUTIK);
+
+const EGEN = `<meta name="viewport" content="width=device-width, initial-scale=1">
+<header>
+  <h1>Alex sajt</h1>
+  <nav>
+    <a href="#om">Om mig</a>
+    <a href="#hobbyer">Hobbyer</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+<main>
+  <section id="om">
+    <h2>Om mig</h2>
+    <p>Jag är tolv år och bor i Umeå med min familj och vår katt.</p>
+  </section>
+  <section id="hobbyer">
+    <h2>Hobbyer</h2>
+    <p>Jag spelar trummor, bygger med lego och gör hemsidor.</p>
+  </section>
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <p>Fråga mig i skolan!</p>
+  </section>
+</main>
+<footer>© Alex</footer>
+`;
+const egen = withStyle(EGEN);
+
+const TW_RAD =
+  '<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>';
+
 // Delarna i ett projekt bygger på varandra. Tester på fri text kollar
 // formen (en h1 som börjar med …) och inte exakta ord, så att eleven kan
 // skriva om sig själv.
@@ -4206,6 +4302,1227 @@ ${EVENEMANG}`,
             code: "rows('header > *')",
             expected: 2,
             width: 375,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-klubbsida',
+    track: 'slutprojekt',
+    title: 'Klubbsidan',
+    reward: { emoji: '🥅', name: 'Målbur' },
+    summary:
+      'En hel sajt för en fotbollsklubb: färgtema, sidhuvud, en stor topp, lagen i ett grid och mobilen.',
+    steps: [
+      {
+        title: 'Färgtema och sidhuvud',
+        why: 'Klubbens färg kommer att stå på många ställen. Som variabel står den på ett ställe, och sidhuvudet med loggan och menyn är det första alla ser.',
+        xp: 20,
+        description:
+          'Sidan är klar i HTML men har ingen CSS. Börja med klubbens färg och sidhuvudet.',
+        task: 'Uppgift: Skapa `--klubbfarg: forestgreen` i `:root`. Ge `body` `margin: 0` och typsnittet `Arial, sans-serif`. Gör `header` till en flexbox med `space-between`, `align-items: center`, padding `12px 16px` och bakgrunden `var(--klubbfarg)`. Länkarna i `header` är vita utan streck, och `nav` är en flexbox med `16px` gap.',
+        starterCode: `<!-- Steg 1: färgtema och sidhuvud -->
+${KLUBB}`,
+        solution: klubb(`  :root {
+    --klubbfarg: forestgreen;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--klubbfarg);
+  }
+  header a {
+    color: white;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+`),
+        hints: [
+          'Fem regler: :root, body, header, header a och nav.',
+          'background-color: var(--klubbfarg); i header.',
+          ':root { --klubbfarg: forestgreen; }',
+        ],
+        tests: [
+          {
+            description: 'Loggan och menyn står på en rad',
+            code: "[rows('header > *'), rows('nav a'), gapX('nav a')]",
+            expected: [1, 1, 16],
+          },
+          {
+            description: 'Länkarna i sidhuvudet är vita utan streck',
+            code: "[colorsOf('header a'), css('nav a', 'text-decoration-line')]",
+            expected: [['white', 'white', 'white', 'white'], 'none'],
+          },
+          {
+            description: 'Sidhuvudet använder --klubbfarg',
+            code: "[colorOf('header', 'background-color'), (doc.documentElement.style.setProperty('--klubbfarg', 'navy'), colorOf('header', 'background-color'))]",
+            expected: ['forestgreen', 'navy'],
+          },
+        ],
+      },
+      {
+        title: 'Den stora toppen',
+        why: 'Toppen säger på en sekund vad sidan handlar om. Knappen leder direkt till det viktigaste: att bli medlem.',
+        xp: 20,
+        description:
+          'Under sidhuvudet ska det komma en stor, färgglad topp med en gul knapp.',
+        task: 'Uppgift: Ge `.topp` bakgrunden `linear-gradient(to right, forestgreen, darkgreen)`, vit text, padding `48px 16px` och texten i mitten. Gör `.knapp` till en `inline-block` med bakgrunden `gold`, svart text utan streck, padding `12px 24px` och hörnen `8px`.',
+        solution: klubb(`  :root {
+    --klubbfarg: forestgreen;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--klubbfarg);
+  }
+  header a {
+    color: white;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  .topp {
+    background: linear-gradient(to right, forestgreen, darkgreen);
+    color: white;
+    padding: 48px 16px;
+    text-align: center;
+  }
+  .knapp {
+    display: inline-block;
+    background-color: gold;
+    color: black;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+`),
+        hints: [
+          'Två nya regler: .topp och .knapp.',
+          'background: linear-gradient(to right, forestgreen, darkgreen);',
+          '.knapp { display: inline-block; background-color: gold; color: black; … }',
+        ],
+        tests: [
+          {
+            description: 'Toppen går från forestgreen till darkgreen',
+            code: "css('.topp', 'background-image').replace(/rgb\\([^)]*\\)/g, colorName)",
+            expected: 'linear-gradient(to right, forestgreen, darkgreen)',
+          },
+          {
+            description: 'Toppen har vit text i mitten och padding 48px 16px',
+            code: "[colorOf('.topp h1'), css('.topp', 'text-align'), px('.topp', 'padding-top'), px('.topp', 'padding-left')]",
+            expected: ['white', 'center', 48, 16],
+          },
+          {
+            description: 'Knappen är gold med svart text, utan streck',
+            code: "[css('.knapp', 'display'), colorOf('.knapp', 'background-color'), colorOf('.knapp'), css('.knapp', 'text-decoration-line')]",
+            expected: ['inline-block', 'gold', 'black', 'none'],
+          },
+        ],
+      },
+      {
+        title: 'Lagen i ett grid',
+        why: 'Fyra lag får plats bredvid varandra på en dator. Sektionerna får en största bredd, så att texten inte går över hela skärmen.',
+        xp: 20,
+        description:
+          'Lagen står under varandra och sektionerna är lika breda som skärmen.',
+        task: 'Uppgift: Ge `section` `max-width: 900px`, `margin: 0 auto` och padding `16px`. Gör `.lag` till ett grid med fyra lika breda kolumner och `12px` gap. Ge `.kort` bakgrunden `honeydew`, padding `16px`, texten i mitten och hörnen `8px`.',
+        solution: klubb(`  :root {
+    --klubbfarg: forestgreen;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--klubbfarg);
+  }
+  header a {
+    color: white;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  .topp {
+    background: linear-gradient(to right, forestgreen, darkgreen);
+    color: white;
+    padding: 48px 16px;
+    text-align: center;
+  }
+  .knapp {
+    display: inline-block;
+    background-color: gold;
+    color: black;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  .lag {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .kort {
+    background-color: honeydew;
+    padding: 16px;
+    text-align: center;
+    border-radius: 8px;
+  }
+`),
+        hints: [
+          'Tre nya regler: section, .lag och .kort.',
+          'repeat(4, 1fr) ger fyra lika breda kolumner.',
+          '.lag { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }',
+        ],
+        tests: [
+          {
+            description: 'Lagen står i fyra kolumner med 12px emellan',
+            code: "[perRow('.kort'), gapX('.kort')]",
+            expected: [4, 12],
+          },
+          {
+            description: 'Korten är honeydew med texten i mitten',
+            code: "[colorOf('.kort', 'background-color'), css('.kort', 'text-align')]",
+            expected: ['honeydew', 'center'],
+          },
+          {
+            description:
+              'Sektionerna har padding 16px och har en största bredd',
+            code: "[px('section', 'padding-top'), css('section', 'max-width')]",
+            expected: [16, '900px'],
+          },
+        ],
+      },
+      {
+        title: 'Mobilen',
+        why: 'Många föräldrar kollar träningstiderna på mobilen. Där får menyn plats under loggan, och lagen två och två.',
+        xp: 20,
+        description:
+          'Tryck på 📱. Menyn trycks ihop och lagen blir smala. Fixa mobilen.',
+        task: 'Uppgift: När fönstret är högst `600px` brett: ge `header` `flex-direction: column` och `gap: 8px`, och `.lag` två kolumner.',
+        solution: klubb(`  :root {
+    --klubbfarg: forestgreen;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--klubbfarg);
+  }
+  header a {
+    color: white;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  .topp {
+    background: linear-gradient(to right, forestgreen, darkgreen);
+    color: white;
+    padding: 48px 16px;
+    text-align: center;
+  }
+  .knapp {
+    display: inline-block;
+    background-color: gold;
+    color: black;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  .lag {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .kort {
+    background-color: honeydew;
+    padding: 16px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lag {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+`),
+        hints: [
+          '@media sist, med två regler inuti.',
+          'flex-direction: column gör att loggan och menyn hamnar under varandra.',
+          '.lag { grid-template-columns: repeat(2, 1fr); } inuti @media.',
+        ],
+        tests: [
+          {
+            description: 'På mobilen står menyn under loggan',
+            code: "rows('header > *')",
+            expected: 2,
+            width: 375,
+          },
+          {
+            description: 'På mobilen står lagen två och två',
+            code: "[perRow('.kort'), rows('.kort')]",
+            expected: [2, 2],
+            width: 375,
+          },
+          {
+            description:
+              'Sidan får plats på mobilen och är som förut på datorn',
+            code: 'fitsScreen()',
+            expected: true,
+            width: 375,
+          },
+          {
+            description: 'På datorn står lagen kvar i fyra kolumner',
+            code: "perRow('.kort')",
+            expected: 4,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-webbutik',
+    track: 'slutprojekt',
+    title: 'Webbutiken',
+    reward: { emoji: '🧺', name: 'Korg' },
+    summary:
+      'En leksaksbutik med produktkort, en färg för hela butiken, rea-märken i hörnet och en mobilversion.',
+    steps: [
+      {
+        title: 'Produkterna i rutnät',
+        why: 'En butik visar många produkter likadant. Ett grid ställer dem i rader, och samma klass ger alla kort samma utseende.',
+        xp: 20,
+        description:
+          'Produkterna står under varandra. Lägg dem i ett rutnät med fyra kolumner.',
+        task: 'Uppgift: Gör `.produkter` till ett grid med fyra lika breda kolumner och `16px` gap. Ge `.produkt` vit bakgrund, kanten `1px solid lightgray`, hörnen `12px`, padding `16px` och texten i mitten. Ge `.bild` storleken `3rem`.',
+        starterCode: `<!-- Steg 1: produkterna i rutnät -->
+${BUTIK}`,
+        solution: butik(`  .produkter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .produkt {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .bild {
+    font-size: 3rem;
+  }
+`),
+        hints: [
+          'Tre regler: .produkter, .produkt och .bild.',
+          'repeat(4, 1fr) och gap: 16px på .produkter.',
+          '.produkt { background-color: white; border: 1px solid lightgray; border-radius: 12px; padding: 16px; text-align: center; }',
+        ],
+        tests: [
+          {
+            description: 'Produkterna står i fyra kolumner med 16px emellan',
+            code: "[perRow('.produkt'), gapX('.produkt')]",
+            expected: [4, 16],
+          },
+          {
+            description: 'Korten är vita med 1px lightgray kant och 12px hörn',
+            code: "[colorOf('.produkt', 'background-color'), px('.produkt', 'border-top-width'), colorOf('.produkt', 'border-top-color'), css('.produkt', 'border-radius')]",
+            expected: ['white', 1, 'lightgray', '12px'],
+          },
+          {
+            description: 'Bilderna är 48px',
+            code: "px('.bild', 'font-size')",
+            expected: 48,
+          },
+        ],
+      },
+      {
+        title: 'Butikens färg',
+        why: 'Priset och knappen har samma färg, så att man förstår att de hör ihop. Med en variabel kan butiken byta färg till rean på en sekund.',
+        xp: 20,
+        description: 'Priserna och knapparna ska ha butikens färg.',
+        task: 'Uppgift: Skapa `--butiksfarg: darkorange` i `:root`. Ge `.pris` färgen `var(--butiksfarg)` och fet stil. Gör `.knapp` till en `inline-block` med bakgrunden `var(--butiksfarg)`, vit text utan streck, padding `8px 16px` och hörnen `6px`.',
+        solution: butik(`  :root {
+    --butiksfarg: darkorange;
+  }
+  .produkter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .produkt {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .bild {
+    font-size: 3rem;
+  }
+  .pris {
+    color: var(--butiksfarg);
+    font-weight: bold;
+  }
+  .knapp {
+    display: inline-block;
+    background-color: var(--butiksfarg);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+  }
+`),
+        hints: [
+          'En regel för :root, en för .pris och en för .knapp.',
+          'var(--butiksfarg) där färgen ska stå.',
+          '.pris { color: var(--butiksfarg); font-weight: bold; }',
+        ],
+        tests: [
+          {
+            description: 'Priset och knappen är darkorange',
+            code: "[colorOf('.pris'), colorOf('.knapp', 'background-color'), colorOf('.knapp')]",
+            expected: ['darkorange', 'darkorange', 'white'],
+          },
+          {
+            description: 'Knappen har padding 8px 16px och 6px hörn',
+            code: "[css('.knapp', 'display'), px('.knapp', 'padding-top'), px('.knapp', 'padding-left'), css('.knapp', 'border-radius')]",
+            expected: ['inline-block', 8, 16, '6px'],
+          },
+          {
+            description: 'Byts --butiksfarg byter priset och knappen färg',
+            code: "(doc.documentElement.style.setProperty('--butiksfarg', 'crimson'), [colorOf('.pris'), colorOf('.knapp', 'background-color')])",
+            expected: ['crimson', 'crimson'],
+          },
+        ],
+      },
+      {
+        title: 'Rea-märket',
+        why: 'position: absolute lyfter märket ur flödet och placerar det mot närmaste förälder med position. Därför får kortet position: relative – annars hamnar märket i hörnet på hela sidan.',
+        xp: 25,
+        description:
+          'Ordet REA står ovanför bilden. Det ska vara ett rött märke uppe i kortets högra hörn.',
+        task: 'Uppgift: Ge `.produkt` `position: relative`. Ge `.rea` `position: absolute`, `top: 8px` och `right: 8px`, bakgrunden `crimson`, vit text, padding `2px 8px`, hörnen `999px` och storleken `0.75rem`.',
+        solution: butik(`  :root {
+    --butiksfarg: darkorange;
+  }
+  .produkter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .produkt {
+    position: relative;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .bild {
+    font-size: 3rem;
+  }
+  .pris {
+    color: var(--butiksfarg);
+    font-weight: bold;
+  }
+  .knapp {
+    display: inline-block;
+    background-color: var(--butiksfarg);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+  }
+  .rea {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: crimson;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+  }
+`),
+        hints: [
+          'position: relative på .produkt, och en ny regel för .rea.',
+          'top och right säger hur långt från hörnet märket står.',
+          '.rea { position: absolute; top: 8px; right: 8px; … }',
+        ],
+        tests: [
+          {
+            description:
+              'Märket står 8px från kortets övre högra hörn (innanför kanten)',
+            code: "[rect('.rea').top - rect('.produkt').top, rect('.produkt').left + rect('.produkt').width - rect('.rea').left - rect('.rea').width]",
+            expected: [9, 9],
+          },
+          {
+            description: 'Märket är crimson med vit text och runda hörn',
+            code: "[colorOf('.rea', 'background-color'), colorOf('.rea'), css('.rea', 'border-radius'), px('.rea', 'font-size')]",
+            expected: ['crimson', 'white', '999px', 12],
+          },
+        ],
+      },
+      {
+        title: 'Mobilen',
+        why: 'Fyra kolumner på en mobil blir mindre än 80 pixlar breda. Två och två är lagom att trycka på.',
+        xp: 20,
+        description:
+          'Tryck på 📱. Korten är för smala. På mobilen ska de stå två och två.',
+        task: 'Uppgift: Ge `.produkter` två kolumner när fönstret är högst `600px` brett.',
+        solution: butik(`  :root {
+    --butiksfarg: darkorange;
+  }
+  .produkter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .produkt {
+    position: relative;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .bild {
+    font-size: 3rem;
+  }
+  .pris {
+    color: var(--butiksfarg);
+    font-weight: bold;
+  }
+  .knapp {
+    display: inline-block;
+    background-color: var(--butiksfarg);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+  }
+  .rea {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: crimson;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+  }
+  @media (max-width: 600px) {
+    .produkter {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+`),
+        hints: [
+          '@media sist, med en regel för .produkter.',
+          'repeat(2, 1fr) inuti.',
+          '@media (max-width: 600px) {\n  .produkter { grid-template-columns: repeat(2, 1fr); }\n}',
+        ],
+        tests: [
+          {
+            description: 'På mobilen står produkterna två och två',
+            code: "[perRow('.produkt'), rows('.produkt')]",
+            expected: [2, 2],
+            width: 375,
+          },
+          {
+            description: 'Sidan får plats på mobilen',
+            code: 'fitsScreen()',
+            expected: true,
+            width: 375,
+          },
+          {
+            description: 'På datorn står de kvar i fyra kolumner',
+            code: "perRow('.produkt')",
+            expected: 4,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-egen-sajt',
+    track: 'slutprojekt',
+    title: 'Min egen sajt',
+    reward: { emoji: '🌐', name: 'Jordglob' },
+    summary:
+      'Din egen sajt om dig själv, byggd från plan till mobil. Byt gärna ut texterna mot dina egna.',
+    steps: [
+      {
+        title: 'Skelettet',
+        why: 'Skelettet är planen i HTML. Med en meny som länkar till varje sektion går sidan att använda redan innan den har någon CSS.',
+        xp: 20,
+        description:
+          'Bygg skelettet till din sajt. Skriv om dig själv – rättningen kollar bara formen.',
+        task: 'Uppgift: Skriv viewport-raden, en `header` med en `h1` och en `nav` med minst två länkar, en `main` med en `section` med `id` och `h2` för varje länk, och en `footer`. Varje länk går till en sektion.',
+        starterCode:
+          '<!-- Steg 1: skelettet. Byt gärna ut texterna mot dina egna. -->\n',
+        solution: `${EGEN}`,
+        hints: [
+          'header, main och footer. nav står i header.',
+          'Varje länk har href="#id", och varje section har samma id.',
+          '<a href="#om">Om mig</a> … <section id="om"><h2>Om mig</h2></section>',
+        ],
+        tests: [
+          {
+            description:
+              'Sidan har viewport-raden, header med h1, main och footer',
+            code: "[count('meta[name=viewport]'), count('header h1'), count('main'), count('footer')]",
+            expected: [1, 1, 1, 1],
+          },
+          {
+            description: 'Menyn har minst två länkar som går till sektioner',
+            code: "$$('nav a').length >= 2 && $$('nav a').every(link => $(link.getAttribute('href'))?.tagName === 'SECTION')",
+            expected: true,
+          },
+          {
+            description: 'Varje sektion har en h2',
+            code: "$$('main section').every(section => section.querySelector('h2'))",
+            expected: true,
+          },
+        ],
+      },
+      {
+        title: 'Ditt färgtema',
+        why: 'Välj färger som är dina. Som variabler kan du prova en ny färg på en sekund – och hela sidan följer med.',
+        xp: 20,
+        description:
+          'Ge sajten dina färger. Vilka färger du väljer bestämmer du själv.',
+        task: 'Uppgift: Skapa `--huvudfarg` och `--bakgrund` i `:root`, med färger du väljer. Använd `--huvudfarg` som färg på `h1` och `h2`, och `--bakgrund` som bakgrund på `body`. Ge `body` ett typsnitt och `line-height: 1.6`.',
+        solution: egen(`  :root {
+    --huvudfarg: rebeccapurple;
+    --bakgrund: lavenderblush;
+  }
+  body {
+    background-color: var(--bakgrund);
+    font-family: Verdana, sans-serif;
+    line-height: 1.6;
+  }
+  h1,
+  h2 {
+    color: var(--huvudfarg);
+  }
+`),
+        hints: [
+          'Börja med :root och två variabler.',
+          'h1, h2 { color: var(--huvudfarg); }',
+          'body { background-color: var(--bakgrund); font-family: …; line-height: 1.6; }',
+        ],
+        tests: [
+          {
+            description: 'Raderna har 1,6 gånger textens höjd',
+            code: "px('body', 'line-height') / px('body', 'font-size')",
+            expected: 1.6,
+          },
+          {
+            description: 'Rubrikerna använder --huvudfarg',
+            code: "(doc.documentElement.style.setProperty('--huvudfarg', 'crimson'), [colorOf('h1'), colorOf('h2')])",
+            expected: ['crimson', 'crimson'],
+          },
+          {
+            description: 'Bakgrunden använder --bakgrund',
+            code: "(doc.documentElement.style.setProperty('--bakgrund', 'ivory'), colorOf('body', 'background-color'))",
+            expected: 'ivory',
+          },
+        ],
+      },
+      {
+        title: 'Layouten',
+        why: 'Namnet till vänster och menyn till höger, och texten lagom bred i mitten – så känns sidan som en riktig sajt.',
+        xp: 20,
+        description:
+          'Lägg namnet och menyn på en rad, och gör texten lagom bred.',
+        task: 'Uppgift: Gör `header` till en flexbox med `space-between` och `align-items: center`, och `nav` till en flexbox med `16px` gap. Ge `main` `max-width: 700px` och `margin: 0 auto`.',
+        solution: egen(`  :root {
+    --huvudfarg: rebeccapurple;
+    --bakgrund: lavenderblush;
+  }
+  body {
+    background-color: var(--bakgrund);
+    font-family: Verdana, sans-serif;
+    line-height: 1.6;
+  }
+  h1,
+  h2 {
+    color: var(--huvudfarg);
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+`),
+        hints: [
+          'Tre nya regler: header, nav och main.',
+          'header { display: flex; justify-content: space-between; align-items: center; }',
+          'main { max-width: 700px; margin: 0 auto; }',
+        ],
+        tests: [
+          {
+            description: 'Namnet och menyn står på en rad',
+            code: "[rows('header > *'), css('header', 'justify-content')]",
+            expected: [1, 'space-between'],
+          },
+          {
+            description: 'Länkarna har 16px emellan',
+            code: "gapX('nav a')",
+            expected: 16,
+          },
+          {
+            description: 'Texten är 700px bred och står i mitten',
+            code: "[widths('main')[0], centered('main')]",
+            expected: [700, true],
+          },
+        ],
+      },
+      {
+        title: 'Mobilen',
+        why: 'Din sajt ska gå att visa för kompisar på mobilen. Där står menyn under namnet.',
+        xp: 20,
+        description:
+          'Tryck på 📱 och se hur sajten ser ut. Fixa sidhuvudet på mobilen.',
+        task: 'Uppgift: När fönstret är högst `600px` brett: ge `header` `flex-direction: column` och `align-items: flex-start`.',
+        solution: egen(`  :root {
+    --huvudfarg: rebeccapurple;
+    --bakgrund: lavenderblush;
+  }
+  body {
+    background-color: var(--bakgrund);
+    font-family: Verdana, sans-serif;
+    line-height: 1.6;
+  }
+  h1,
+  h2 {
+    color: var(--huvudfarg);
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+  main {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+`),
+        hints: [
+          '@media sist, med en regel för header.',
+          'flex-direction: column; align-items: flex-start;',
+          '@media (max-width: 600px) {\n  header { flex-direction: column; align-items: flex-start; }\n}',
+        ],
+        tests: [
+          {
+            description: 'På mobilen står menyn under namnet, till vänster',
+            code: "[rows('header > *'), rect('nav').left === rect('h1').left]",
+            expected: [2, true],
+            width: 375,
+          },
+          {
+            description: 'Sidan får plats på mobilen',
+            code: 'fitsScreen()',
+            expected: true,
+            width: 375,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-tw-inlogg',
+    track: 'tailwind',
+    title: 'Inloggningsrutan',
+    reward: { emoji: '🔐', name: 'Hänglås' },
+    summary: 'En inloggningsruta som på riktiga sajter – helt med Tailwind.',
+    steps: [
+      {
+        title: 'Rutan',
+        why: 'max-w-sm och mx-auto är Tailwinds sätt att skriva max-width och margin: 0 auto. Rutan står i mitten och krymper på mobilen.',
+        xp: 15,
+        description:
+          'Formuläret ligger utan form på sidan. Gör det till en vit ruta i mitten.',
+        task: 'Uppgift: Ge `body` `bg-slate-100` och `p-8`. Ge `form` `max-w-sm`, `mx-auto`, `bg-white`, `p-6`, `rounded-xl` och `shadow-md`.',
+        starterCode: `<!-- Steg 1: rutan -->
+${TW_RAD}
+<body>
+  <form>
+    <h1 class="text-2xl font-bold">Logga in</h1>
+    <label for="namn">Användarnamn</label>
+    <input id="namn" name="namn">
+    <label for="losen">Lösenord</label>
+    <input id="losen" name="losen" type="password">
+    <button>Logga in</button>
+  </form>
+</body>
+`,
+        solution: `${TW_RAD}
+<body class="bg-slate-100 p-8">
+  <form class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold">Logga in</h1>
+    <label for="namn">Användarnamn</label>
+    <input id="namn" name="namn">
+    <label for="losen">Lösenord</label>
+    <input id="losen" name="losen" type="password">
+    <button>Logga in</button>
+  </form>
+</body>
+`,
+        hints: [
+          'Två klasser på body och sex på form.',
+          'max-w-sm är högst 384 pixlar, mx-auto ställer i mitten.',
+          '<form class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-md">',
+        ],
+        tests: [
+          {
+            description: 'Rutan är 384px bred och står i mitten',
+            code: "[widths('form')[0], centered('form')]",
+            expected: [384, true],
+          },
+          {
+            description: 'Rutan är vit med 24px padding, 12px hörn och skugga',
+            code: "[twColor('form', 'background-color'), px('form', 'padding-top'), css('form', 'border-radius'), css('form', 'box-shadow') !== 'none']",
+            expected: ['white', 24, '12px', true],
+          },
+          {
+            description: 'Sidan är slate-100',
+            code: "twColor('body', 'background-color')",
+            expected: 'slate-100',
+          },
+        ],
+      },
+      {
+        title: 'Fälten',
+        why: 'Tailwinds preflight tar bort fältens kanter, så de syns inte alls. block gör etiketterna till egna rader, och w-full gör fälten lika breda som rutan.',
+        xp: 20,
+        description: 'Fälten syns knappt och står på samma rad som texten.',
+        task: 'Uppgift: Ge båda `label` `block`, `font-semibold` och `mt-4`. Ge båda `input` `w-full`, `border-2`, `border-slate-300`, `rounded-lg`, `px-3` och `py-2`.',
+        solution: `${TW_RAD}
+<body class="bg-slate-100 p-8">
+  <form class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold">Logga in</h1>
+    <label class="block font-semibold mt-4" for="namn">Användarnamn</label>
+    <input class="w-full border-2 border-slate-300 rounded-lg px-3 py-2" id="namn" name="namn">
+    <label class="block font-semibold mt-4" for="losen">Lösenord</label>
+    <input class="w-full border-2 border-slate-300 rounded-lg px-3 py-2" id="losen" name="losen" type="password">
+    <button>Logga in</button>
+  </form>
+</body>
+`,
+        hints: [
+          'Samma klasser på båda label och samma på båda input.',
+          'block gör att etiketten får en egen rad.',
+          'class="w-full border-2 border-slate-300 rounded-lg px-3 py-2"',
+        ],
+        tests: [
+          {
+            description: 'Etiketterna står på egna rader och är halvfeta',
+            code: "[css('label', 'display'), css('label', 'font-weight'), px('label', 'margin-top')]",
+            expected: ['block', '600', 16],
+          },
+          {
+            description: 'Fälten är lika breda som rutans innehåll',
+            code: "widths('input').every(width => width === widths('form')[0] - 48)",
+            expected: true,
+          },
+          {
+            description: 'Fälten har en 2px kant i slate-300 och 8px hörn',
+            code: "[px('input', 'border-top-width'), twColor('input', 'border-top-color'), css('input', 'border-radius')]",
+            expected: [2, 'slate-300', '8px'],
+          },
+        ],
+      },
+      {
+        title: 'Knappen och fokus',
+        why: 'focus: fungerar som hover:, men när fältet är valt. Då ser man direkt var man skriver.',
+        xp: 20,
+        description:
+          'Knappen ser inte ut som en knapp, och man ser inte vilket fält man skriver i.',
+        task: 'Uppgift: Ge knappen `w-full`, `mt-6`, `bg-indigo-600`, `hover:bg-indigo-700`, `text-white`, `font-bold`, `py-2` och `rounded-lg`. Ge båda fälten `focus:border-indigo-500` och `outline-none`.',
+        solution: `${TW_RAD}
+<body class="bg-slate-100 p-8">
+  <form class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold">Logga in</h1>
+    <label class="block font-semibold mt-4" for="namn">Användarnamn</label>
+    <input class="w-full border-2 border-slate-300 rounded-lg px-3 py-2 outline-none focus:border-indigo-500" id="namn" name="namn">
+    <label class="block font-semibold mt-4" for="losen">Lösenord</label>
+    <input class="w-full border-2 border-slate-300 rounded-lg px-3 py-2 outline-none focus:border-indigo-500" id="losen" name="losen" type="password">
+    <button class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg">Logga in</button>
+  </form>
+</body>
+`,
+        hints: [
+          'Åtta klasser på button och två nya på varje input.',
+          'focus: skrivs före klassen, precis som hover:.',
+          'class="… outline-none focus:border-indigo-500"',
+        ],
+        tests: [
+          {
+            description:
+              'Knappen är indigo-600 med vit fet text över hela bredden',
+            code: "[twColor('button', 'background-color'), twColor('button'), css('button', 'font-weight'), widths('button')[0] === widths('input')[0]]",
+            expected: ['indigo-600', 'white', '700', true],
+          },
+          {
+            description: 'Knappen blir indigo-700 när musen är över',
+            code: "twName(hover('button', 'background-color'))",
+            expected: 'indigo-700',
+          },
+          {
+            description: 'Det valda fältet får en kant i indigo-500',
+            code: "twName(focus('input', 'border-color'))",
+            expected: 'indigo-500',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-tw-prislista',
+    track: 'tailwind',
+    title: 'Prislistan',
+    reward: { emoji: '💳', name: 'Betalkort' },
+    summary: 'Tre prisplaner bredvid varandra, med den populäraste i färg.',
+    steps: [
+      {
+        title: 'Tre kort',
+        why: 'grid-cols-1 md:grid-cols-3 är mobilen först i en enda rad: en kolumn alltid, tre från md.',
+        xp: 15,
+        description:
+          'Tre prisplaner står under varandra. På datorn ska de stå bredvid varandra.',
+        task: 'Uppgift: Ge `.planer` `grid`, `grid-cols-1`, `md:grid-cols-3` och `gap-6`. Ge varje `.plan` `bg-white`, `rounded-xl`, `p-6` och `shadow`. Ge `body` `bg-slate-100` och `p-8`.',
+        starterCode: `<!-- Steg 1: tre kort -->
+${TW_RAD}
+<body>
+  <div class="planer">
+    <div class="plan"><h2>Liten</h2><p class="pris">0 kr</p><p>1 spel i månaden</p></div>
+    <div class="plan populär"><h2>Mellan</h2><p class="pris">49 kr</p><p>10 spel i månaden</p></div>
+    <div class="plan"><h2>Stor</h2><p class="pris">99 kr</p><p>Alla spel</p></div>
+  </div>
+</body>
+`,
+        solution: `${TW_RAD}
+<body class="bg-slate-100 p-8">
+  <div class="planer grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="plan bg-white rounded-xl p-6 shadow"><h2>Liten</h2><p class="pris">0 kr</p><p>1 spel i månaden</p></div>
+    <div class="plan populär bg-white rounded-xl p-6 shadow"><h2>Mellan</h2><p class="pris">49 kr</p><p>10 spel i månaden</p></div>
+    <div class="plan bg-white rounded-xl p-6 shadow"><h2>Stor</h2><p class="pris">99 kr</p><p>Alla spel</p></div>
+  </div>
+</body>
+`,
+        hints: [
+          'Fyra klasser på .planer och fyra på varje .plan.',
+          'md:grid-cols-3 gäller från 768 pixlar.',
+          '<div class="planer grid grid-cols-1 md:grid-cols-3 gap-6">',
+        ],
+        tests: [
+          {
+            description:
+              'På datorn står planerna i tre kolumner med 24px emellan',
+            code: "[perRow('.plan'), gapX('.plan')]",
+            expected: [3, 24],
+          },
+          {
+            description: 'På mobilen står de under varandra',
+            code: "rows('.plan')",
+            expected: 3,
+            width: 375,
+          },
+          {
+            description: 'Korten är vita med 12px hörn och 24px padding',
+            code: "[twColor('.plan', 'background-color'), css('.plan', 'border-radius'), px('.plan', 'padding-top')]",
+            expected: ['white', '12px', 24],
+          },
+        ],
+      },
+      {
+        title: 'Texten',
+        why: 'Priset är det viktigaste på kortet och får den största texten. Preflight har gjort alla rubriker lika stora, så storlekarna sätter du själv.',
+        xp: 15,
+        description: 'All text är lika stor. Priset ska synas mest.',
+        task: 'Uppgift: Ge varje `h2` `text-xl` och `font-bold`. Ge varje `.pris` `text-4xl`, `font-bold` och `my-4`.',
+        solution: `${TW_RAD}
+<body class="bg-slate-100 p-8">
+  <div class="planer grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="plan bg-white rounded-xl p-6 shadow"><h2 class="text-xl font-bold">Liten</h2><p class="pris text-4xl font-bold my-4">0 kr</p><p>1 spel i månaden</p></div>
+    <div class="plan populär bg-white rounded-xl p-6 shadow"><h2 class="text-xl font-bold">Mellan</h2><p class="pris text-4xl font-bold my-4">49 kr</p><p>10 spel i månaden</p></div>
+    <div class="plan bg-white rounded-xl p-6 shadow"><h2 class="text-xl font-bold">Stor</h2><p class="pris text-4xl font-bold my-4">99 kr</p><p>Alla spel</p></div>
+  </div>
+</body>
+`,
+        hints: [
+          'Samma klasser i alla tre korten.',
+          'my-4 är margin uppe och nere.',
+          '<p class="pris text-4xl font-bold my-4">',
+        ],
+        tests: [
+          {
+            description: 'Rubrikerna är 20px och feta',
+            code: "[px('.plan:first-child h2', 'font-size'), px('.plan:last-child h2', 'font-size'), css('h2', 'font-weight')]",
+            expected: [20, 20, '700'],
+          },
+          {
+            description: 'Priserna är 36px och feta med 16px luft',
+            code: "[px('.pris', 'font-size'), css('.pris', 'font-weight'), px('.pris', 'margin-top')]",
+            expected: [36, '700', 16],
+          },
+        ],
+      },
+      {
+        title: 'Den populära',
+        why: 'Den plan man helst vill sälja ska sticka ut. En egen färg på ett av tre kort drar blicken dit direkt.',
+        xp: 20,
+        description:
+          'Mellanplanen är populärast. Den ska vara lila med vit text.',
+        task: 'Uppgift: Byt `bg-white` mot `bg-violet-600` på `.populär`, och lägg till `text-white`.',
+        solution: `${TW_RAD}
+<body class="bg-slate-100 p-8">
+  <div class="planer grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="plan bg-white rounded-xl p-6 shadow"><h2 class="text-xl font-bold">Liten</h2><p class="pris text-4xl font-bold my-4">0 kr</p><p>1 spel i månaden</p></div>
+    <div class="plan populär bg-violet-600 text-white rounded-xl p-6 shadow"><h2 class="text-xl font-bold">Mellan</h2><p class="pris text-4xl font-bold my-4">49 kr</p><p>10 spel i månaden</p></div>
+    <div class="plan bg-white rounded-xl p-6 shadow"><h2 class="text-xl font-bold">Stor</h2><p class="pris text-4xl font-bold my-4">99 kr</p><p>Alla spel</p></div>
+  </div>
+</body>
+`,
+        hints: [
+          'Bara klasserna på .populär ändras.',
+          'Ta bort bg-white – annars krockar de två bakgrunderna.',
+          'class="plan populär bg-violet-600 text-white rounded-xl p-6 shadow"',
+        ],
+        tests: [
+          {
+            description: 'Den populära planen är violet-600 med vit text',
+            code: "[twColor('.populär', 'background-color'), twColor('.populär .pris')]",
+            expected: ['violet-600', 'white'],
+          },
+          {
+            description: 'De andra är kvar vita',
+            code: "colorsOf('.plan:not(.populär)', 'background-color')",
+            expected: ['white', 'white'],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'proj-tw-blogg',
+    track: 'tailwind',
+    title: 'Bloggsidan',
+    reward: { emoji: '🖋️', name: 'Reservoarpenna' },
+    summary:
+      'En blogg med sidhuvud, inlägg i en lagom bred kolumn och kort som lyfter sig.',
+    steps: [
+      {
+        title: 'Sidhuvudet',
+        why: 'Samma sidhuvud som i bana 8, nu på en rad HTML. shadow-sm ger en tunn skugga som skiljer det från sidan.',
+        xp: 15,
+        description: 'Bloggens namn och menyn står under varandra.',
+        task: 'Uppgift: Ge `header` `flex`, `justify-between`, `items-center`, `p-4`, `bg-white` och `shadow-sm`. Ge `nav` `flex` och `gap-4`. Ge `body` `bg-stone-100`.',
+        starterCode: `<!-- Steg 1: sidhuvudet -->
+${TW_RAD}
+<body>
+  <header>
+    <span class="text-xl font-bold">📓 Mias blogg</span>
+    <nav>
+      <a href="#">Inlägg</a>
+      <a href="#">Om mig</a>
+    </nav>
+  </header>
+  <main>
+    <article><p class="datum">3 mars</p><h2>Min första kaka</h2><p>Den blev platt, men god!</p></article>
+    <article><p class="datum">10 mars</p><h2>Vi har fått en kanin</h2><p>Hon heter Smulan.</p></article>
+  </main>
+</body>
+`,
+        solution: `${TW_RAD}
+<body class="bg-stone-100">
+  <header class="flex justify-between items-center p-4 bg-white shadow-sm">
+    <span class="text-xl font-bold">📓 Mias blogg</span>
+    <nav class="flex gap-4">
+      <a href="#">Inlägg</a>
+      <a href="#">Om mig</a>
+    </nav>
+  </header>
+  <main>
+    <article><p class="datum">3 mars</p><h2>Min första kaka</h2><p>Den blev platt, men god!</p></article>
+    <article><p class="datum">10 mars</p><h2>Vi har fått en kanin</h2><p>Hon heter Smulan.</p></article>
+  </main>
+</body>
+`,
+        hints: [
+          'Sex klasser på header, två på nav och en på body.',
+          'flex justify-between items-center är sidhuvudets tre viktigaste.',
+          '<header class="flex justify-between items-center p-4 bg-white shadow-sm">',
+        ],
+        tests: [
+          {
+            description: 'Namnet och menyn står på en rad, utspridda',
+            code: "[rows('header > *'), css('header', 'justify-content')]",
+            expected: [1, 'space-between'],
+          },
+          {
+            description: 'Länkarna har 16px emellan',
+            code: "gapX('nav a')",
+            expected: 16,
+          },
+          {
+            description: 'Sidhuvudet är vitt på en stone-100-sida',
+            code: "[twColor('header', 'background-color'), twColor('body', 'background-color')]",
+            expected: ['white', 'stone-100'],
+          },
+        ],
+      },
+      {
+        title: 'Inläggen',
+        why: 'max-w-2xl håller raderna lagom långa, och grid gap-6 ger samma luft mellan alla inlägg.',
+        xp: 20,
+        description: 'Inläggen går över hela bredden och står tätt.',
+        task: 'Uppgift: Ge `main` `max-w-2xl`, `mx-auto`, `p-4`, `grid` och `gap-6`. Ge varje `article` `bg-white`, `rounded-lg` och `p-6`.',
+        solution: `${TW_RAD}
+<body class="bg-stone-100">
+  <header class="flex justify-between items-center p-4 bg-white shadow-sm">
+    <span class="text-xl font-bold">📓 Mias blogg</span>
+    <nav class="flex gap-4">
+      <a href="#">Inlägg</a>
+      <a href="#">Om mig</a>
+    </nav>
+  </header>
+  <main class="max-w-2xl mx-auto p-4 grid gap-6">
+    <article class="bg-white rounded-lg p-6"><p class="datum">3 mars</p><h2>Min första kaka</h2><p>Den blev platt, men god!</p></article>
+    <article class="bg-white rounded-lg p-6"><p class="datum">10 mars</p><h2>Vi har fått en kanin</h2><p>Hon heter Smulan.</p></article>
+  </main>
+</body>
+`,
+        hints: [
+          'Fem klasser på main och tre på varje article.',
+          'max-w-2xl är högst 672 pixlar.',
+          '<main class="max-w-2xl mx-auto p-4 grid gap-6">',
+        ],
+        tests: [
+          {
+            description: 'main är 672px bred och står i mitten',
+            code: "[widths('main')[0], centered('main')]",
+            expected: [672, true],
+          },
+          {
+            description: 'Det är 24px mellan inläggen',
+            code: "gapY('article')",
+            expected: 24,
+          },
+          {
+            description: 'Inläggen är vita med 8px hörn och 24px padding',
+            code: "[twColor('article', 'background-color'), css('article', 'border-radius'), px('article', 'padding-top')]",
+            expected: ['white', '8px', 24],
+          },
+        ],
+      },
+      {
+        title: 'Datum och hover',
+        why: 'Ett litet grått datum i versaler ser ut som på riktiga bloggar. En skugga när musen är över visar att inlägget går att trycka på.',
+        xp: 20,
+        description:
+          'Datumet ser ut som vanlig text, och inget händer när musen är över ett inlägg.',
+        task: 'Uppgift: Ge varje `.datum` `text-sm`, `text-stone-500` och `uppercase`. Ge varje `h2` `text-2xl` och `font-bold`. Ge varje `article` `hover:shadow-lg`.',
+        solution: `${TW_RAD}
+<body class="bg-stone-100">
+  <header class="flex justify-between items-center p-4 bg-white shadow-sm">
+    <span class="text-xl font-bold">📓 Mias blogg</span>
+    <nav class="flex gap-4">
+      <a href="#">Inlägg</a>
+      <a href="#">Om mig</a>
+    </nav>
+  </header>
+  <main class="max-w-2xl mx-auto p-4 grid gap-6">
+    <article class="bg-white rounded-lg p-6 hover:shadow-lg"><p class="datum text-sm text-stone-500 uppercase">3 mars</p><h2 class="text-2xl font-bold">Min första kaka</h2><p>Den blev platt, men god!</p></article>
+    <article class="bg-white rounded-lg p-6 hover:shadow-lg"><p class="datum text-sm text-stone-500 uppercase">10 mars</p><h2 class="text-2xl font-bold">Vi har fått en kanin</h2><p>Hon heter Smulan.</p></article>
+  </main>
+</body>
+`,
+        hints: [
+          'Tre klasser på varje .datum, två på varje h2 och en ny på varje article.',
+          'text-sm är storleken, text-stone-500 färgen.',
+          '<article class="bg-white rounded-lg p-6 hover:shadow-lg">',
+        ],
+        tests: [
+          {
+            description: 'Datumet är litet, grått och i versaler',
+            code: "[px('.datum', 'font-size'), twColor('.datum'), css('.datum', 'text-transform')]",
+            expected: [14, 'stone-500', 'uppercase'],
+          },
+          {
+            description: 'Rubrikerna är 24px och feta',
+            code: "[px('h2', 'font-size'), css('h2', 'font-weight')]",
+            expected: [24, '700'],
+          },
+          {
+            description: 'Inläggen får en skugga när musen är över',
+            code: "hover('article', 'box-shadow') !== null",
+            expected: true,
           },
         ],
       },

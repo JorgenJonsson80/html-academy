@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { usesTailwind } from '../runner/tailwindScript';
 
 const DELAY_MS = 300;
 
@@ -55,9 +56,19 @@ export default function PagePreview({ code }) {
   const [shown, setShown] = useState(code);
   const [mobile, setMobile] = useState(false);
 
+  // Tailwind görs om till CSS här, som i rättningen (se runner/tailwind.js).
   useEffect(() => {
-    const timer = setTimeout(() => setShown(code), DELAY_MS);
-    return () => clearTimeout(timer);
+    let cancelled = false;
+    const timer = setTimeout(async () => {
+      const page = usesTailwind(code)
+        ? await (await import('../runner/tailwind')).withTailwind(code)
+        : code;
+      if (!cancelled) setShown(page);
+    }, DELAY_MS);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [code]);
 
   return (

@@ -53,7 +53,12 @@ const PRAISE = [
 export function evaluate(lesson, code, raw) {
   // Varningarna visas även när testerna går igenom: sidan kan se rätt ut
   // fast webbläsaren fick gissa.
-  const base = { output: raw.console ?? [], warnings: htmlWarnings(code) };
+  // raw.warnings kommer från rättningen, t.ex. Tailwind-klasser som inte
+  // finns (se runner/tailwind.js).
+  const base = {
+    output: raw.console ?? [],
+    warnings: [...htmlWarnings(code), ...(raw.warnings ?? [])].slice(0, 4),
+  };
 
   if (raw.syntaxError) {
     return {
