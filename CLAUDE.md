@@ -1,5 +1,8 @@
 # HTML & CSS Academy
 
+**Har flyttat till Kodskolan** (`../kodskolan`). Bygg vidare där. Sajten
+här skickar bara vidare (`redirect/`, se `deploy.yml`).
+
 En interaktiv kodskola i HTML och CSS på svenska för den som aldrig
 kodat. Repot, adressen `/html-academy/`, tabellen och nycklarna heter
 fortfarande html-academy – bara det som syns heter HTML & CSS Academy.
